@@ -1,33 +1,138 @@
-<HTML>
-<HEAD>
-<TITLE>404 Not Found</TITLE>
-<BASE href="/error_docs/"><!--[if lte IE 6]></BASE><![endif]-->
-</HEAD>
-<BODY>
-<H1>Not Found</H1>
-The requested document was not found on this server.
-<P>
-<HR>
-<ADDRESS>
-Web Server at photopea.com
-</ADDRESS>
-</BODY>
-</HTML>
 
-<!--
-   - Unfortunately, Microsoft has added a clever new
-   - "feature" to Internet Explorer. If the text of
-   - an error's message is "too small", specifically
-   - less than 512 bytes, Internet Explorer returns
-   - its own error message. You can turn that off,
-   - but it's pretty tricky to find switch called
-   - "smart error messages". That means, of course,
-   - that short error messages are censored by default.
-   - IIS always returns error messages that are long
-   - enough to make Internet Explorer happy. The
-   - workaround is pretty simple: pad the error
-   - message with a big comment like this to push it
-   - over the five hundred and twelve bytes minimum.
-   - Of course, that's exactly what you're reading
-   - right now.
-   -->
+<!DOCTYPE html> 
+<html>
+<head>
+		<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, initial-scale=1.0" />
+
+	<title>Photopea - Editing Shapes</title>
+
+	<link rel="stylesheet" href="https://blog.photopea.com/wp-content/themes/simplex/style.css" type="text/css" media="screen" />
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700,700i" />
+</head>
+
+<body>
+<div id="page">
+	<div id="header"> 
+		<a href="//www.photopea.com/learn/" class="title">Learn Photopea</a> 
+		<!--<p>Web-based image editor.</p>-->
+		<a href="//blog.photopea.com">Blog</a> |
+		<a class="curr" href="//www.photopea.com/learn">Learn</a> |
+		<a href="//www.photopea.com/tuts">Tutorials</a> |
+		<a href="//www.photopea.com/templates">Templates</a> |
+		<a href="//www.photopea.com/api">API</a> |
+		<a href="//www.facebook.com/photopea"><img src="//photopea.com/img/facebook.svg" /></a> |
+		<a href="//www.twitter.com/photopeacom"><img src="//photopea.com/img/twitter.svg" /></a> 
+	</div>	
+	<div id="main" style="max-width:1000px;">
+		<div id="sidebar" style="width:22%;">
+			<h3>Topics</h3>
+			<ul>
+			<li class="lvl0"><a href="/learn/">Introduction</a></li>
+			<li class="lvl0"><a href="/learn/workspace">Workspace</a></li>
+			<li class="lvl1"><a href="/learn/opening-saving">Open and Save</a></li>
+			<li class="lvl1"><a href="/learn/navigation">Navigation</a></li>
+			<li class="lvl1"><a href="/learn/image-size">Image size</a></li>
+			<li class="lvl0"><a href="/learn/layers">Layers</a></li>
+			<li class="lvl1"><a href="/learn/masks">Masks</a></li>
+			<li class="lvl1"><a href="/learn/layer-styles">Layer Styles</a></li>
+			<li class="lvl1"><a href="/learn/smart-objects">Smart Objects</a></li>
+			<li class="lvl1"><a href="/learn/other-layers">Other Layers</a></li>
+			<li class="lvl0"><a href="/learn/layer-manipulation">Layer Editing</a></li>
+			<li class="lvl1"><a href="/learn/free-transform">Free Transform</a></li>
+			<li class="lvl1"><a href="/learn/adjustments-filters">Adjust. &amp; Filters</a></li>
+			<li class="lvl0"><a href="/learn/selections">Selections</a></li>
+			<li class="lvl1"><a href="/learn/creating-selections">Make Selections</a></li>
+			<li class="lvl1"><a href="/learn/advanced-selecting">Advanced Selecting</a></li>
+			<li class="lvl1"><a href="/learn/refine-edge">Refine Edge</a></li>
+			<li class="lvl1"><a href="/learn/moving-selected-data">Move Selected Data</a></li>
+			<li class="lvl0"><a href="/learn/brush-tools">Brush Tools</a></li>
+			<li class="lvl1"><a href="/learn/bt-basic">Basic Tools</a></li>
+			<li class="lvl1"><a href="/learn/bt-advanced">Advanced Tools</a></li>
+			<li class="lvl1"><a href="/learn/bt-smart">Smart Tools</a></li>
+			<li class="lvl0"><a href="/learn/text">Text</a></li>
+			<li class="lvl1"><a href="/learn/text-style">Text Style</a></li>
+			<li class="lvl0"><a href="/learn/vector-graphics">Vector Graphics</a></li>
+			<li class="lvl1"><a href="/learn/vg-structure">The Structure</a></li>
+			<li class="lvl1 active"><a href="/learn/vg-manipulation">Editing Shapes</a></li>
+			<li class="lvl1"><a href="/learn/vg-creating">Creating Shapes</a></li>
+			<li class="lvl1"><a href="/learn/vg-vectorize">Vectorize Bitmap</a></li>
+			<li class="lvl0"><a href="/learn/other">Other</a></li>
+			<li class="lvl1"><a href="/learn/color-spaces">Color Spaces</a></li>
+			<li class="lvl1"><a href="/learn/guides-grid-snapping">Guides &amp; Snapping</a></li>
+			<li class="lvl1"><a href="/learn/animations">Animations</a></li>
+			<li class="lvl1"><a href="/learn/slices">Slices</a></li>
+			<li class="lvl1"><a href="/learn/layer-comps">Layer Comps</a></li>
+			<li class="lvl1"><a href="/learn/actions">Actions</a></li>
+			<li class="lvl1"><a href="/learn/scripts">Scripts</a></li>
+			</ul>
+		</div>
+		<div id="content" style="width:78%;">
+			<div class="post">			
+
+<h1>Shape manipulation</h1>
+
+<p>To work with a shape, first, we should select the shape in the Layers panel. We can either click on the thumbnail of a vector mask, or a thumbnail of a Shape layer.
+We will see the outlines of paths after that.</p>
+
+<h2><img class="inline" src="//www.photopea.com/img/tools/pselect.png" />Path select</h2>
+
+<p>Path select allows us to manupulate paths within a shape. Click on the path to select it, or hold Shift to select multiple paths.</p>
+
+<p>When one or more paths are selected, we can:<p>
+
+<ul>
+<li>move them with a mouse or cursor keys</li>
+<li>delete them by pressing Delete</li>
+<li>Cut / Copy / Paste paths using Edit - Cut / Copy / Paste (or Ctrl + X / C / V), even between different layers or different PSDs</li>
+<li>apply Free Transform (Edit - Free Transform)</li>
+</ul>
+
+<p>We can also change the <b>boolean operation</b> (Subtract, Intersect ...) of each path in the top menu, or reorder paths with the Up and Down button.
+The drop-down menu also contains the <b>Merge</b> option, which will merge all paths into a single path.
+In case of the Shape layer, the top menu allows us to change the fill and the stroke of the shape.<p>
+
+<img src="//i.imgur.com/wmY7lJS.png" style="width:60%" />
+
+<h2><img class="inline" src="//www.photopea.com/img/tools/dselect.png" />Direct select</h2>
+
+<p>Direct select allows us to manupulate knots within a shape. Click on the outline of the path to see the knots. 
+Then click on a knot, or hold Shift to select multiple knots. We can even select separate knots from different paths.</p>
+
+<p>When one or more knots are selected, we can:<p>
+
+<ul>
+<li>move them with a mouse or cursor keys</li>
+<li>delete them by pressing Delete</li>
+<li>move the anchor or handles of a knot</li>
+</ul>
+
+<p>Double-clicking the handle will collapse it. When a handle is collapsed, double-clicking the anchor will give it back. 
+Otherwise, double-clicking the anchor will convert the Linked (Smooth) knot to Unlinked (Corner) knot and vice versa.</p>
+			
+			</div>
+			
+			<h2 style="margin-top: 4em">Comments</h2>
+			<p>Do you need help? Ask us at <a href="//www.reddit.com/r/photopea/" target="_blank">our Reddit</a>!</p>
+			
+			<div id="disqus_thread"></div>
+			<script>   
+			(function() { // DON'T EDIT BELOW THIS LINE
+			var d = document, s = d.createElement('script');
+			s.src = 'https://learn-photopea.disqus.com/embed.js';
+			s.setAttribute('data-timestamp', +new Date());
+			(d.head || d.body).appendChild(s);
+			})();   
+			</script>	
+		</div>
+	</div>
+	<div id="footer">&copy; 2013-2021 support@photopea.com</div>
+	<script>
+	  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+	  ga('create', 'UA-4249565-43', 'auto');  ga('send', 'pageview');
+	</script>
+</div>
+</html>

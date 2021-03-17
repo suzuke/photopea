@@ -1,33 +1,127 @@
-<HTML>
-<HEAD>
-<TITLE>404 Not Found</TITLE>
-<BASE href="/error_docs/"><!--[if lte IE 6]></BASE><![endif]-->
-</HEAD>
-<BODY>
-<H1>Not Found</H1>
-The requested document was not found on this server.
-<P>
-<HR>
-<ADDRESS>
-Web Server at photopea.com
-</ADDRESS>
-</BODY>
-</HTML>
 
-<!--
-   - Unfortunately, Microsoft has added a clever new
-   - "feature" to Internet Explorer. If the text of
-   - an error's message is "too small", specifically
-   - less than 512 bytes, Internet Explorer returns
-   - its own error message. You can turn that off,
-   - but it's pretty tricky to find switch called
-   - "smart error messages". That means, of course,
-   - that short error messages are censored by default.
-   - IIS always returns error messages that are long
-   - enough to make Internet Explorer happy. The
-   - workaround is pretty simple: pad the error
-   - message with a big comment like this to push it
-   - over the five hundred and twelve bytes minimum.
-   - Of course, that's exactly what you're reading
-   - right now.
-   -->
+<!DOCTYPE html> 
+<html>
+<head>
+	<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, initial-scale=1.0" />
+	<link rel="stylesheet" href="https://blog.photopea.com/wp-content/themes/simplex/style.css" type="text/css" media="screen" />
+	<link rel='stylesheet' id='casper-google-fonts-css'  href='//fonts.googleapis.com/css?family=Noto+Serif%3A400%2C700%2C400italic%7COpen+Sans%3A700%2C400&#038;ver=4.0.1' type='text/css' media='all' />
+	
+	<title>Photopea API</title>
+	
+			
+	</head>
+
+	<body>
+<div id="page">
+	<div id="header"> 
+		<a href="/" class="title">Photopea API</a> 
+		<!--<p>Web-based image editor.</p>-->
+		<a href="//blog.photopea.com">Blog</a> |
+		<a href="//www.photopea.com/learn">Learn</a> |
+		<a href="//www.photopea.com/tuts">Tutorials</a> |
+		<a href="//www.photopea.com/templates">Templates</a> |
+		<a class="curr" href="//www.photopea.com/api">API</a> |
+		<a href="//www.facebook.com/photopea"><img src="//photopea.com/img/facebook.svg" /></a> |
+		<a href="//www.twitter.com/photopeacom"><img src="//photopea.com/img/twitter.svg" /></a> 
+	</div>
+	
+	<div id="main" style="max-width:960px;">
+		<div id="sidebar" style="width:20%;">
+			<!--<h3>Topics</h3>-->
+			<ul>
+						<li class="lvl0"><a href="/api/">API Spec</a></li>
+			<li class="lvl1"><a href="/api/environment">Environment</a></li>
+			<li class="lvl1"><a href="/api/live">Live Messaging</a></li>
+			<li class="lvl1"><a href="/api/plugins">Plugins</a></li>
+			<li class="lvl0 active"><a href="/api/playground">Playground</a></li>
+			<li class="lvl0"><a href="/api/accounts">Accounts</a></li>
+			</ul>
+		</div>
+		<div id="content" style="width:80%;">
+
+			<div class="post">
+							
+			<script>
+				function onMSG(e) { 
+					console.log(e.origin, e);
+					if(e.origin.indexOf("photopea.com")==-1) return;
+					var nst;
+					if(typeof e.data=="string") nst = e.data;
+					else nst = "ArrayBuffer["+e.data.byteLength+"]";
+					document.getElementById("msgs").textContent += nst+"\n";
+				};
+				var frame = null;
+			
+				function updatePlayground(e)
+				{
+					var json = document.getElementById("json").value;
+					json = JSON.stringify(JSON.parse(json));
+					var url = "https://www.photopea.com";
+					var end = "#"+encodeURI(json);
+					document.getElementById("url").value = url+end;
+					frame.src = url+"?rnd="+Math.floor(Math.random()*0xffffffff)+end;
+					//frame.contentWindow.location.reload(true);
+					//wnd.postMessage(script, "*");
+				}
+				function runScript(e)
+				{
+					var script = document.getElementById("script").value;
+					frame.contentWindow.postMessage(script,"*");
+				}
+				document.body.onload = function(e) {
+					frame = document.getElementById("pp");
+					window.addEventListener("message", onMSG);
+					updatePlayground();
+				}
+			</script>
+			
+			<h1>Playground</h1>
+			<p>Enter the JSON configuration file, which will be encoded into the URL:</p>
+			<textarea rows="8", style="width:100%;" id="json">{
+    "files": [ 
+        "https://www.photopea.com/api/img2/pug.png"
+    ],
+    "environment": {
+        
+    }
+}</textarea>
+			<button onclick="updatePlayground()" style="display:block;  font-size:1.2em;" >Update</button>  <br />
+			
+			<b>URL:</b>
+			<textarea rows="3", style="width:100%;" id="url"></textarea>	
+
+			<iframe src="" id="pp" style="border:none; width:100%; height:500px;"></iframe>		
+
+			<h2>Run a script</h2>
+			<textarea rows="4", style="width:100%;" id="script">app.activeDocument.activeLayer.translate(20,20);</textarea>
+			<button onclick="runScript()" style="display:block;  font-size:1.2em;">Run</button> <br />			
+			<b>Messages from Photopea</b>
+			<pre id="msgs"></pre>
+			
+						</div>
+		</div>
+	</div>
+		
+	<div id="disqus_thread"></div>
+	<script>
+
+	/**
+	*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+	*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+	/*
+	var disqus_config = function () {
+	this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+	this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+	};
+	*/
+	(function() { // DON'T EDIT BELOW THIS LINE
+	var d = document, s = d.createElement('script');
+	s.src = '//photopeablog.disqus.com/embed.js';
+	s.setAttribute('data-timestamp', +new Date());
+	(d.head || d.body).appendChild(s);
+	})();
+	</script>
+	 
+</div>
+	
+</html>

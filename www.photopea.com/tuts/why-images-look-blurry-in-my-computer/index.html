@@ -1,33 +1,116 @@
-<HTML>
-<HEAD>
-<TITLE>404 Not Found</TITLE>
-<BASE href="/error_docs/"><!--[if lte IE 6]></BASE><![endif]-->
-</HEAD>
-<BODY>
-<H1>Not Found</H1>
-The requested document was not found on this server.
-<P>
-<HR>
-<ADDRESS>
-Web Server at photopea.com
-</ADDRESS>
-</BODY>
-</HTML>
+<!DOCTYPE html> 
+<html lang="en">
+<head>
+	<title>  Why images look blurry in my computer</title>
+	<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, initial-scale=1.0" />
+	<!--<link rel="stylesheet" href="https://www.photopea.com/tuts/wp-content/themes/simplex/style.css" type="text/css" media="screen" />-->
+	<link rel="stylesheet" href="https://blog.photopea.com/wp-content/themes/simplex/style.css" type="text/css" media="screen" />
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700,700i" rel="stylesheet">
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-4249565-46"></script>
+	<script>
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());  gtag('config', 'UA-4249565-46');
+	</script>
 
-<!--
-   - Unfortunately, Microsoft has added a clever new
-   - "feature" to Internet Explorer. If the text of
-   - an error's message is "too small", specifically
-   - less than 512 bytes, Internet Explorer returns
-   - its own error message. You can turn that off,
-   - but it's pretty tricky to find switch called
-   - "smart error messages". That means, of course,
-   - that short error messages are censored by default.
-   - IIS always returns error messages that are long
-   - enough to make Internet Explorer happy. The
-   - workaround is pretty simple: pad the error
-   - message with a big comment like this to push it
-   - over the five hundred and twelve bytes minimum.
-   - Of course, that's exactly what you're reading
-   - right now.
-   -->
+</head>
+
+<body>
+<div id="page">
+	<div id="header"> 
+		<a href="https://www.photopea.com/tuts/" class="title">Photopea Tutorials</a> 
+		<!--<p>Web-based image editor.</p>-->
+		<a href="//blog.photopea.com">Blog</a> |
+		<a href="//www.photopea.com/learn">Learn</a> |
+		<a class="curr" href="//www.photopea.com/tuts">Tutorials</a> |
+		<a href="//www.photopea.com/templates">Templates</a> |
+		<a href="//www.photopea.com/api">API</a> |
+		<a href="//www.facebook.com/photopea"><img src="//photopea.com/img/facebook.svg" /></a> |
+		<a href="//www.twitter.com/photopeacom"><img src="//photopea.com/img/twitter.svg" /></a> 
+	</div>	<div id="main">
+	<div id="content">
+	
+		<div class="post" id="post-466">
+			<span class="date">June 18, 2020</span>
+			<h1>Why images look blurry in my computer</h1>
+			<div class="entry">
+
+<p>When you create an image in Photopea, or any other editor, it looks great inside that editor. But after you save it and open it in another program, suddenly, it looks blurry. Why does it happen?</p>
+<span id="more-466"></span>
+
+<p>For two decades (1992-2012), the usual resolution of a screen was around 1000 x 1000 pixels. "Typical" images (e.g. on websites or in an email) had a similar resolution around 800 x 800 pixels. Rendering images was easy: show one pixel of an image using one pixel of a monitor.</p>
+
+<p>As the time passed, new screens arrived with resolutions of 2000 x 2000 or even 3000 x 3000 pixels. Even a phone LG G3 (2014) had a screen of 1440 x 2560 pixels. How should we render typical images on these huge screens?</p>
+
+<p>If we render one image pixel as one screen pixel, an image of 800 x 800 pixels would look very small (e.g. 2x2 inches instead of 6x6 inches on an old screen). If it contained a text, that text would be impossible to read.</p>
+
+<p>The solution arrived: the <b>System Zoom</b>. A system zoom of 200% means, that images will be rendered 2x larger than their pixel resolution. If a website from 2002 contains a 100 x 50 pixel image, and a text size is 14 pixels, the image will be rendered at 200 x 100 pixels, while the text size will be 28 pixels. We can say, that an image of 100 x 50 <b>logical pixels</b> was rendered as 200 x 100 <b>physical (screen) pixels</b>.</p>
+
+<img style="width:50%" src="https://i.imgur.com/dIfwTIU.png" />
+
+<p>You can see or change your System Zoom in the settings of your device. For FullHD screens (1920 x 1080) it is usually 125%. For new phones (2015 - 2020), it is 300% or 400%.</p>
+
+<p>To scale an image by 200%, we simply draw each pixel as 2x2 screen pixels. But to scale it by 125%, a screen pixel may need to use colors from multiple image pixels, which creates a blur.</p>
+
+<table><tbody>
+<tr>
+<td><img src="https://i.imgur.com/GjT9aOf.gif" style="width:100%" /></td>
+<td><img src="https://i.imgur.com/p6QogWT.gif" style="width:100%" /></td>
+</tr>
+<tr>
+<td>A 4x4 checkerboard drawn at 8x8 pixels</td>
+<td>A 4x4 checkerboard drawn at 5x5 pixels</td>
+</tr>
+</tbody></table>
+
+<p>My screen is FullHD and my system zoom is 125%. Here is a 400 x 400 pixel image opened in different programs. Only Photopea editor renders it at 400 x 400 screen pixels, while other programs render it at 500 x 500 screen pixels.</p>
+
+<table><tbody>
+<tr>
+<td><a href="//i.imgur.com/x8ErUKN.png" target="_blank"><img src="//i.imgur.com/x8ErUKN.png" style="width:100%" /></a></td>
+<td><a href="//i.imgur.com/v631stV.png" target="_blank"><img src="//i.imgur.com/v631stV.png" style="width:100%" /></a></td>
+<td><a href="//i.imgur.com/36H9apH.png" target="_blank"><img src="//i.imgur.com/36H9apH.png" style="width:100%" /></a></td>
+</tr>
+<tr>
+<td>Photopea</td>
+<td>JPG opened in Chrome</td>
+<td>Windows Image Viewer</td>
+</tr>
+</tbody></table>
+			</div>
+        	</div>
+		
+	</div><!--content-->
+	
+	<div style="width:110px; margin: 0px auto;">
+		<a href="#" title="Share on Facebook"    onclick="smallWindow('http://www.facebook.com/share.php?u=');"><img src="//www.photopea.com/promo/fb.png" /></a>
+		<a href="#" title="Share on Google Plus" onclick="smallWindow('https://plus.google.com/share?url=');"><img src="//www.photopea.com/promo/gp.png" /></a>
+		<a href="#" title="Share on Twitter"     onclick="smallWindow('http://twitter.com/share?url=');"><img src="//www.photopea.com/promo/tw.png" /></a>
+		<script type="text/javascript">
+			function smallWindow(url)
+			{
+				var w = 640, h = 300;
+				window.open(url+"<? echo get_permalink($post); ?>", "Share", "width="+w+",height="+h+",left="+Math.floor((window.innerWidth-w)/2)+",top="+Math.floor((window.innerHeight-h)/2));
+			}
+		</script>
+	</div>
+	</div>
+	<div style="max-width:770px; margin: 0px auto;">
+	<h2 style="margin-top: 3em">Comments</h2>
+	<p>Do you need help? Ask us at <a href="//www.reddit.com/r/photopea/" target="_blank">our Reddit</a>!</p>
+	</div>
+	<div id="disqus_thread"></div>
+  	<script type="text/javascript">
+ 	     var disqus_shortname = 'photopeablog'; // required: replace example with your forum shortname
+  	     (function() { var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+   	         dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+   	         (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq); })();
+   	</script>
+	<!--main-->
+	<?//php get_sidebar(); ?>
+
+	<div id="footer">&copy; 2013-2021 support@photopea.com</div>
+</div> <!--page-->
+</body>
+</html>

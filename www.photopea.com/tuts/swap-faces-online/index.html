@@ -1,33 +1,118 @@
-<HTML>
-<HEAD>
-<TITLE>404 Not Found</TITLE>
-<BASE href="/error_docs/"><!--[if lte IE 6]></BASE><![endif]-->
-</HEAD>
-<BODY>
-<H1>Not Found</H1>
-The requested document was not found on this server.
-<P>
-<HR>
-<ADDRESS>
-Web Server at photopea.com
-</ADDRESS>
-</BODY>
-</HTML>
+<!DOCTYPE html> 
+<html lang="en">
+<head>
+	<title>  Swap Faces Online</title>
+	<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, initial-scale=1.0" />
+	<!--<link rel="stylesheet" href="https://www.photopea.com/tuts/wp-content/themes/simplex/style.css" type="text/css" media="screen" />-->
+	<link rel="stylesheet" href="https://blog.photopea.com/wp-content/themes/simplex/style.css" type="text/css" media="screen" />
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700,700i" rel="stylesheet">
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-4249565-46"></script>
+	<script>
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());  gtag('config', 'UA-4249565-46');
+	</script>
 
-<!--
-   - Unfortunately, Microsoft has added a clever new
-   - "feature" to Internet Explorer. If the text of
-   - an error's message is "too small", specifically
-   - less than 512 bytes, Internet Explorer returns
-   - its own error message. You can turn that off,
-   - but it's pretty tricky to find switch called
-   - "smart error messages". That means, of course,
-   - that short error messages are censored by default.
-   - IIS always returns error messages that are long
-   - enough to make Internet Explorer happy. The
-   - workaround is pretty simple: pad the error
-   - message with a big comment like this to push it
-   - over the five hundred and twelve bytes minimum.
-   - Of course, that's exactly what you're reading
-   - right now.
-   -->
+</head>
+
+<body>
+<div id="page">
+	<div id="header"> 
+		<a href="https://www.photopea.com/tuts/" class="title">Photopea Tutorials</a> 
+		<!--<p>Web-based image editor.</p>-->
+		<a href="//blog.photopea.com">Blog</a> |
+		<a href="//www.photopea.com/learn">Learn</a> |
+		<a class="curr" href="//www.photopea.com/tuts">Tutorials</a> |
+		<a href="//www.photopea.com/templates">Templates</a> |
+		<a href="//www.photopea.com/api">API</a> |
+		<a href="//www.facebook.com/photopea"><img src="//photopea.com/img/facebook.svg" /></a> |
+		<a href="//www.twitter.com/photopeacom"><img src="//photopea.com/img/twitter.svg" /></a> 
+	</div>	<div id="main">
+	<div id="content">
+	
+		<div class="post" id="post-180">
+			<span class="date">March 10, 2019</span>
+			<h1>Swap Faces Online</h1>
+			<div class="entry">
+
+<p>Do you want to see a person with a face of another person? We will show you how to replace faces online for free.</p>
+<span id="more-180"></span>
+
+<p>Ther are many ways, how we can replace faces. We may have a photo of two people, and we can swap their faces. Or we can have two photos, one face in each photo, and we can replace a face in the first photo with a face from another photo. Or maybe we have a group photo with many people, and we want to give them all the same face.</p>
+
+<p>We will demonstrate our work on <a href="//pixabay.com/photos/family-people-car-looking-children-932245/">this family photo</a>, where we want to replace each face with a face of Nicolas Cage.</p>
+
+<img src="//i.imgur.com/OKAhQaA.jpg" class="fullw" />
+
+<p>Go to <a href="www.Photopea.com">Photopea.com</a> to start a free online photo editor. Open your main photo using File - Open. You can open more photos, if needed. You can switch between them using "tabs" at the top.</p>
+
+<img src="//imgur.com/ZtOKkcd.png" class="fullw" />
+
+<p>Swapping faces can be done in three steps: Cut and Paste, Rearrange and Auto-Blend.</p>
+
+<h2>Cut and Paste</h2>
+
+<p>We need to select each face, so that we can copy it and place into the main document. We can select a face with a Lasso tool. Choose the Lasso tool (in the toolbar on the left) and draw a stroke around the face.</p>
+
+<img src="//i.imgur.com/mYh2uxz.png" style="width:50%" />
+
+<p>Copy the selected area by pressing Ctrl+C (or Edit - Copy in the top menu), switch to the main document, and press Ctrl+V (or Edit - Paste) to paste it. If you are swapping faces inside one picture, just copy and paste it in the same document, to get a new layer. You can paste it multiple times, if you need multiple copies of the face. You can select and paste other faces in the same way.</p>
+
+<img src="//i.imgur.com/I6sV3qW.jpg" class="fullw" />
+
+<h2>Rearrange</h2>
+
+<p>We have all we need in one document. There is the main background photo, and several layers (faces) on top of it. We need to move, resize and rotate each face, to get it to the right spot.</p>
+
+<p>Select a face that you want to work with (by clicking it in the layers panel). We will transform it with a <b>Free Transform tool</b>. Press Edit - Free Transform (or Alt+Ctrl+T), you will see a reactangle around your face. You can move it by clicking and dragging inside the rectangle. You can resize it by dragging its corners (hold Shift to keep the proportions). You can rotate it by clicking and dragging near the corners (outside the rectangle). Once you are done, hit Enter to confirm the transformation.</p>
+
+<img src="//i.imgur.com/Mwwcb31.png" style="width:60%" />
+
+<p>You can rearrange other faces in the same way.</p>
+
+<h2>Auto-Blend</h2>
+
+<p>We have all faces at correct locations. But they look very unnatural, there is a visible border between the original face and a new face. The skin tone may be different, or there are different light conditions, etc. Photopea contains a very smart feature called <b>Auto-Blend</b>. It will connect all layers into one layer, and it will also <b>adapt</b> the color tone of each layer (i.e. each face) to the color tone of the most bottom layer.</p>
+
+<p>Start by selecting all layers in the Layers panel. You can click the top layer, hold Shift, and click the bottom layer, to select them all. Now, just click Edit - Auto-Blend.</p>
+
+<img src="//i.imgur.com/PuX1ROr.gif" class="fullw" />
+
+<p>Your photo is ready! Now, save it as JPG by pressing file - Export As - JPG - OK.</p>
+			</div>
+        	</div>
+		
+	</div><!--content-->
+	
+	<div style="width:110px; margin: 0px auto;">
+		<a href="#" title="Share on Facebook"    onclick="smallWindow('http://www.facebook.com/share.php?u=');"><img src="//www.photopea.com/promo/fb.png" /></a>
+		<a href="#" title="Share on Google Plus" onclick="smallWindow('https://plus.google.com/share?url=');"><img src="//www.photopea.com/promo/gp.png" /></a>
+		<a href="#" title="Share on Twitter"     onclick="smallWindow('http://twitter.com/share?url=');"><img src="//www.photopea.com/promo/tw.png" /></a>
+		<script type="text/javascript">
+			function smallWindow(url)
+			{
+				var w = 640, h = 300;
+				window.open(url+"<? echo get_permalink($post); ?>", "Share", "width="+w+",height="+h+",left="+Math.floor((window.innerWidth-w)/2)+",top="+Math.floor((window.innerHeight-h)/2));
+			}
+		</script>
+	</div>
+	</div>
+	<div style="max-width:770px; margin: 0px auto;">
+	<h2 style="margin-top: 3em">Comments</h2>
+	<p>Do you need help? Ask us at <a href="//www.reddit.com/r/photopea/" target="_blank">our Reddit</a>!</p>
+	</div>
+	<div id="disqus_thread"></div>
+  	<script type="text/javascript">
+ 	     var disqus_shortname = 'photopeablog'; // required: replace example with your forum shortname
+  	     (function() { var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+   	         dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+   	         (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq); })();
+   	</script>
+	<!--main-->
+	<?//php get_sidebar(); ?>
+
+	<div id="footer">&copy; 2013-2021 support@photopea.com</div>
+</div> <!--page-->
+</body>
+</html>

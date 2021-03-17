@@ -1,33 +1,148 @@
-<HTML>
-<HEAD>
-<TITLE>404 Not Found</TITLE>
-<BASE href="/error_docs/"><!--[if lte IE 6]></BASE><![endif]-->
-</HEAD>
-<BODY>
-<H1>Not Found</H1>
-The requested document was not found on this server.
-<P>
-<HR>
-<ADDRESS>
-Web Server at photopea.com
-</ADDRESS>
-</BODY>
-</HTML>
 
-<!--
-   - Unfortunately, Microsoft has added a clever new
-   - "feature" to Internet Explorer. If the text of
-   - an error's message is "too small", specifically
-   - less than 512 bytes, Internet Explorer returns
-   - its own error message. You can turn that off,
-   - but it's pretty tricky to find switch called
-   - "smart error messages". That means, of course,
-   - that short error messages are censored by default.
-   - IIS always returns error messages that are long
-   - enough to make Internet Explorer happy. The
-   - workaround is pretty simple: pad the error
-   - message with a big comment like this to push it
-   - over the five hundred and twelve bytes minimum.
-   - Of course, that's exactly what you're reading
-   - right now.
-   -->
+<!DOCTYPE html> 
+<html>
+<head>
+		<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, initial-scale=1.0" />
+
+	<title>Photopea - Workspace</title>
+
+	<link rel="stylesheet" href="https://blog.photopea.com/wp-content/themes/simplex/style.css" type="text/css" media="screen" />
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700,700i" />
+</head>
+
+<body>
+<div id="page">
+	<div id="header"> 
+		<a href="//www.photopea.com/learn/" class="title">Learn Photopea</a> 
+		<!--<p>Web-based image editor.</p>-->
+		<a href="//blog.photopea.com">Blog</a> |
+		<a class="curr" href="//www.photopea.com/learn">Learn</a> |
+		<a href="//www.photopea.com/tuts">Tutorials</a> |
+		<a href="//www.photopea.com/templates">Templates</a> |
+		<a href="//www.photopea.com/api">API</a> |
+		<a href="//www.facebook.com/photopea"><img src="//photopea.com/img/facebook.svg" /></a> |
+		<a href="//www.twitter.com/photopeacom"><img src="//photopea.com/img/twitter.svg" /></a> 
+	</div>	
+	<div id="main" style="max-width:1000px;">
+		<div id="sidebar" style="width:22%;">
+			<h3>Topics</h3>
+			<ul>
+			<li class="lvl0"><a href="/learn/">Introduction</a></li>
+			<li class="lvl0 active"><a href="/learn/workspace">Workspace</a></li>
+			<li class="lvl1"><a href="/learn/opening-saving">Open and Save</a></li>
+			<li class="lvl1"><a href="/learn/navigation">Navigation</a></li>
+			<li class="lvl1"><a href="/learn/image-size">Image size</a></li>
+			<li class="lvl0"><a href="/learn/layers">Layers</a></li>
+			<li class="lvl1"><a href="/learn/masks">Masks</a></li>
+			<li class="lvl1"><a href="/learn/layer-styles">Layer Styles</a></li>
+			<li class="lvl1"><a href="/learn/smart-objects">Smart Objects</a></li>
+			<li class="lvl1"><a href="/learn/other-layers">Other Layers</a></li>
+			<li class="lvl0"><a href="/learn/layer-manipulation">Layer Editing</a></li>
+			<li class="lvl1"><a href="/learn/free-transform">Free Transform</a></li>
+			<li class="lvl1"><a href="/learn/adjustments-filters">Adjust. &amp; Filters</a></li>
+			<li class="lvl0"><a href="/learn/selections">Selections</a></li>
+			<li class="lvl1"><a href="/learn/creating-selections">Make Selections</a></li>
+			<li class="lvl1"><a href="/learn/advanced-selecting">Advanced Selecting</a></li>
+			<li class="lvl1"><a href="/learn/refine-edge">Refine Edge</a></li>
+			<li class="lvl1"><a href="/learn/moving-selected-data">Move Selected Data</a></li>
+			<li class="lvl0"><a href="/learn/brush-tools">Brush Tools</a></li>
+			<li class="lvl1"><a href="/learn/bt-basic">Basic Tools</a></li>
+			<li class="lvl1"><a href="/learn/bt-advanced">Advanced Tools</a></li>
+			<li class="lvl1"><a href="/learn/bt-smart">Smart Tools</a></li>
+			<li class="lvl0"><a href="/learn/text">Text</a></li>
+			<li class="lvl1"><a href="/learn/text-style">Text Style</a></li>
+			<li class="lvl0"><a href="/learn/vector-graphics">Vector Graphics</a></li>
+			<li class="lvl1"><a href="/learn/vg-structure">The Structure</a></li>
+			<li class="lvl1"><a href="/learn/vg-manipulation">Editing Shapes</a></li>
+			<li class="lvl1"><a href="/learn/vg-creating">Creating Shapes</a></li>
+			<li class="lvl1"><a href="/learn/vg-vectorize">Vectorize Bitmap</a></li>
+			<li class="lvl0"><a href="/learn/other">Other</a></li>
+			<li class="lvl1"><a href="/learn/color-spaces">Color Spaces</a></li>
+			<li class="lvl1"><a href="/learn/guides-grid-snapping">Guides &amp; Snapping</a></li>
+			<li class="lvl1"><a href="/learn/animations">Animations</a></li>
+			<li class="lvl1"><a href="/learn/slices">Slices</a></li>
+			<li class="lvl1"><a href="/learn/layer-comps">Layer Comps</a></li>
+			<li class="lvl1"><a href="/learn/actions">Actions</a></li>
+			<li class="lvl1"><a href="/learn/scripts">Scripts</a></li>
+			</ul>
+		</div>
+		<div id="content" style="width:78%;">
+			<div class="post">			
+<h1>Workspace</h1>
+
+<img src="//i.imgur.com/gl6lKb7.png" class="fullw" />
+
+<p>The workspace of Photopea is very similar to other image editors. It consists of the
+<b>Toolbar</b> on the left, the <b>Sidebar</b> on the right, the <b>Working area</b> in the middle and the <b>Top menu</b> at the top.</p>
+
+<h2>Toolbar</h2>
+
+<p>The toolbar contains all available tools. You can switch tools by clicking on their icons in the toolbar. Only one tool can be active at a time.
+Icons with a little arrow in the corner (e.g. Lasso tool) contain the whole group of related tools. 
+Click and hold a tool button to see the menu with more tools in that group.</p>
+
+<img src="//i.imgur.com/UpJs7of.png" style="width:50%" />
+
+<p>Keep your mouse above a tool icon for a moment to see the name of that tool. Some tools have capital letters attached to them (e.g. B for Brush tool).
+You can also switch tools by pressing corresponding keys on your keyboard.</p>
+
+<p>There is <b>the foreground and the background</b> color at the bottom of the toolbar. 
+It is a simple palette of two colors, which are used by some tools. You can swap them with the X button, 
+or reset to default values (black and white) with a D button.</p>
+
+<h2>Sidebar</h2>
+
+<p>The sidebar consists of two vertical columns. Each column can be folded and unfolded by clicking the thick line at the top of the column.</p>
+
+<img src="//i.imgur.com/Fe0U26E.png" />
+
+<p>These columns contain panels (Layers, History, Paragraph ...), that you may need during your work. 
+When the column is unfolded, you can see multiple panels, that are inside.
+When the column is folded, you can show and hide a specific panel by clicking the corresponding button in the column.</p>
+
+<p>If you don't know where a specific panel is located, press Window - name of that panel.</p>
+
+<h2>Main Area</h2>
+
+<p>Photopea allows you to open multiple documents (e.g. JPG images) at the same time. 
+The list of opened documents is shown in the bar at the top of the main area.</p>
+
+<img src="//i.imgur.com/n6vpIgZ.png" />
+
+<p>Here you can switch between documents and choose the one that you want to work with. You can also close
+documents by pressing the cross next to the document name. Below that bar, in the middle of the workspace, 
+is the actual content of your document. It is the active area, whree you can draw, move objects etc.</p>
+
+<h2>Top Menu</h2>
+
+<p>The top menu consists of two parts the first part (File, Edit, Image ...) is the main menu of Photopea. It is always the same.</p>
+
+<p>The second part (below the main menu) contains parameters of the current tool. It has a different content for each tool.
+For example, for the Brush tool, it contains the opacity of the brush, while for the Type tool, it contains the size of characters.</p>			
+			</div>
+			
+			<h2 style="margin-top: 4em">Comments</h2>
+			<p>Do you need help? Ask us at <a href="//www.reddit.com/r/photopea/" target="_blank">our Reddit</a>!</p>
+			
+			<div id="disqus_thread"></div>
+			<script>   
+			(function() { // DON'T EDIT BELOW THIS LINE
+			var d = document, s = d.createElement('script');
+			s.src = 'https://learn-photopea.disqus.com/embed.js';
+			s.setAttribute('data-timestamp', +new Date());
+			(d.head || d.body).appendChild(s);
+			})();   
+			</script>	
+		</div>
+	</div>
+	<div id="footer">&copy; 2013-2021 support@photopea.com</div>
+	<script>
+	  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+	  ga('create', 'UA-4249565-43', 'auto');  ga('send', 'pageview');
+	</script>
+</div>
+</html>

@@ -1,33 +1,116 @@
-<HTML>
-<HEAD>
-<TITLE>404 Not Found</TITLE>
-<BASE href="/error_docs/"><!--[if lte IE 6]></BASE><![endif]-->
-</HEAD>
-<BODY>
-<H1>Not Found</H1>
-The requested document was not found on this server.
-<P>
-<HR>
-<ADDRESS>
-Web Server at photopea.com
-</ADDRESS>
-</BODY>
-</HTML>
 
-<!--
-   - Unfortunately, Microsoft has added a clever new
-   - "feature" to Internet Explorer. If the text of
-   - an error's message is "too small", specifically
-   - less than 512 bytes, Internet Explorer returns
-   - its own error message. You can turn that off,
-   - but it's pretty tricky to find switch called
-   - "smart error messages". That means, of course,
-   - that short error messages are censored by default.
-   - IIS always returns error messages that are long
-   - enough to make Internet Explorer happy. The
-   - workaround is pretty simple: pad the error
-   - message with a big comment like this to push it
-   - over the five hundred and twelve bytes minimum.
-   - Of course, that's exactly what you're reading
-   - right now.
-   -->
+<!DOCTYPE html> 
+<html>
+<head>
+	<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, initial-scale=1.0" />
+	<link rel="stylesheet" href="https://blog.photopea.com/wp-content/themes/simplex/style.css" type="text/css" media="screen" />
+	<link rel='stylesheet' id='casper-google-fonts-css'  href='//fonts.googleapis.com/css?family=Noto+Serif%3A400%2C700%2C400italic%7COpen+Sans%3A700%2C400&#038;ver=4.0.1' type='text/css' media='all' />
+	
+	<title>Photopea API</title>
+	
+			
+	</head>
+
+	<body>
+<div id="page">
+	<div id="header"> 
+		<a href="/" class="title">Photopea API</a> 
+		<!--<p>Web-based image editor.</p>-->
+		<a href="//blog.photopea.com">Blog</a> |
+		<a href="//www.photopea.com/learn">Learn</a> |
+		<a href="//www.photopea.com/tuts">Tutorials</a> |
+		<a href="//www.photopea.com/templates">Templates</a> |
+		<a class="curr" href="//www.photopea.com/api">API</a> |
+		<a href="//www.facebook.com/photopea"><img src="//photopea.com/img/facebook.svg" /></a> |
+		<a href="//www.twitter.com/photopeacom"><img src="//photopea.com/img/twitter.svg" /></a> 
+	</div>
+	
+	<div id="main" style="max-width:960px;">
+		<div id="sidebar" style="width:20%;">
+			<!--<h3>Topics</h3>-->
+			<ul>
+						<li class="lvl0"><a href="/api/">API Spec</a></li>
+			<li class="lvl1"><a href="/api/environment">Environment</a></li>
+			<li class="lvl1"><a href="/api/live">Live Messaging</a></li>
+			<li class="lvl1 active"><a href="/api/plugins">Plugins</a></li>
+			<li class="lvl0"><a href="/api/playground">Playground</a></li>
+			<li class="lvl0"><a href="/api/accounts">Accounts</a></li>
+			</ul>
+		</div>
+		<div id="content" style="width:80%;">
+
+			<div class="post">
+							
+			
+			<h1>Plugins</h1>
+			<p>Create Plugins for Photopea and provide them to your users through a configuration JSON.</p>
+			<pre>{ "environment": {
+	"plugins" : [ 
+		{
+			"name"  : "Wikipedia",
+			"url"   : "https://en.wikipedia.org",
+			"width" : 400,
+			"height": 300,
+			"icon"  : "https://en.wikipedia.org/static/favicon/wikipedia.ico"
+		}
+	]
+} }</pre>
+			<ul>
+				<li><code>name</code> - plugin name</li>
+				<li><code>url</code> - plugin URL</li>
+				<li><code>width</code> - panel width</li>
+				<li><code>height</code> - panel height</li>
+				<li><code>icon</code> - plugin icon (optional)</li>
+			</ul>
+			<p>For each plugin, the button will be added to the right side, below the current buttons.</p>		
+			<img src="//i.imgur.com/8tPgmho.png" class="fullw" />
+			<p>After the user clicks the plugin button, the panel is opened with a website <code>url</code>, having the size of <code>width</code> and <code>height</code>.</p>
+			
+			<p>Users can drag-and-drop images from your website to Photopea (as Photopea supports dropping images from any website, opened by a browser).</p>
+			
+			<p>Your website can connect with Photopea using <a href="/api/live">Live Messaging</a> (your website acts as the OE). 
+			It allows your plugin to execute scripts (e.g. to change foreground color, to move a layer, etc.).</p>
+			
+			<p>The plugin can give files to Photopea (images: psd, jpg, svg ... or resources: brushes, patterns, fonts ...), 
+			or request the current file in a specific format.
+			All this can be controlled e.g. by buttons in your plugin (website).</p>
+			
+			<pre>window.parent.postMessage("...script...", "*");
+window.parent.postMessage(ArrayBuffer, "*");</pre>
+			
+			<h2>Examples of usage</h2>
+			
+			<p><b>Photo Store</b>. Let users browse your database of images. They can search the database by a keyword. 
+			You can add a button "Open" next to each image, which would open that image in Photopea.</p>
+			
+			<p><b>Font Gallery</b>. Let users browse your database of fonts. The font will be loaded after clicking the button. 
+			You can integrate a payment gateway into the plugin, too (as it is your website, you have full control over it).</p>
+			
+			<p>You can make your plugin "commercial" - let users pay for them monthly. The sign-in and the payment interface could still be 
+			in the same "iframe" of your plugin, inside Photopea (or you could open a new window and then, come back to Photopea).</p>			</div>
+		</div>
+	</div>
+		
+	<div id="disqus_thread"></div>
+	<script>
+
+	/**
+	*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+	*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+	/*
+	var disqus_config = function () {
+	this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+	this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+	};
+	*/
+	(function() { // DON'T EDIT BELOW THIS LINE
+	var d = document, s = d.createElement('script');
+	s.src = '//photopeablog.disqus.com/embed.js';
+	s.setAttribute('data-timestamp', +new Date());
+	(d.head || d.body).appendChild(s);
+	})();
+	</script>
+	 
+</div>
+	
+</html>

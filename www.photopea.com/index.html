@@ -1,33 +1,84 @@
-<HTML>
-<HEAD>
-<TITLE>404 Not Found</TITLE>
-<BASE href="/error_docs/"><!--[if lte IE 6]></BASE><![endif]-->
-</HEAD>
-<BODY>
-<H1>Not Found</H1>
-The requested document was not found on this server.
-<P>
-<HR>
-<ADDRESS>
-Web Server at photopea.com
-</ADDRESS>
-</BODY>
-</HTML>
+﻿
+<!DOCTYPE html> 
 
-<!--
-   - Unfortunately, Microsoft has added a clever new
-   - "feature" to Internet Explorer. If the text of
-   - an error's message is "too small", specifically
-   - less than 512 bytes, Internet Explorer returns
-   - its own error message. You can turn that off,
-   - but it's pretty tricky to find switch called
-   - "smart error messages". That means, of course,
-   - that short error messages are censored by default.
-   - IIS always returns error messages that are long
-   - enough to make Internet Explorer happy. The
-   - workaround is pretty simple: pad the error
-   - message with a big comment like this to push it
-   - over the five hundred and twelve bytes minimum.
-   - Of course, that's exactly what you're reading
-   - right now.
-   -->
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, initial-scale=1.0" />
+		<meta name="thumbnail" content="https://www.photopea.com/promo/screens/scr5.png" />
+		<meta name="theme-color" content="#474747">
+		
+		<title>Photopea | Online Photo Editor</title>
+		
+		<link rel="apple-touch-icon" href="promo/icon512.png">
+		<link rel="icon" sizes="256x256" href="promo/thumb256.png">
+		<link rel="image_src"  type="image/png"  href="promo/thumb256.png" />
+		<link rel="manifest" href="manifest.json">
+		<link rel="chrome-webstore-item" href="//chrome.google.com/webstore/detail/fmophgdjdipcbfjiopifpngdjmemonko">
+		
+		<meta name="description" content="Photopea Online Photo Editor lets you edit photos, apply effects, filters, add text, crop or resize pictures. Do Online Photo Editing in your browser for free!" />
+		
+		<link rel="stylesheet" href="style/all.css" />
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700,700i" />
+
+		<style>
+			#cap { 
+				font-size: 1.3em;
+				padding:2% 2% 1em 2%; background-color: #0f171d; /*background-image: linear-gradient(rgb(20, 20, 22), rgb(40,40,45));*/
+				color:#e6e6e6;  text-align:center;
+				/*position:absolute; z-index:10; margin:1em; border-radius: 1em;*/
+			}
+			#cap a { color:inherit;  font-weight:bold;  }
+			#cap p { margin-bottom:1.5em;  line-height:1.5em;  }
+			h1 { font-size: 2.3em;  margin:0.5em 0; letter-spacing: 0em;  line-height:1.2em; }
+			strong { display:inline-block; font-size: 1.1em; background:rgba(0,0,0,0.1); padding:0.1em 0.5em; 
+					margin: 0.2em 0.5em 0.2em 0; border-radius:0.3em; font-weight:normal; line-height:1.7}
+		</style>
+		<script>
+			function showCap() {_showCap(true);}   function hideCap() {_showCap(false);}
+			function _showCap(vis){
+				document.getElementById("cap").setAttribute("style", vis?"":"display:none;");
+				localStorage.setItem("capShown", ""+vis);
+			}
+		</script>
+	</head>
+	
+	<body class="theme0">		
+		<!---->
+		<div id="cap">
+			<span style="position:absolute;right:0;top:0;font-size:7em;margin:0 0.2em;cursor:pointer;" onclick="hideCap()">✕</span>
+			<img style="width:8em; margin-top:1em;" src="promo/thumb256.png" alt="Photopea logo" />
+			<h1>Photopea: advanced photo editor</h1>
+			<p style="font-size:1.3em">Free online photo editor supporting <b>PSD</b>, <b>XCF</b>, <b>Sketch</b>, <b>XD</b> and <b>CDR</b> formats. 
+			(<b>Adobe Photoshop</b>, <b>GIMP</b>, <b>Sketch App</b>,  <b>Adobe XD</b> and  <b>CorelDRAW</b>).</p>
+			<p>Create a new image or open existing files from your computer. Save your work as PSD 
+			(File - Save as PSD) or as JPG / PNG / SVG (File - Export). Suggest new features at our
+			<a href="//github.com/photopea/photopea/issues" target="_blank">GitHub</a> or <a href="//www.facebook.com/photopea/" target="_blank">Facebook</a>. 
+			Our goal is to create <a href="https://blog.photopea.com/introduction.html" target="_blank">the most advanced and affordable photo editor</a>.</p>
+			<span><!--<a href="mailto:support@photopea.com">-->support@photopea.com<!--</a>--> | Reddit: <a target="_blank" href="//www.reddit.com/r/photopea/">/r/Photopea</a></span>
+		</div>
+		<!---->
+		
+		<script>if(localStorage.getItem("capShown")=="false" || window.self != window.top) hideCap();</script>
+		
+		<script src="//apis.google.com/js/client.js"></script>
+		<script src="ads.js"></script>
+		
+		<script src="code/external/ext.js"></script>	
+		<!--<script src="code/PIMG.js"></script>		
+		<script src="code/FNTS.js"></script>
+		<script src="code/LNG2.js"></script>-->
+		<script src="code/DBS.js"></script>
+		<script src="code/pp.js"></script>	
+		
+		<script>
+		  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+		  ga('create', 'UA-4249565-37', 'photopea.com');
+		  ga('send', 'pageview');
+		</script>
+	</body>
+
+</html>

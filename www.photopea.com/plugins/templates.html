@@ -1,33 +1,101 @@
-<HTML>
-<HEAD>
-<TITLE>404 Not Found</TITLE>
-<BASE href="/error_docs/"><!--[if lte IE 6]></BASE><![endif]-->
-</HEAD>
-<BODY>
-<H1>Not Found</H1>
-The requested document was not found on this server.
-<P>
-<HR>
-<ADDRESS>
-Web Server at photopea.com
-</ADDRESS>
-</BODY>
-</HTML>
+﻿
+<!DOCTYPE html> 
 
-<!--
-   - Unfortunately, Microsoft has added a clever new
-   - "feature" to Internet Explorer. If the text of
-   - an error's message is "too small", specifically
-   - less than 512 bytes, Internet Explorer returns
-   - its own error message. You can turn that off,
-   - but it's pretty tricky to find switch called
-   - "smart error messages". That means, of course,
-   - that short error messages are censored by default.
-   - IIS always returns error messages that are long
-   - enough to make Internet Explorer happy. The
-   - workaround is pretty simple: pad the error
-   - message with a big comment like this to push it
-   - over the five hundred and twelve bytes minimum.
-   - Of course, that's exactly what you're reading
-   - right now.
-   -->
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, initial-scale=1.0" />
+		
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700,700i" />
+		<link rel="stylesheet" href="templates.css" />
+		
+		<script src="templates.js"></script>
+		<script>
+		
+			var tpls;
+			var ccat = -1, citm = -1, cscr = 0;  // current scroll
+			var cont, cats, search, itms, kwds;
+			function clearNode(node) {  while(node.firstChild) node.removeChild(node.firstChild);  }
+			function isDisplayed(nd) {  while(true) {  if(nd==document) return true;  if(nd==null) return false;  nd=nd.parentNode;  }  }
+			
+			function go() {
+				cont = document.getElementById("cont");
+				cats = document.getElementById("cats");
+				kwds = document.getElementById("kwds");
+				search = document.getElementById("search");
+				itms = document.getElementById("itms");
+				window.addEventListener("resize",onResize,false);  onResize();
+			
+				var request = new XMLHttpRequest();
+				request.open("GET", "../papi/tpls.json?t="+Date.now(), true);
+				request.onload = imgsLoaded.bind(this);
+				request.onerror = function(e) {  console.log(e.target.response);  }
+				request.send();
+			}
+			function onResize() {
+				var w = window.innerWidth, h=window.innerHeight;
+				
+				if(tpls) updateView();
+				//cont.style.width =(w-cw-80)+"px";
+				//cont.style.height=(h-60)+"px";
+			}
+			
+			function imgsLoaded(e) {
+				tpls = JSON.parse(e.target.response);
+				tpls.list.sort(function(a,b) {return cost(b)-cost(a);});
+				//for(var i=0; i<tpls.list.length; i++) {console.log(tpls.list[i]);  console.log(cost(tpls.list[i]));}
+				updateView();
+				//makeStatic();
+			}
+			
+			function updateView() {
+				if(citm==-1 && !isDisplayed(search)) {  clearNode(cont);  cont.appendChild(search);  cont.appendChild(itms);  }
+				if(citm!=-1) {  clearNode(cont);  cont.appendChild(itms);  }
+				clearNode(itms);
+				
+				var twds = kwds.value.trim().toLowerCase(), wds=twds.split(/[ ,]+/);
+				var out = [];
+				makeView(tpls,out,twds,wds,ccat,citm);
+				itms.innerHTML=out.join("\n");
+				
+				var out = [];
+				getCats(tpls,ccat,out);
+				cats.innerHTML = out.join("\n");
+			}			
+			
+			function backClicked(e) {
+				citm = -1;
+				updateView();
+				window.scrollTo(0,cscr);
+			}
+			function itemClicked(nitm) {
+				if(citm!=-1) {
+					window.parent.postMessage("--ot "+tpls.list[citm][2]);
+					return;
+				}
+				cscr = window.pageYOffset;
+				citm = nitm;
+				updateView();
+				window.scrollTo(0,0);
+			}
+			function catClicked(nc) {
+				if(nc==ccat) ccat=-1;
+				else ccat=nc;
+				updateView();
+			}
+		</script>
+	</head>
+	
+	<body onload="go()" class="flexrow scrollable">	
+		
+		<div id="cats">
+		</div>
+	
+		<div id="cont">
+			<div id="search">
+			<label>Search:</label> <input type="text" id="kwds" oninput="updateView()"></input>
+			</div>
+			<div id="itms"></div>
+		</div>
+	</body>
+</html>

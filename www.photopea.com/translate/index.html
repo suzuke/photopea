@@ -1,33 +1,391 @@
-<HTML>
-<HEAD>
-<TITLE>404 Not Found</TITLE>
-<BASE href="/error_docs/"><!--[if lte IE 6]></BASE><![endif]-->
-</HEAD>
-<BODY>
-<H1>Not Found</H1>
-The requested document was not found on this server.
-<P>
-<HR>
-<ADDRESS>
-Web Server at photopea.com
-</ADDRESS>
-</BODY>
-</HTML>
+<html>
+<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, initial-scale=1.0" />
+		<title>Translate Photopea</title>
+		
+		<script src="UTIL.js"></script>
+		
+		<style type="text/css">
+			body {
+				font-family:sans-serif;
+				background-color: #ceedf4;
+				margin:0;
+				padding:0;
+				line-height:1.6em;
+				color: rgb(51, 51, 51);
+			}
+			h1 {
+				font-size: 3em;
+				margin: 0;
+				padding: 0.7em;
+				color:#ffffff;
+				text-align:center;
+				background-image: linear-gradient(rgb(84, 180, 235), rgb(47, 164, 231));
+			}
+			h2 { 
+				font-size: 1.8em;
+				margin-top:1em; 
+				margin-bottom: 0.6em;
+				padding-bottom: 0.4em;
+				border-bottom-color: rgb(238, 238, 238);
+				border-bottom-style: solid;
+				border-bottom-width: 1px;
+			}
+			h3 { margin-top:1.0em; margin-bottom: 0.5em;}  
+			p  { margin: 0 0 0em 0;}
+			.main {
+				margin:0 auto;
+				max-width: 54em;
+				
+				padding:0.5em 2em;
+				background-color: #ffffff;
+			}
+			#langcont span {
+				padding: 0.15em 0.5em;
+				margin: 0.3em;
+				border-radius:0.5em;
+				cursor:pointer;
+				color:#fff;
+				font-weight:bold;
+				display:inline-block;
+				min-width: 4.5em;
+				text-align:center;
+			}
+			#tsource, #tword {
+				font-size: 1.5em;
+			}
+			#tcomment {  margin-left: 1em; opacity:0.6;  font-size:1.0em;  border:2px solid #aaa;  padding:3px;  }
+			button {
+				font-size: 1.4em;
+				margin: 0.5em 0.5em 0 0;
+			}
+		</style>
+	
+	<script type="text/javascript">
+	
+		var lfile;
+		var file;
+		var lang =  -1;		// index of table of the current language
+		var cword =  0;
+		var plists;			// corresponding to tables
+		var wcnt;			// counts of translated words (corresponding to tables)
+		var uptime = 10000;
+		var upTO = null;	// update TimeOut 
+		var fInput, ftext="", finds;
+		//*
+		function getParameterByName(name, url) {
+			if (!url) url = window.location.href;
+			name = name.replace(/[\[\]]/g, "\\$&");
+			var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+				results = regex.exec(url);
+			if (!results) return null;
+			if (!results[2]) return '';
+			return decodeURIComponent(results[2].replace(/\+/g, " "));
+		}
+		//*/
+		function load(path, resp)
+		{
+			var request = new XMLHttpRequest();
+			request.open("GET", path, true);
+			//request.responseType = "arraybuffer";
+			request.onload = function(e){resp(e.target.response);};
+			request.send();
+		}
+		
+		function go() {  
+			fInput = document.getElementById("fInput");
+			fInput.addEventListener("input", findText, false);
+			var cnv = document.getElementById("cnv");
+			cnv.addEventListener("click", cnvClick);
+			loadFile();
+		}
+		function findText(e) {
+			ftext = fInput.value.toLowerCase();
+			fileLoaded();
+			if(finds.length!=0) cword = finds[0];
+			fileLoaded();
+		}
+		function loadFile() {  load("versions/file.json"+"?rnd="+Math.random(), fileLoaded);  }
+		function fileLoaded(str)
+		{
+			if(str) 
+			{
+				upTO = setTimeout(loadFile, uptime);
+				if(lfile == str) {  /* console.log("file is still the same"); */  return;   }
+				lfile = str;
+				file = JSON.parse(str);
+			}
+			//*
+			if(lang==-1)
+			{
+				var lng = getParameterByName("lang");
+				if(lng) {
+					for(var i=0; i<file.langs.length; i++) if(file.langs[i].code==lng) lang = i;
+				}
+				if(lang==-1) lang = 0;
+			}  //*/
+			
+			wcnt = [];
+			plists = [[]];
+			var mainpl = plists[0];
+			UTIL.getPList(file.tables[0], mainpl, []);
+			wcnt.push(mainpl.length);
+			
+			for(var i=1; i<file.tables.length; i++)
+			{
+				var pl = [];  plists.push(pl);
+				var cnt = 0;
+				for(var j=0; j<mainpl.length; j++)
+				{
+					var mainw = mainpl[j];
+					var wrd = UTIL.getWord(mainw.path, file.tables[i]);
+					pl.push( {str:wrd, path:mainw.path} );
+					if(wrd!=null) cnt++;
+				}
+				wcnt.push(cnt);
+			}
+			
+			var lcont = document.getElementById("langcont");
+			lcont.innerHTML = "";
+			
+			var langs = JSON.parse(JSON.stringify(file.langs));
+			
+			for(var i=0; i<langs.length; i++) {
+				var lng = langs[i];
+				lng.frac = wcnt[lng.table] / wcnt[0];
+			}
+			langs.sort(function(a,b) {  return b.frac-a.frac;  });
+			
+			var clang;
+			for(var i=0; i<langs.length; i++)
+			{
+				var lng = langs[i];
+				var perc = Math.floor( 100 * lng.frac );
+				var el = document.createElement("span");
+				el.setAttribute("title", "#"+(i+1)+" - "+lng.code+" - " + perc + " %");
+				el.innerText = lng.name;
+				
+				var grn = perc<=70 ? "150,200,0" : "0,200,0";
+				
+				var bgstyle = "background: linear-gradient(to right, rgb("+grn+") " +perc+ "%, rgb(230,0,0) "+perc+".1%);";
+				if(lng.table==lang) bgstyle += "box-shadow: 0px 0px 10px #000;";
+				el.setAttribute("style", bgstyle);
+				if(lang==lng.table) clang = lng;
+				el.lang = lng.table;
+				lcont.appendChild(el);
+				el.addEventListener("click", langClick, false);
+			}
+			
+			
+			var missOnly = document.getElementById("missonly").checked;
+			var inLang   = document.getElementById("inLang").selectedIndex;
+			var ewds = plists[[0,clang.table][inLang]], twds=plists[clang.table];  finds=[];
+			for(var i=0; i<ewds.length; i++) {
+				if(ewds[i].str && ewds[i].str.split("::")[0].toLowerCase().indexOf(ftext)!=-1)
+					if(!missOnly || twds[i].str==null) finds.push(i);
+			}
+			
+			updateGraph(plists[clang.table], cword);
+			
+			var phnum = document.getElementById("phrasenum");
+			phnum.innerText = "Phrase "+ (cword+1) + " / " + mainpl.length;
+			
+			var tsource = document.getElementById("tsource");
+			var tcomment = document.getElementById("tcomment");
+			var epts = plists[0][cword].str.split("::");
+			tsource.innerText = epts[0];
+			tcomment.innerText = epts.length==1 ? "":"Hint: "+epts[1];
+			tcomment.style.display = epts.length==1 ? "none":"";
+			
+			var tlang = document.getElementById("tlang");
+			tlang.innerText = clang.name+":";
+			
+			var tword = document.getElementById("tword");
+			tword.value = plists[lang][cword].str == null ? "" : plists[lang][cword].str.split("::")[0];
+			
+			document.body.setAttribute("style", "opacity:1.0;");
+		}
+		
+		function updateGraph(words, cword)
+		{
+			var cnv = document.getElementById("cnv");
+			var ctx = cnv.getContext("2d");
+			ctx.clearRect(0,0,cnv.width,cnv.height);
+			
+			var y = 8;
+			
+			var rw = (2000 / words.length);
+						
+			ctx.fillStyle = "#ee0000";  ctx.fillRect(0,y,2000,20);
+			
+			
+			var start = -1, estrt = -1;
+			for(var i=0; i<words.length; i++)
+			{
+				var gotE = finds.indexOf(i)!=-1;//ewds[i].str.split("::")[0].toLowerCase().indexOf(ftext.toLowerCase())!=-1;
+				if( gotE && estrt==-1) estrt = i;
+				if(!gotE && estrt!=-1) {  ctx.fillStyle = "#333333";  ctx.fillRect(estrt*rw, 0, (i-estrt)*rw,  5);  estrt = -1; }
+				
+				var gotS = words[i].str!=null;
+				if( gotS && start==-1) start = i;
+				if(!gotS && start!=-1) {  ctx.fillStyle = "#00dd00";  ctx.fillRect(start*rw, y, (i-start)*rw, 20);  start = -1; }
+			}
+			if(estrt!=-1) {  ctx.fillStyle = "#333333";  ctx.fillRect(estrt*rw, 0, (words.length-estrt)*rw,  5);  }
+			if(start!=-1) {  ctx.fillStyle = "#00dd00";  ctx.fillRect(start*rw, y, (words.length-start)*rw, 20);  }
+			
+			var curx = cword*rw+rw/2
+			ctx.fillStyle = "rgba(0,0,0,1)"; ctx.beginPath(); ctx.moveTo(curx, y+20); ctx.lineTo(curx+10, cnv.height);  ctx.lineTo(curx-10, cnv.height);  ctx.fill();
+		}
+		
+		function langClick(e)
+		{
+			lang = e.target.lang;
+			fileLoaded();
+		}
+		function charOcc(s,c) {  var occ=0;  for(var i=0; i<s.length; i++) if(s[i]==c) occ++;  return occ;  }
+		
+		function prev() {  var fl=finds.length, fi=finds.indexOf(cword);  if(fi==-1)fi=0;  if(fl!=0) cword = finds[(fi-1+fl)%fl];  fileLoaded();  }
+		function next() {  var fl=finds.length, fi=finds.indexOf(cword);  if(fi==-1)fi=0;  if(fl!=0) cword = finds[(fi+1+fl)%fl];  fileLoaded();  }
+		function save() {
+			if(lang==0) {  alert("You can not edit this language.");  return;  }
+			var nword = document.getElementById("tword").value.trim();
+			var ostr = plists[0][cword].str.split("::")[0];
+			if(nword.length>ostr.length*3.2 && nword.length>17) {  alert("Your phrase is too long. Please write a shorter phrase");  return;  }
+			if(charOcc(nword,"<")!=charOcc(ostr,"<") || charOcc(nword,">")!=charOcc(ostr,">")) {  alert("Incorrect brackets: < >");  return;  }
+			if(charOcc(nword,"[")+charOcc(nword,"]")+charOcc(nword,";") >0) {  alert("Forbidden characters: [ ] ;");  return;  }
+			if(nword=="") nword = null;
+			if(nword==plists[lang][cword].str) return;
+			plists[lang][cword].str = nword;
+			
+			var nfile = {};
+			nfile.langs = file.langs;
+			for(var i=0; i<nfile.langs.length; i++) if(nfile.langs[i].table!=i) {  alert("An error occured. Please, reload the page.");  return;  }
+			nfile.tables = [];
+			for(var i=0; i<file.tables.length; i++)
+			{
+				var ntab = JSON.parse(JSON.stringify(file.tables[0]));  
+				for(var j=0; j<plists[0].length; j++)  
+					UTIL.setWord(plists[i][j].str,  plists[i][j].path, ntab)
+				var nntab = UTIL.tryClear(ntab);
+				nfile.tables.push(ntab);
+			}
+			
+			
+			clearTimeout(upTO);
+			
+			var xhr = new XMLHttpRequest();
+			var params = "p="+  encodeURIComponent(JSON.stringify(nfile, null, "\t"));
+			xhr.open("POST", "saveFile2.php", true);
+			xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+			xhr.addEventListener("load" , saved );
+			xhr.send(params);
+			document.body.setAttribute("style", "opacity:0.4;");
+		}
+		function saved(e)
+		{
+			console.log("Data sent to server. Response: " + e.target.response);
+			fmi(true);
+			loadFile();
+		}
+		function fmi(onlyIfNext) 
+		{
+			var cpl = plists[lang];
+			var ncw = -1;
+			for(var i=0; i<cpl.length; i++) if(cpl[i].str==null) {  ncw=i;  break;  }
+			if(ncw!=-1) {  if(ncw<cword) return;  cword = ncw;  fileLoaded();  }
+		}
+		function cnvClick(e)
+		{
+			var rct = e.currentTarget.getBoundingClientRect();
+			var x = (e.clientX - rct.left) / rct.width ;
+			var y = (e.clientY - rct.top ) / rct.height;
+			var tind = Math.floor(x * plists[0].length);
+			
+			if(false)//y<0.3 && finds.length!=0) 
+			{
+				cword = finds[0];
+				for(var i=0; i<finds.length; i++) if(Math.abs(finds[i]-tind)<Math.abs(cword-tind)) cword = finds[i];
+			}
+			else cword = tind;
+			fileLoaded();
+		}
+		
+		function download(e)
+		{
+			var perc = document.getElementById("percnum").value / 100;
+			var out = {langs:[], tables:[]};
+			
+			for(var i=0; i<file.langs.length; i++)
+			{
+				var lng = JSON.parse(JSON.stringify(file.langs[i]));
+				if(wcnt[lng.table]/wcnt[0] < perc) continue;
+				out.langs.push(lng);
+				out.tables.push(file.tables[lng.table]);
+				lng.table = out.tables.length-1;
+			}
+			
+			if(document.getElementById("minify").checked) {
+				for(var i=0; i<out.tables.length; i++) out.tables[i]=UTIL.minify(out.tables[i]);
+			}
+			
+			var pref = "", fname = "translation.json";
+			pref = "var LNG = ";  fname = "LNG2.js";
+			
+			var str = pref + JSON.stringify(out, null, "\t");
+			var a = document.createElement( "a" );
+			var blob = new Blob([str]);
+			var url = window.URL.createObjectURL( blob );
+			a.href = url;
+			a.download = fname;
+			document.body.appendChild(a);
+			a.click();
+			document.body.removeChild(a);
+		}
+	</script>
+</head>
+<body onload="go();">
 
-<!--
-   - Unfortunately, Microsoft has added a clever new
-   - "feature" to Internet Explorer. If the text of
-   - an error's message is "too small", specifically
-   - less than 512 bytes, Internet Explorer returns
-   - its own error message. You can turn that off,
-   - but it's pretty tricky to find switch called
-   - "smart error messages". That means, of course,
-   - that short error messages are censored by default.
-   - IIS always returns error messages that are long
-   - enough to make Internet Explorer happy. The
-   - workaround is pretty simple: pad the error
-   - message with a big comment like this to push it
-   - over the five hundred and twelve bytes minimum.
-   - Of course, that's exactly what you're reading
-   - right now.
-   -->
+	<h1>Translate Photopea</h1>
+		
+<div class="main">	
+
+	<h2>Choose the language</h2>
+	
+	<div id="langcont"></div>
+	
+	<h2>Translate <span style="font-size:0.6em">(keep the phrase empty, if you are not sure)</span></h2>
+	
+	<canvas id="cnv" width="2000" height="42" style="width:100%; cursor:pointer;"></canvas>
+	
+	<div style="margin-bottom:1em;">
+		<span id="phrasenum" style="font-size:1.5em; font-weight:bold; display:inline-block; width:10em; padding-left:0.0em;"></span>
+		<button onclick="prev()">&lt;&lt;&lt;</button> <button onclick="next()">&gt;&gt;&gt;</button>
+		<!--<button onclick="fmi(true)">Find Missing Phrase</button>-->
+		<input type="checkbox" id="missonly" onchange="fileLoaded();fmi(false);"></input> <label for="missonly" style="margin-right:2em">Browse missing only</label>
+		Find: <input id="fInput" type="text"  style="width:9em"></input>
+		<select onchange="fileLoaded();" id="inLang">
+		  <option value="volvo">in English</option>
+		  <option value="saab">in translated</option>
+		</select>
+	</div>
+	<span>English:</span>
+	<div style="margin-bottom:0.5em"><span id="tsource"></span><span id="tcomment"></span></div>
+	<span id="tlang">English:</span>
+	<input id="tword" type="text"  style="width:100%;"></input>
+	
+	<button onclick="save()">Save</button> 
+	
+	<!--
+	<p style="margin-top:1em">Your translation will become a part of <a href="https://github.com/photopea/OpenWord" target="_blank">OpenWord initiative</a> 
+	and will be free to use for anybody for any purpose.</p>-->
+	<br/>
+	<span>Download translations with over</span>  
+	<input id="percnum" type="text" style="width:30px;" value="70"></input> <span>%</span>  
+	<input type="checkbox" id="minify" checked></input> <label for="minify">Minified</label> :
+	<button onclick="download()">Download</button>
+	
+	
+</div>
+</body>
+</html>
