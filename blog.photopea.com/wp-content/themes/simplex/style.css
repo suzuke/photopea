@@ -1,185 +1,45 @@
-* {
-	margin: 0;
-	padding: 0;
-}
+<!DOCTYPE html> 
+<html lang="en">
+<head>
+	<title>  Page not found</title>
+	<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, initial-scale=1.0" />
+	<link rel="stylesheet" href="https://blog.photopea.com/wp-content/themes/simplex/style.css" type="text/css" media="screen" />
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700,700i" rel="stylesheet">
+	<script>
+ 	 (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+ 	  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+	  ga('create', 'UA-4249565-38', 'photopea.com');  ga('send', 'pageview');
+	</script>
+</head>
 
-#header  {
-	background-image: linear-gradient(rgb(84, 180, 235), rgb(47, 164, 231));
-	font-size: 1.1em;
- 	color:#ffffff;
-	padding: 1.5em 0;
-	text-align: center;
-	border-bottom: 1.5em solid #ceedf4;
-	text-shadow: 8px 8px 16px rgba(0,0,0, 0.5);
-}
+<body>
+<div id="page">
+	<div id="header"> 
+		<a href="https://blog.photopea.com/" class="title">Photopea Blog</a> 
+		<!--<p>Web-based image editor.</p>-->
+		<a class="curr" href="//blog.photopea.com">Blog</a> |
+		<a href="//www.photopea.com/learn">Learn</a> |
+		<a href="//www.photopea.com/tuts">Tutorials</a> |
+		<a href="//www.photopea.com/templates">Templates</a> |
+		<a href="//www.photopea.com/api">API</a> |
+		<a href="//www.facebook.com/photopea"><img src="//photopea.com/img/facebook.svg" /></a> |
+		<a href="//www.twitter.com/photopeacom"><img src="//photopea.com/img/twitter.svg" /></a> 
+	</div><div id="main">
+	<div id="content" class="narrowcolumn">
 
-#header .title{
-	display:block;
-	font-size: 3.5em;
-	margin-bottom:0.25em;
-}
+		<h2 class="center">Error 404 - Not Found</h2>
 
-#header a{
-	text-decoration:none;
-        color: #ffffff;
-	font-weight:bold;
-}
-#header .curr{
-	color: #ffff88;
-}
+	</div>
 
-#header img{
-	margin-bottom:-3px;
-	filter: drop-shadow(8px 8px 8px rgba(0,0,0, 0.5));
-}
- 
-.post {
-	min-height:100px;
-}
+	<div id="sidebar">
+		
+		<h3>Visitors</h3>
+		<a href="http://info.flagcounter.com/nBqI"><img src="http://s10.flagcounter.com/count/nBqI/bg_FFFFFF/txt_000000/border_CCCCCC/columns_1/maxflags_12/viewers_0/labels_0/pageviews_0/flags_0/" alt="Flag Counter" border="0"></a>
 
-.post img, .post video
-{
-	display:block;
-	margin:0px auto 15px auto;
-}
-.post .fullw {  /* images in posts */
-	width : 100%;
-	margin-bottom: 1.2em;
-}
-.post .inline {  /*  Tool images at /learn */
-	display:inline;
-	height:40px;
-	margin:0 0.5em 0 0;
-}
-
-#footer {
-	text-align: center;
-	padding: 2em;
-	background: #252525;
-	color: #aaa;
-}
-
-.entry {
-	line-height: 1.5em;
-	margin-top: 10px;
-}
-
-.post p, .post ul {
-	line-height: 1.5em;
-	margin: 1em 0;
-}
-
-body {
-	font-family: "Open Sans", sans-serif;
-	font-size:1.05em;
-	color: rgba(0,0,0,0.8);
-	background-color:rgb(253,253,253);
-}
-a {
-	color: rgb(41, 153, 240);
-}
-.date {
-	font-size: 0.9em;
-	color: rgb(158, 171, 179);
-}
-	
-#main { /* SimpleX addition to center as well as make header footer 100% */
-	min-height: 30em;
-	position:relative;
-
-	display: flex;
-    	flex-wrap: wrap;
-	}
-#main, #disqus_thread {
-	max-width: 46em;
-	margin: 15px auto 30px auto;
-	padding: 0 20px;
-}
-#content ul {
-	margin-left: 4em;
-	line-height: 1.7em;
-}
-
-h1, h2, h3 {
-	font-weight:bold;
-	letter-spacing: -.02em;
-	text-indent: -2px;
-	margin-bottom:0.7em;
-}
-
-h1 {
-	font-size: 2.5em;
-	margin-top: 0.0em;
-}
-h2 {
-	font-size:1.9em;
-	margin-top: 1.2em;
-}
-h3 {
-	font-size: 1.4em;
-	margin-top: 1.2em;
-}
-h4 {
-	font-size: 1.15em;
-	margin-top: 1.2em;
-}
-
-.postlink {  /*  Blog : links to articles  */
-	font-weight:bold;
-	font-size: 1.8em;
-	display:block;
-	color: inherit;
-}
-
-#sidebar {
-	margin-top: 0.7em;
-}
-#sidebar h3 {  /*  /learn  Topics  */
-	font-size: 2em;
-	margin-bottom: 0.7em;
-	margin-top: 0;
-}
-#sidebar ul li {
-	list-style-type: none;
-	list-style-image: none;	
-	margin: 0 0 0.45em 0;
-}
-#sidebar ul .lvl0 {
-	margin-top: 1.2em;
-}
-#sidebar ul .lvl1 {
-	margin-left: 1.5em;
-	font-size: 0.92em;
-}
-#sidebar ul .active {
-	color: rgb(84, 180, 235);
-}
-#sidebar ul a {
-	text-decoration: none;
-	color: inherit;
-	font-weight:bold;
-}
-	
-
-table{
-	border-collapse: collapse;
-	margin: 0px auto 20px auto;
-}
-td, th{
-	padding:4px 8px;
-	border: 1px solid #777;
-	margin:0;
-}
-
-pre, code {  /*  for code in API spec. */
-	background-color: #f1f1f1;
-	padding: 0.2em 0.5em;
-}
-pre {
-	padding: 0.5em 1em;
-	margin: 1em 0;
-	line-height:1.4em;
-        white-space: pre-wrap;  /*  break too long lines for small screens  */
-	overflow: hidden;
-}
-
+	</div></div>
+	<div id="footer">&copy; 2013-2021 support@photopea.com</div>
+</div> <!--page-->
+</body>
+</html>
