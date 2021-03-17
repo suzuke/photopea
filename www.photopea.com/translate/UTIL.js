@@ -1,59 +1,33 @@
+<HTML>
+<HEAD>
+<TITLE>404 Not Found</TITLE>
+<BASE href="/error_docs/"><!--[if lte IE 6]></BASE><![endif]-->
+</HEAD>
+<BODY>
+<H1>Not Found</H1>
+The requested document was not found on this server.
+<P>
+<HR>
+<ADDRESS>
+Web Server at photopea.com
+</ADDRESS>
+</BODY>
+</HTML>
 
-
-var UTIL = {};
-
-UTIL.getPList = function(tab, list, cp)
-{
-	if(typeof tab == "string") {  list.push({ str:tab, path:cp.slice(0) });  return; }
-	for(var i=0; i<tab.length; i++)
-	{
-		cp.push(i);
-		UTIL.getPList(tab[i], list, cp);
-		cp.pop();
-	}
-}
-
-UTIL.getWord = function(path, tab)
-{
-	for(var i=0; i<path.length; i++)
-	{
-		tab  = tab[path[i]];
-		if(tab==null) return null;
-		if(typeof tab == "string" && i+1<path.length) return path[i+1]==0 ? tab : null;
-	}
-	return tab;
-}
-
-UTIL.setWord = function(w, path, tab)
-{
-	for(var i=0; i<path.length-1; i++)  tab  = tab[path[i]];
-	return tab[path[path.length-1]] = w;
-}
-
-UTIL.tryClear = function(tab)
-{
-	if(tab==null) return null;
-	if(typeof tab == "string") return tab;
-	
-	for(var i=tab.length-1; i>=0; i--)
-	{
-		var nval = UTIL.tryClear(tab[i]);
-		if(nval==null) tab.pop();
-		else return tab;
-	}
-	return null;
-}
-
-UTIL.minify = function(tab) {
-	var arr = [];
-	UTIL._minify(tab,arr);
-	return arr.join(";");
-}
-UTIL._minify = function(tab,arr) {
-	for(var i=0; i<tab.length; i++) {
-		var ti = tab[i];
-		if(ti==null) arr.push("");
-		else if(ti instanceof Array) arr.push("["+UTIL.minify(ti)+"]");
-		else arr.push(ti);
-	}
-}
+<!--
+   - Unfortunately, Microsoft has added a clever new
+   - "feature" to Internet Explorer. If the text of
+   - an error's message is "too small", specifically
+   - less than 512 bytes, Internet Explorer returns
+   - its own error message. You can turn that off,
+   - but it's pretty tricky to find switch called
+   - "smart error messages". That means, of course,
+   - that short error messages are censored by default.
+   - IIS always returns error messages that are long
+   - enough to make Internet Explorer happy. The
+   - workaround is pretty simple: pad the error
+   - message with a big comment like this to push it
+   - over the five hundred and twelve bytes minimum.
+   - Of course, that's exactly what you're reading
+   - right now.
+   -->

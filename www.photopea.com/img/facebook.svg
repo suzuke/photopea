@@ -1,5 +1,33 @@
-<svg class="gsicon" width="20" height="20" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<HTML>
+<HEAD>
+<TITLE>404 Not Found</TITLE>
+<BASE href="/error_docs/"><!--[if lte IE 6]></BASE><![endif]-->
+</HEAD>
+<BODY>
+<H1>Not Found</H1>
+The requested document was not found on this server.
+<P>
+<HR>
+<ADDRESS>
+Web Server at photopea.com
+</ADDRESS>
+</BODY>
+</HTML>
 
-<path fill="white" d="M24 12C24 5.37216 18.626 0 12 0C5.37216 0 0 5.37216 0 12C0 18 4.38789 23 10.1242 23.8524V15.4676H7.07758V12H10.1242V9.35553C10.1242 6.34826 12 4.68714 14.6564 4.68714C16 4.68714 17.3424 4.92149 17.3424 4.92149V7.87439H15.8294C14.3388 7.87439 13.8739 8.79933 13.8739 9.74824V12H17.2018L16.6698 15.4676H13.8739V23.8524C19.6103 23 24 18 24 12Z"/>
-
-</svg>
+<!--
+   - Unfortunately, Microsoft has added a clever new
+   - "feature" to Internet Explorer. If the text of
+   - an error's message is "too small", specifically
+   - less than 512 bytes, Internet Explorer returns
+   - its own error message. You can turn that off,
+   - but it's pretty tricky to find switch called
+   - "smart error messages". That means, of course,
+   - that short error messages are censored by default.
+   - IIS always returns error messages that are long
+   - enough to make Internet Explorer happy. The
+   - workaround is pretty simple: pad the error
+   - message with a big comment like this to push it
+   - over the five hundred and twelve bytes minimum.
+   - Of course, that's exactly what you're reading
+   - right now.
+   -->

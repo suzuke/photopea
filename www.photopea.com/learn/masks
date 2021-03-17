@@ -1,153 +1,33 @@
+<HTML>
+<HEAD>
+<TITLE>404 Not Found</TITLE>
+<BASE href="/error_docs/"><!--[if lte IE 6]></BASE><![endif]-->
+</HEAD>
+<BODY>
+<H1>Not Found</H1>
+The requested document was not found on this server.
+<P>
+<HR>
+<ADDRESS>
+Web Server at photopea.com
+</ADDRESS>
+</BODY>
+</HTML>
 
-<!DOCTYPE html> 
-<html>
-<head>
-		<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, initial-scale=1.0" />
-
-	<title>Photopea - Masks</title>
-
-	<link rel="stylesheet" href="https://blog.photopea.com/wp-content/themes/simplex/style.css" type="text/css" media="screen" />
-	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700,700i" />
-</head>
-
-<body>
-<div id="page">
-	<div id="header"> 
-		<a href="//www.photopea.com/learn/" class="title">Learn Photopea</a> 
-		<!--<p>Web-based image editor.</p>-->
-		<a href="//blog.photopea.com">Blog</a> |
-		<a class="curr" href="//www.photopea.com/learn">Learn</a> |
-		<a href="//www.photopea.com/tuts">Tutorials</a> |
-		<a href="//www.photopea.com/templates">Templates</a> |
-		<a href="//www.photopea.com/api">API</a> |
-		<a href="//www.facebook.com/photopea"><img src="//photopea.com/img/facebook.svg" /></a> |
-		<a href="//www.twitter.com/photopeacom"><img src="//photopea.com/img/twitter.svg" /></a> 
-	</div>	
-	<div id="main" style="max-width:1000px;">
-		<div id="sidebar" style="width:22%;">
-			<h3>Topics</h3>
-			<ul>
-			<li class="lvl0"><a href="/learn/">Introduction</a></li>
-			<li class="lvl0"><a href="/learn/workspace">Workspace</a></li>
-			<li class="lvl1"><a href="/learn/opening-saving">Open and Save</a></li>
-			<li class="lvl1"><a href="/learn/navigation">Navigation</a></li>
-			<li class="lvl1"><a href="/learn/image-size">Image size</a></li>
-			<li class="lvl0"><a href="/learn/layers">Layers</a></li>
-			<li class="lvl1 active"><a href="/learn/masks">Masks</a></li>
-			<li class="lvl1"><a href="/learn/layer-styles">Layer Styles</a></li>
-			<li class="lvl1"><a href="/learn/smart-objects">Smart Objects</a></li>
-			<li class="lvl1"><a href="/learn/other-layers">Other Layers</a></li>
-			<li class="lvl0"><a href="/learn/layer-manipulation">Layer Editing</a></li>
-			<li class="lvl1"><a href="/learn/free-transform">Free Transform</a></li>
-			<li class="lvl1"><a href="/learn/adjustments-filters">Adjust. &amp; Filters</a></li>
-			<li class="lvl0"><a href="/learn/selections">Selections</a></li>
-			<li class="lvl1"><a href="/learn/creating-selections">Make Selections</a></li>
-			<li class="lvl1"><a href="/learn/advanced-selecting">Advanced Selecting</a></li>
-			<li class="lvl1"><a href="/learn/refine-edge">Refine Edge</a></li>
-			<li class="lvl1"><a href="/learn/moving-selected-data">Move Selected Data</a></li>
-			<li class="lvl0"><a href="/learn/brush-tools">Brush Tools</a></li>
-			<li class="lvl1"><a href="/learn/bt-basic">Basic Tools</a></li>
-			<li class="lvl1"><a href="/learn/bt-advanced">Advanced Tools</a></li>
-			<li class="lvl1"><a href="/learn/bt-smart">Smart Tools</a></li>
-			<li class="lvl0"><a href="/learn/text">Text</a></li>
-			<li class="lvl1"><a href="/learn/text-style">Text Style</a></li>
-			<li class="lvl0"><a href="/learn/vector-graphics">Vector Graphics</a></li>
-			<li class="lvl1"><a href="/learn/vg-structure">The Structure</a></li>
-			<li class="lvl1"><a href="/learn/vg-manipulation">Editing Shapes</a></li>
-			<li class="lvl1"><a href="/learn/vg-creating">Creating Shapes</a></li>
-			<li class="lvl1"><a href="/learn/vg-vectorize">Vectorize Bitmap</a></li>
-			<li class="lvl0"><a href="/learn/other">Other</a></li>
-			<li class="lvl1"><a href="/learn/color-spaces">Color Spaces</a></li>
-			<li class="lvl1"><a href="/learn/guides-grid-snapping">Guides &amp; Snapping</a></li>
-			<li class="lvl1"><a href="/learn/animations">Animations</a></li>
-			<li class="lvl1"><a href="/learn/slices">Slices</a></li>
-			<li class="lvl1"><a href="/learn/layer-comps">Layer Comps</a></li>
-			<li class="lvl1"><a href="/learn/actions">Actions</a></li>
-			<li class="lvl1"><a href="/learn/scripts">Scripts</a></li>
-			</ul>
-		</div>
-		<div id="content" style="width:78%;">
-			<div class="post">			
-<h1>Masks</h1>
-
-<p>We already know layers. They are building blocks of our document.
-Sometimes, we need to hide a part of the layer (so it is not shown in the result), without deleting the actual pixel data.
-In Photopea (and many other editors), it can be done with <b>masks</b>.</p>
-
-<p>We can think of a layer mask as an extra image, attached to the layer. It has the same size 
-as that layer (so each pixel of the mask has a corresponding pixel in the layer). The mask does not have colors - 
-it can be black and white only. The black color means, that corresponding pixels of the layer are hidden, while the white color means,
-that corresponding pixels of the layer are shown. Precisely, masks can have many shades of gray,
-and produce many levels of transparency.</p>
-
-<img src="//i.imgur.com/J4HHczM.png" class="fullw" />
-
-<h2>Working with masks</h2>
-
-<p>There are <b>raster masks</b> and <b>vector masks</b> (the difference will be explained later).
-Each layer can have at most one raster mask and at most one vector mask. Folders can also have masks 
-(in that case, the mask is applied to the whole content of the folder).
-We can add a new mask to the active layer using Layer - Raster Mask - Add (or Layer - Vector Mask - Add).
-Masks can be deleted through Layer - Raster Mask - Delete (or Layer - Vector Mask - Delete).</p>
-
-<p>Thumbnails of new masks will appear next to the thumbnail of the layer.</p>
-
-<img src="//i.imgur.com/MPZrmpF.png" />
-
-<p>We can <b>enable</b> or  <b>disable</b> each mask. When the mask is disabled, it has no effect on the image.
-It can be enabled again at any time. Right-click the thumbnail of the mask and choose Enable / Disable, 
-or simply click the thumbnail of the mask with the Shift key pressed.</p>
-
-<p>Any change to the layer (e.g. drawing with a Brush tool, rotation etc.) can be applied to the mask, too. 
-Click the main thumbnail, or the thumbnail of the mask, to choose, what you want to edit.</p>
-
-<p>Masks can be <b>linked</b> to the main content of the layer. It means, that when you move the main content, the mask is moved too, and if you move the mask,
-the main content is also moved. The link is represented by the chain icon on the left side of the thumbnail of the mask (each mask has its own link).
-Click the chain icon to link or unlink the mask.</p>
-
-<h2>Properties of the mask</h2>
-
-<p>When you select a mask and open the <b>Properties</b> panel in the sidebar (or double-click the thumbnail of the mask), 
-you can see some properties of the mask. The <b>Density</b> specifies the "opacity" of the mask (100% corresponds to a regular masking, 
-0% corresponds to no mask, values in between can be useful too). The next property is <b>Feather</b>, which adds a blur to the mask 
-(i.e. it removes sharp edges between white and black areas of the mask). 
-Note, that these properties do not change the actual content of the mask. 
-They are used automatically, when the mask is applied to the image.</p>
-
-<h2>Raster and Vector masks</h2>
-
-<p>There are two kinds of masks: raster masks and vector masks. The difference is in the way how each kind is created and represented.</p>
-
-<p>The <b>raster mask</b> is a simple grayscale image, that consists of pixels. Each tool, that can be applied to a regular layer (e.g. Brush, Eraser, Smudge, fill of the selection etc.)
-can also be applied to the raster mask, with the only difference, that all colors will become shades of gray.</p>
-
-<p>The <b>vector mask</b> consists of vector shapes, that are made of Bézier curves. You create it and work with it as with a vector object
-(by editing Bézier curves). These vector shapes are internally converted to a grayscale image and applied to the layer automatically.
-You can learn more in the <a href="vector-graphics">chapter about vector graphics</a>.</p>			
-			</div>
-			
-			<h2 style="margin-top: 4em">Comments</h2>
-			<p>Do you need help? Ask us at <a href="//www.reddit.com/r/photopea/" target="_blank">our Reddit</a>!</p>
-			
-			<div id="disqus_thread"></div>
-			<script>   
-			(function() { // DON'T EDIT BELOW THIS LINE
-			var d = document, s = d.createElement('script');
-			s.src = 'https://learn-photopea.disqus.com/embed.js';
-			s.setAttribute('data-timestamp', +new Date());
-			(d.head || d.body).appendChild(s);
-			})();   
-			</script>	
-		</div>
-	</div>
-	<div id="footer">&copy; 2013-2021 support@photopea.com</div>
-	<script>
-	  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-	  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-	  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-	  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-
-	  ga('create', 'UA-4249565-43', 'auto');  ga('send', 'pageview');
-	</script>
-</div>
-</html>
+<!--
+   - Unfortunately, Microsoft has added a clever new
+   - "feature" to Internet Explorer. If the text of
+   - an error's message is "too small", specifically
+   - less than 512 bytes, Internet Explorer returns
+   - its own error message. You can turn that off,
+   - but it's pretty tricky to find switch called
+   - "smart error messages". That means, of course,
+   - that short error messages are censored by default.
+   - IIS always returns error messages that are long
+   - enough to make Internet Explorer happy. The
+   - workaround is pretty simple: pad the error
+   - message with a big comment like this to push it
+   - over the five hundred and twelve bytes minimum.
+   - Of course, that's exactly what you're reading
+   - right now.
+   -->

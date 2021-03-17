@@ -1,154 +1,33 @@
+<HTML>
+<HEAD>
+<TITLE>404 Not Found</TITLE>
+<BASE href="/error_docs/"><!--[if lte IE 6]></BASE><![endif]-->
+</HEAD>
+<BODY>
+<H1>Not Found</H1>
+The requested document was not found on this server.
+<P>
+<HR>
+<ADDRESS>
+Web Server at photopea.com
+</ADDRESS>
+</BODY>
+</HTML>
 
-<!DOCTYPE html> 
-<html>
-<head>
-	<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, initial-scale=1.0" />
-	<link rel="stylesheet" href="https://blog.photopea.com/wp-content/themes/simplex/style.css" type="text/css" media="screen" />
-	<link rel='stylesheet' id='casper-google-fonts-css'  href='//fonts.googleapis.com/css?family=Noto+Serif%3A400%2C700%2C400italic%7COpen+Sans%3A700%2C400&#038;ver=4.0.1' type='text/css' media='all' />
-	
-	<title>Photopea API</title>
-	
-			
-	</head>
-
-	<body>
-<div id="page">
-	<div id="header"> 
-		<a href="/" class="title">Photopea API</a> 
-		<!--<p>Web-based image editor.</p>-->
-		<a href="//blog.photopea.com">Blog</a> |
-		<a href="//www.photopea.com/learn">Learn</a> |
-		<a href="//www.photopea.com/tuts">Tutorials</a> |
-		<a href="//www.photopea.com/templates">Templates</a> |
-		<a class="curr" href="//www.photopea.com/api">API</a> |
-		<a href="//www.facebook.com/photopea"><img src="//photopea.com/img/facebook.svg" /></a> |
-		<a href="//www.twitter.com/photopeacom"><img src="//photopea.com/img/twitter.svg" /></a> 
-	</div>
-	
-	<div id="main" style="max-width:960px;">
-		<div id="sidebar" style="width:20%;">
-			<!--<h3>Topics</h3>-->
-			<ul>
-						<li class="lvl0"><a href="/api/">API Spec</a></li>
-			<li class="lvl1 active"><a href="/api/environment">Environment</a></li>
-			<li class="lvl1"><a href="/api/live">Live Messaging</a></li>
-			<li class="lvl1"><a href="/api/plugins">Plugins</a></li>
-			<li class="lvl0"><a href="/api/playground">Playground</a></li>
-			<li class="lvl0"><a href="/api/accounts">Accounts</a></li>
-			</ul>
-		</div>
-		<div id="content" style="width:80%;">
-
-			<div class="post">
-				<h1>Environment</h1>
-			
-			<p>The look of the editor can be customized by the <code>environment</code> property of the JSON.</p>
-				
-<pre>{
-	...
-	"environment" : {          
-		"theme"     : 2,         "lang"     : "es",    
-		"vmode"     : 0,         "intro"    : true,
-		"eparams"   : { "guides" :true, "grid" : true, "gsize": 8,   
-		                                "paths": true, "pgrid": true },
-		"customIO"  : { "open": "app.echoToOE(\"Open\");" },
-		"localsave" : false,     "autosave" : 120,    
-		"showtools" : [0,5,9],   "menus"    : [ [1,1,0,1], 1, 0, 1, [0] ],
-		"panels"    : [0, 2],
-		
-		"phrases"   : [ [1,0], "Open Design", [1,2], "Save Design" ],
-		
-		"topt"  : {  "t0": ...,  "t1": ...,  ... },
-		"tmnu"  : {  "t0": ...,  "t1": ...,  ... },
-		"icons" : {  "tools/crop": "https://www.me.com/img/crop.png",  ... },
-		"plugins":[ ... ]
-	}
-}</pre>
-			<p>Each parameter is optional. They have the following meaning:</p>
-			<ul>
-				<!--
-				<li><code>fcolor</code> - foreground color</li>
-				<li><code>bcolor</code> - background color</li>
-				<li><code>rulers</code> - rulers enabled</li>-->
-				<li><code>theme</code> - theme (0, 1, 2, ...)</li>
-				<li><code>lang</code> - language</li>
-				<li><code>vmode</code> - view mode. 0: regular, 1: panels are collapsed, 2: hide all panels</li>
-				<li><code>intro</code> - when no documents are open, show introduction panel (with buttons etc.)</li>
-				<li><code>eparams</code> - extras: enable or disable guides, grid, paths, pixel grid ...</li>
-				<!--<li><code>showbranding</code> - show / hide Log In, Social media links etc.</li>-->
-				<li><code>customIO</code> - redefine the behavior of File - Open, Save etc. and run a custom script instead.
-					Possible properties: <code>"new", "open", "openFromURL", "takePic", "showTemplates",
-					"save", "saveAsPSD", "publishOnline", "exportLayers"</code>.</li>
-				<li><code>localsave</code> - enable / disable "Save as PSD", "Save for Web" and "Publish Online"</li>
-				<li><code>autosave</code> - with a value X, Photopea will execute "File - Save" each X seconds</li>
-				<li><code>showtools</code> - show only following tools (see tool IDs below) </li>
-				<li><code>menus</code> - specify the structure of File, Edit, Image ... menus with <b>0/1 flags</b>. 
-					Each element of an array is either 0: hide the item, 1: show the item with a standard content, 
-					or an array of flags for sub-items (works recursively).	If your array is shorter than required, zeros will be added to the end.
-					See the current menu structure of Photopea to find the right values.
-					E.g. [1,1] as the first element means, that the "File" menu will be shown with "New" and "Open" items only.</li>
-				<!--<li><code>showpanels</code> - allows you to hide elements on the right side.
-					There are two <b>columns</b>, which contain <b>panel blocks</b>, which contain one or more <b>panels</b>.
-					Each element of an array is either 0: hide the column, 1: show the column with all standard items, 
-					or an array of indices of panel blocks, that should be displayed.</li>-->
-				<li><code>panels</code> - what panels should be shown in a sidebar. Use following IDs:<br />
-					0: HISTORY, 1: SWATCHES, 2: LAYERS, 3: INFO, 4: HISTOGRAM, 5: PROPERTIES, 6: CSS, 7: BRUSH, 8: LAYERCOMPS, 9: CHARACTER, 10: PARAGRAPH, 
-					11: ACTIONS, 12: NAVIGATOR, 13: COLOR, 14: TPRESET, 15: GUIDEGUY, 16: CHANNELS, 17: PATHS, 18: GALLERY.</li>
-				<li><code>phrases</code> - allows you to replace any phrase inside Photopea with your own. 
-					The aray has the form <code>[ ID1, W1, ID2, W2, ... ]</code>, where IDx is the ID of some phrase and Wx is a new phrase, that should be used instead.<br />
-					Some useful IDs: [1,2]: Save (File menu), [2,0]: Step Forward, [2,1]: Step Backward. 
-					To discover IDs of other phrases, get familiar with <a href="https://github.com/photopea/OpenWord">OpenWord table structure</a> and find 
-					your phrase in <a href="https://www.photopea.com/code/LNG2.js">a current phrase database</a>, or just write us an email to support@photopea.com.</li>
-				<li><code>topt</code> - tool options. Lets you change the settings of each tool.
-				Keys are "tXY", where XY is the tool ID. Each tool has its own format (see below).</li>
-				<li><code>tmnu</code> - tool menu. Lets you specify the structure of the top menu for each tool.
-				Keys are "tXY", where XY is the tool ID. Each tool has its own format (see below).</li>
-				<li><code>icons</code> - custom icons. Each icon has an icon ID (key) and the image URL (value). 
-					You can find icon IDs <a href="//www.photopea.com/code/DBS.js">here</a>. 
-					E.g. the Crop Tool has an ID "tools/crop". The background of the introduction panel as an ID "intro".</li>
-				<li><code>plugins</code> - described <a href="/api/plugins">here</a></li>
-			</ul>
-			
-			<h2>Tool options and menus</h2>
-			
-			<h3>Move Tool</h3>
-			<p>Options: <code>[1,0,null]</code>. Three values mean Auto-Select, Transformation controls and Distances. 
-			1 means enabled, 0: disabled, null: not specified.</p>
-			<p>Menu: <code>[1,1,1,1,1,1]</code>. Six flags to show / hide six items: Auto-Select, Transformation controls, Distances, 
-			Quick Save (Get PNG...), Vertical Align, Horizontal Align.</p>
-			
-			<h3>Magic Wand</h3>
-			<p>Options: <code>[0,0,[16,true,true]]</code> - Combining operation, Feather, Select options: Tolerance, Anti-alias, Contiguous.</p>
-			
-			<h2>Tool IDs</h2>
-			
-			<ul style="column-count:3;  list-style-type: none;">
-			<li>0: Move Tool</li><li>1: Rectangle Select</li><li>2: Ellipse Select</li><li>5: Lasso Select</li><li>6: Polygonal Lasso Select</li><li>7: Magnetic Lasso Select</li><li>8: Quick Selection</li><li>9: Magic Wand</li><li>10: Crop Tool</li><li>14: Eyedropper</li><li>16: Ruler</li><li>18: Spot Healing Brush Tool</li><li>19: Healing Brush Tool</li><li>20: Patch Tool</li><li>23: Brush Tool</li><li>24: Pencil Tool</li><li>27: Clone Tool</li><li>31: Eraser Tool</li><li>34: Gradient Tool</li><li>35: Paint Bucket Tool</li><li>36: Blur Tool</li><li>37: Sharpen Tool</li><li>38: Smudge Tool</li><li>39: Dodge Tool</li><li>40: Burn Tool</li><li>41: Sponge Tool</li><li>47: Type Tool</li><li>42: Pen</li><li>43: Free Pen</li><li>51: Path Select</li><li>52: Direct Select</li><li>54: Rectangle</li><li>55: Ellipse</li><li>57: Line</li><li>56: Parametric Shape</li><li>58: Custom Shape</li><li>59: Hand Tool</li><li>61: Zoom Tool</li>
-			
-			</ul>			</div>
-		</div>
-	</div>
-		
-	<div id="disqus_thread"></div>
-	<script>
-
-	/**
-	*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
-	*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
-	/*
-	var disqus_config = function () {
-	this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
-	this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
-	};
-	*/
-	(function() { // DON'T EDIT BELOW THIS LINE
-	var d = document, s = d.createElement('script');
-	s.src = '//photopeablog.disqus.com/embed.js';
-	s.setAttribute('data-timestamp', +new Date());
-	(d.head || d.body).appendChild(s);
-	})();
-	</script>
-	 
-</div>
-	
-</html>
+<!--
+   - Unfortunately, Microsoft has added a clever new
+   - "feature" to Internet Explorer. If the text of
+   - an error's message is "too small", specifically
+   - less than 512 bytes, Internet Explorer returns
+   - its own error message. You can turn that off,
+   - but it's pretty tricky to find switch called
+   - "smart error messages". That means, of course,
+   - that short error messages are censored by default.
+   - IIS always returns error messages that are long
+   - enough to make Internet Explorer happy. The
+   - workaround is pretty simple: pad the error
+   - message with a big comment like this to push it
+   - over the five hundred and twelve bytes minimum.
+   - Of course, that's exactly what you're reading
+   - right now.
+   -->

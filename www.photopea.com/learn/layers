@@ -1,186 +1,33 @@
+<HTML>
+<HEAD>
+<TITLE>404 Not Found</TITLE>
+<BASE href="/error_docs/"><!--[if lte IE 6]></BASE><![endif]-->
+</HEAD>
+<BODY>
+<H1>Not Found</H1>
+The requested document was not found on this server.
+<P>
+<HR>
+<ADDRESS>
+Web Server at photopea.com
+</ADDRESS>
+</BODY>
+</HTML>
 
-<!DOCTYPE html> 
-<html>
-<head>
-		<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, initial-scale=1.0" />
-
-	<title>Photopea - Layers</title>
-
-	<link rel="stylesheet" href="https://blog.photopea.com/wp-content/themes/simplex/style.css" type="text/css" media="screen" />
-	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700,700i" />
-</head>
-
-<body>
-<div id="page">
-	<div id="header"> 
-		<a href="//www.photopea.com/learn/" class="title">Learn Photopea</a> 
-		<!--<p>Web-based image editor.</p>-->
-		<a href="//blog.photopea.com">Blog</a> |
-		<a class="curr" href="//www.photopea.com/learn">Learn</a> |
-		<a href="//www.photopea.com/tuts">Tutorials</a> |
-		<a href="//www.photopea.com/templates">Templates</a> |
-		<a href="//www.photopea.com/api">API</a> |
-		<a href="//www.facebook.com/photopea"><img src="//photopea.com/img/facebook.svg" /></a> |
-		<a href="//www.twitter.com/photopeacom"><img src="//photopea.com/img/twitter.svg" /></a> 
-	</div>	
-	<div id="main" style="max-width:1000px;">
-		<div id="sidebar" style="width:22%;">
-			<h3>Topics</h3>
-			<ul>
-			<li class="lvl0"><a href="/learn/">Introduction</a></li>
-			<li class="lvl0"><a href="/learn/workspace">Workspace</a></li>
-			<li class="lvl1"><a href="/learn/opening-saving">Open and Save</a></li>
-			<li class="lvl1"><a href="/learn/navigation">Navigation</a></li>
-			<li class="lvl1"><a href="/learn/image-size">Image size</a></li>
-			<li class="lvl0 active"><a href="/learn/layers">Layers</a></li>
-			<li class="lvl1"><a href="/learn/masks">Masks</a></li>
-			<li class="lvl1"><a href="/learn/layer-styles">Layer Styles</a></li>
-			<li class="lvl1"><a href="/learn/smart-objects">Smart Objects</a></li>
-			<li class="lvl1"><a href="/learn/other-layers">Other Layers</a></li>
-			<li class="lvl0"><a href="/learn/layer-manipulation">Layer Editing</a></li>
-			<li class="lvl1"><a href="/learn/free-transform">Free Transform</a></li>
-			<li class="lvl1"><a href="/learn/adjustments-filters">Adjust. &amp; Filters</a></li>
-			<li class="lvl0"><a href="/learn/selections">Selections</a></li>
-			<li class="lvl1"><a href="/learn/creating-selections">Make Selections</a></li>
-			<li class="lvl1"><a href="/learn/advanced-selecting">Advanced Selecting</a></li>
-			<li class="lvl1"><a href="/learn/refine-edge">Refine Edge</a></li>
-			<li class="lvl1"><a href="/learn/moving-selected-data">Move Selected Data</a></li>
-			<li class="lvl0"><a href="/learn/brush-tools">Brush Tools</a></li>
-			<li class="lvl1"><a href="/learn/bt-basic">Basic Tools</a></li>
-			<li class="lvl1"><a href="/learn/bt-advanced">Advanced Tools</a></li>
-			<li class="lvl1"><a href="/learn/bt-smart">Smart Tools</a></li>
-			<li class="lvl0"><a href="/learn/text">Text</a></li>
-			<li class="lvl1"><a href="/learn/text-style">Text Style</a></li>
-			<li class="lvl0"><a href="/learn/vector-graphics">Vector Graphics</a></li>
-			<li class="lvl1"><a href="/learn/vg-structure">The Structure</a></li>
-			<li class="lvl1"><a href="/learn/vg-manipulation">Editing Shapes</a></li>
-			<li class="lvl1"><a href="/learn/vg-creating">Creating Shapes</a></li>
-			<li class="lvl1"><a href="/learn/vg-vectorize">Vectorize Bitmap</a></li>
-			<li class="lvl0"><a href="/learn/other">Other</a></li>
-			<li class="lvl1"><a href="/learn/color-spaces">Color Spaces</a></li>
-			<li class="lvl1"><a href="/learn/guides-grid-snapping">Guides &amp; Snapping</a></li>
-			<li class="lvl1"><a href="/learn/animations">Animations</a></li>
-			<li class="lvl1"><a href="/learn/slices">Slices</a></li>
-			<li class="lvl1"><a href="/learn/layer-comps">Layer Comps</a></li>
-			<li class="lvl1"><a href="/learn/actions">Actions</a></li>
-			<li class="lvl1"><a href="/learn/scripts">Scripts</a></li>
-			</ul>
-		</div>
-		<div id="content" style="width:78%;">
-			<div class="post">			
-<h1>Layers</h1>
-
-<p>Each PSD document consists of <b>layers</b>. The layer represents some part of the image.
-It is usually an area filled with transparent, partially transparent or opaque pixels.</p>
-
-<p>Layers are rendered one on top of another, to create the final image.
-You usually edit just one layer at a time. Changing (moving, rotating, drawing into) one layer has no effect on other layers.</p>
-
-<img src="//i.imgur.com/34MoKlQ.png" class="fullw" />
-
-<h2>Layers panel</h2>
-
-<p><b>Layers panel</b> is the main place for working with the layer structure of the document. You can find it in the sidebar on the right.
-It cotnains the list of all layers and their thumbnails. 
-Layers at the bottom of the list are the layers "in the back", while layers at the top are the layers "in the front".</p>
-
-<p>When we have many layers, we need to choose one, wich we want to work with. 
-A layer can be <b>selected</b> simply by clicking on it (on its name or on its thumbnail) in the Layers panel.</p>
-
-<p>Sometimes we need to select multiple layers at the same time. E.g. if we want to rotate all of them by the same angle, or delete them all at once.
-When one or more layers are selected, hold the Ctrl key and click on other layers, to add them to the selection, 
-or click on already selected layers (while still holding Ctrl) to unselect them.</p>
-
-<h2>Folders of layers</h2>
-
-<p>When we have hundreds or even thousands of layers in our document, working with them in the Layers panel can be very hard.
-We would need to scroll the list for a long time to find a specific layer. But there is a solution.</p>
-
-<p>Photopea (as well as many other image editors) allows you to create <b>folders of layers</b>. You can put related layers
-inside one folder. Folders can contain other folders. The folder can be folded and unfolded, just like the folder in your computer.</p>
-
-<img src="//i.imgur.com/1TcORWo.png" />
-
-<p>When you select a folder (e.g. by clicking on it), all its content is also selected (even though it is not highlighted in the panel). 
-By moving / rotating / deleting one folder, you also move / rotate / delete all the content of that folder.</p>
-
-<h2>Basic layer properties</h2>
-
-<p>There are several basic properties of the layer, that you can change in the Layers panel. 
-The main property is the <b>visibility</b>, which you can switch by clicking the eye icon of a layer (or a folder).
-When some layer is selected, you can edit the <b><a href="//en.wikipedia.org/wiki/Blend_modes">blend mode</a></b>
-and the <b>opacity</b> of that layer at the top of the Layers panel.</p>
-
-<img src="https://i.imgur.com/qu5XzNK.png" style="width:40%" />
-
-<p>Each layer can be <b>locked</b> in several ways:</p>
-<ul>
-	<li><b>Transparency</b> - the transparency is locked (you can paint only into non-empty areas)</li>
-	<li><b>Pixels</b> - pixel data is locked (you can not paint into the layer)</li>
-	<li><b>Position</b> - position is locked (you can not move the layer, rotate it, etc.)</li>
-	<li><b>All</b> - all previous locks at once</li>
-</ul>
-
-
-<p>Each layer has the name, which can help you understand the sturcture of large documents. 
-Double-click the name of the layer, then you can enter a new name. After you type a new name, 
-press Enter to confirm it, or Escape to return to the previous name.</p>
-
-
-<h2>Changing the structure</h2>
-
-<p>You can drag and drop layers inside the Layers panel. This way, you can reorder layers (e.g. put the layers from the back to the front), 
-place layers into folders (or take them out of folders), put a folder into another folder etc. 
-By selecting multiple layers (folders), you can drag all of them at the same time.</p>
-
-<p>You can find several basic buttons at the bottom of the Layers panel.</p>
-
-<img src="//i.imgur.com/ote9014.png" />
-
-<p>The <b>garbage bin</b> button lets you delete all selected layers. 
-The <b>New Layer</b> button will add a new empty layer on top of the current layer (the one that is selected).
-The <b>New Folder</b> button will add a new empty folder on top of the current layer. The last button creates the raster mask on the current layer.
-Similar options are also available by clicking the <b>Layer</b> button in the menu at the top, or by right-clicking a specific layer in the Layers panel.</p>
-
-<p>Another useful operation is <b>duplicating</b> the layer (right-click - Duplicate, or Ctrl+J).
-You can also duplicate layers between different documents (right-click - Duplicate into).
-Another convinient way to duplicate layers is to drag them to "another panel" with a Move tool. 
-Choose a Move tool, click on the layer (in the workspace), 
-drag it over the label of another document and wait until documents are switched.
-Now, you can move the layer iside this second document and release the mouse.
-</p>
-
-<img src="//i.imgur.com/cloz3K1.png" />
-
-<p><b>Merging</b> multiple layers into a single layer is also useful (right-click - Merge down or Merge layers).</p>
-
-
-
-			
-			</div>
-			
-			<h2 style="margin-top: 4em">Comments</h2>
-			<p>Do you need help? Ask us at <a href="//www.reddit.com/r/photopea/" target="_blank">our Reddit</a>!</p>
-			
-			<div id="disqus_thread"></div>
-			<script>   
-			(function() { // DON'T EDIT BELOW THIS LINE
-			var d = document, s = d.createElement('script');
-			s.src = 'https://learn-photopea.disqus.com/embed.js';
-			s.setAttribute('data-timestamp', +new Date());
-			(d.head || d.body).appendChild(s);
-			})();   
-			</script>	
-		</div>
-	</div>
-	<div id="footer">&copy; 2013-2021 support@photopea.com</div>
-	<script>
-	  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-	  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-	  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-	  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-
-	  ga('create', 'UA-4249565-43', 'auto');  ga('send', 'pageview');
-	</script>
-</div>
-</html>
+<!--
+   - Unfortunately, Microsoft has added a clever new
+   - "feature" to Internet Explorer. If the text of
+   - an error's message is "too small", specifically
+   - less than 512 bytes, Internet Explorer returns
+   - its own error message. You can turn that off,
+   - but it's pretty tricky to find switch called
+   - "smart error messages". That means, of course,
+   - that short error messages are censored by default.
+   - IIS always returns error messages that are long
+   - enough to make Internet Explorer happy. The
+   - workaround is pretty simple: pad the error
+   - message with a big comment like this to push it
+   - over the five hundred and twelve bytes minimum.
+   - Of course, that's exactly what you're reading
+   - right now.
+   -->

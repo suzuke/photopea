@@ -1,197 +1,33 @@
+<HTML>
+<HEAD>
+<TITLE>404 Not Found</TITLE>
+<BASE href="/error_docs/"><!--[if lte IE 6]></BASE><![endif]-->
+</HEAD>
+<BODY>
+<H1>Not Found</H1>
+The requested document was not found on this server.
+<P>
+<HR>
+<ADDRESS>
+Web Server at photopea.com
+</ADDRESS>
+</BODY>
+</HTML>
 
-<!DOCTYPE html> 
-<html>
-<head>
-		<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, initial-scale=1.0" />
-
-	<title>Photopea - Color Spaces</title>
-
-	<link rel="stylesheet" href="https://blog.photopea.com/wp-content/themes/simplex/style.css" type="text/css" media="screen" />
-	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700,700i" />
-</head>
-
-<body>
-<div id="page">
-	<div id="header"> 
-		<a href="//www.photopea.com/learn/" class="title">Learn Photopea</a> 
-		<!--<p>Web-based image editor.</p>-->
-		<a href="//blog.photopea.com">Blog</a> |
-		<a class="curr" href="//www.photopea.com/learn">Learn</a> |
-		<a href="//www.photopea.com/tuts">Tutorials</a> |
-		<a href="//www.photopea.com/templates">Templates</a> |
-		<a href="//www.photopea.com/api">API</a> |
-		<a href="//www.facebook.com/photopea"><img src="//photopea.com/img/facebook.svg" /></a> |
-		<a href="//www.twitter.com/photopeacom"><img src="//photopea.com/img/twitter.svg" /></a> 
-	</div>	
-	<div id="main" style="max-width:1000px;">
-		<div id="sidebar" style="width:22%;">
-			<h3>Topics</h3>
-			<ul>
-			<li class="lvl0"><a href="/learn/">Introduction</a></li>
-			<li class="lvl0"><a href="/learn/workspace">Workspace</a></li>
-			<li class="lvl1"><a href="/learn/opening-saving">Open and Save</a></li>
-			<li class="lvl1"><a href="/learn/navigation">Navigation</a></li>
-			<li class="lvl1"><a href="/learn/image-size">Image size</a></li>
-			<li class="lvl0"><a href="/learn/layers">Layers</a></li>
-			<li class="lvl1"><a href="/learn/masks">Masks</a></li>
-			<li class="lvl1"><a href="/learn/layer-styles">Layer Styles</a></li>
-			<li class="lvl1"><a href="/learn/smart-objects">Smart Objects</a></li>
-			<li class="lvl1"><a href="/learn/other-layers">Other Layers</a></li>
-			<li class="lvl0"><a href="/learn/layer-manipulation">Layer Editing</a></li>
-			<li class="lvl1"><a href="/learn/free-transform">Free Transform</a></li>
-			<li class="lvl1"><a href="/learn/adjustments-filters">Adjust. &amp; Filters</a></li>
-			<li class="lvl0"><a href="/learn/selections">Selections</a></li>
-			<li class="lvl1"><a href="/learn/creating-selections">Make Selections</a></li>
-			<li class="lvl1"><a href="/learn/advanced-selecting">Advanced Selecting</a></li>
-			<li class="lvl1"><a href="/learn/refine-edge">Refine Edge</a></li>
-			<li class="lvl1"><a href="/learn/moving-selected-data">Move Selected Data</a></li>
-			<li class="lvl0"><a href="/learn/brush-tools">Brush Tools</a></li>
-			<li class="lvl1"><a href="/learn/bt-basic">Basic Tools</a></li>
-			<li class="lvl1"><a href="/learn/bt-advanced">Advanced Tools</a></li>
-			<li class="lvl1"><a href="/learn/bt-smart">Smart Tools</a></li>
-			<li class="lvl0"><a href="/learn/text">Text</a></li>
-			<li class="lvl1"><a href="/learn/text-style">Text Style</a></li>
-			<li class="lvl0"><a href="/learn/vector-graphics">Vector Graphics</a></li>
-			<li class="lvl1"><a href="/learn/vg-structure">The Structure</a></li>
-			<li class="lvl1"><a href="/learn/vg-manipulation">Editing Shapes</a></li>
-			<li class="lvl1"><a href="/learn/vg-creating">Creating Shapes</a></li>
-			<li class="lvl1"><a href="/learn/vg-vectorize">Vectorize Bitmap</a></li>
-			<li class="lvl0"><a href="/learn/other">Other</a></li>
-			<li class="lvl1 active"><a href="/learn/color-spaces">Color Spaces</a></li>
-			<li class="lvl1"><a href="/learn/guides-grid-snapping">Guides &amp; Snapping</a></li>
-			<li class="lvl1"><a href="/learn/animations">Animations</a></li>
-			<li class="lvl1"><a href="/learn/slices">Slices</a></li>
-			<li class="lvl1"><a href="/learn/layer-comps">Layer Comps</a></li>
-			<li class="lvl1"><a href="/learn/actions">Actions</a></li>
-			<li class="lvl1"><a href="/learn/scripts">Scripts</a></li>
-			</ul>
-		</div>
-		<div id="content" style="width:78%;">
-			<div class="post">			
-<h1>Color Spaces</h1>
-
-<p>Have you ever walked into a TV store, with many TVs showing the same video? And the video looked a bit different 
-(brighter, more yellow-ish, various contrast) on each TV?
-</p>
-
-<p>Capturing devices (digital cameras, scanners) and displaying devices (monitors, printers) have various technical properties.
-Color Spaces provide the ability to make colors look always the same, no matter what capturing or displaying device has been used.</p>
-
-<h2>Absolute colors</h2>
-
-<p>To compare, which object is heavier in a real world, we need to give each object a number: weight (measure it). 
-Two objects have the same weight, if that number is the same for both of them.
-There are many units of weight (grams, pounds, ounces), which can be converted, one unit to another.</p>
-
-<p>
-To compare colors in a real world, each color should be given a number, too. 
-Two colors are the same, if that number is the same for both of them.
-There are two popular units (<b>color spaces</b>), that are used in practice: <a href="//en.wikipedia.org/wiki/CIELAB_color_space">CIELAB</a> 
-and <a href="//en.wikipedia.org/wiki/CIE_1931_color_space">CIEXYZ</a>.</p>
-
-<p>
-While Grams (unit of weight) consist of one number (e.g. 150 grams), CIELAB (unit of color) consists of three numbers (e.g. CIELAB 0.5, 0.7, 0.1). 
-These numbers are called <b>channels</b> or <b>components</b>.
-</p>
-
-<p>Let's say we have a square hole in a wall, and there is an apple on the other side, with a blue cloth behind it. 
-We take a picture of it, print it, and put that printed picture behind a second hole in a wall (illuminated by a proper light).
-We also display the same picture on an LCD monitor, which we put behind a third hole.</p>
-
-<p>If the digital camera can store real colors into correct CIELAB values, and both the printer and the monitor can correctly reproduce any CIELAB values,
-we should not be able to distinguish (with our eyes), which hole contains a real apple, which one is the monitor, and which one is the ink on a paper.</p>
-
-<img src="//i.imgur.com/WxzfiLv.png" class="fullw" />
-
-<h2>Device-specific colors</h2>
-
-<p>First monitors created colors by combining three lights, usually referred to as Red, Green and Blue (RGB) 
-(note, that "Red" in terms of color is ambiguous, just like "Heavy" in terms of weight; one would need to specify a CIELAB value to be precise).
-It was natural to store a color digitally as three numbers: intensities of Red, Green and Blue for that specific monitor.
-Such color always looked the same on all monitors of that specific brand. But these values had no relation to CIELAB.</p>
-
-<p>More monitor manufacturers appeared, each of them using materials with different physical properties. 
-The RGB color value for one monitor looked different on another brand of monitor.
-Finally, a proper system with three components was created, called <b>Standard RGB, or sRGB</b>. 
-There is an exact formula, how to convert between sRGB and CIELAB, so each sRGB color actually corresponds to a real-world (unambiguous) CIELAB color.</p>
-
-<p>All images were stored in sRGB color space. Each monitor offered many settings, which allowed people to "calibrate" the monitor, 
-until it displayed sRGB values correctly.</p>
-
-<p>There was the same problem with printers. They usually create colors by mixing four inks, referred to as Cyan, Magenta, Yellow and Black (CMYK).
-A specific ratio of these inks, that was printed by one printer, could look different on another printer having inks with different chemical properties. 
-Some printers could even use five or more inks. Some printers could produce colors, that other printers could not produce.</p>
-
-<h2>Color Profiles</h2>
-
-<p>Let's say, that an absolute CIELAB color [0.3, 0.8, 0.1] can be displayed with RGB signals [224,107,158] on a monitor A, and with RGB signals [231,99,161] on a monitor B.
-We can say, that each monitor has its own color space, and it can convert any value from CIELAB into its own space.
-Instead of storing a color digitally as CIELAB, we can store it as any set of numbers, as long as we provide a mechanism,
-how to convert these numbers into CIELAB.
-</p>
-
-<p>All problems with device-specific colors have been solved by <b>ICC profiles</b>. 
-An ICC profile (for a specific color space X) is a set of instructions, how to convert values from the color space X into CIELAB, and back.
-These instructions are stored in a special file: ICC file (e.g. "Canon_printer_123.icc").
-Since the ICC profile describes the conversion between the space X and CIELAB, it fully describes the color space X.</p>
-
-<p>*** Analogy: We could create a "weight space" of "bukalas". A "weight profile" would say, that "one bukala is 1200 grams". 
-It lets us convert between "bukalas" and grams, so it fully describes what a "bukala" is.</p>
-
-<p>This means, that each digital image (JPG, PNG, PDF) has to be equippeed with an ICC profile 
-(so that we are able to convert its color values into CIELAB),
-and each printer has to be equipped with an ICC profile (so it can convert absolute CIELAB colors into its own four values of ink).</p>
-
-<img src="//i.imgur.com/UGZO5Cy.png" class="fullw" />
-
-<p>Without ICC profiles, each camera would probably store colors in its own color space. Each printer and monitor would have to be equipped with
-special configurations for images of each model of the camera, and update these configurations, as new cameras appear on the market.
-I.e. each image-displaying device would have to be aware of all existing image-capturing devices, and make special configurations for their images.</p>
-
-<p>With ICC profiles, we only specify, how to convert between "our own" device-specific colors, and "common" CIELAB colors.
-When each party can supply such ICC profile, the result is the same, as if we used the CIELAB space everywhere.</p>
-
-<p>Usually, the printing software can detect the ICC profile of digital images, and convert them into the printers profile automatically.
-Also, an image viewer converts colors of the image into CIELAB  (using the ICC profile), and CIELAB to sRGB,
-while a graphics driver takes sRGB colors and converts them into a color space of the monitor (using the ICC profile supplied by the manufacturer of the monitor).
-We don't deal with any ICC files in practice, the computer (software) takes care of them automatically.</p>
-
-<p>When we have an image without an ICC profile, "guessing" its color space is very dangerous. 
-It is like having some numbers specifying weights, and guessing, if they are grams or ounces.</p>
-
-<p>Also, just saying, that an image (file) is in RGB, or in CMYK, makes no sense. The value (255,0,0) could be Red, as well as Green.
-Unless the color space is specified (with an ICC file), we can not be sure, what color is meant by the values inside a file.</p>
-
-<p>The sRGB space is very popular for storing digital images. Authors (of images) usually only specify, that the image is in sRGB,
-without attaching a specific ICC file to it. Converting sRGB to CIELAB is very simple, and the formula
-is usually built into a graphic software.</p>
-
-<p>sRGB is also used on the Web: when we specify <code>#ff00ff;</code> or <code>rgb(255,0,255)</code> in CSS, 
-browsers expect these values to be in sRGB space.</p>			
-			</div>
-			
-			<h2 style="margin-top: 4em">Comments</h2>
-			<p>Do you need help? Ask us at <a href="//www.reddit.com/r/photopea/" target="_blank">our Reddit</a>!</p>
-			
-			<div id="disqus_thread"></div>
-			<script>   
-			(function() { // DON'T EDIT BELOW THIS LINE
-			var d = document, s = d.createElement('script');
-			s.src = 'https://learn-photopea.disqus.com/embed.js';
-			s.setAttribute('data-timestamp', +new Date());
-			(d.head || d.body).appendChild(s);
-			})();   
-			</script>	
-		</div>
-	</div>
-	<div id="footer">&copy; 2013-2021 support@photopea.com</div>
-	<script>
-	  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-	  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-	  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-	  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-
-	  ga('create', 'UA-4249565-43', 'auto');  ga('send', 'pageview');
-	</script>
-</div>
-</html>
+<!--
+   - Unfortunately, Microsoft has added a clever new
+   - "feature" to Internet Explorer. If the text of
+   - an error's message is "too small", specifically
+   - less than 512 bytes, Internet Explorer returns
+   - its own error message. You can turn that off,
+   - but it's pretty tricky to find switch called
+   - "smart error messages". That means, of course,
+   - that short error messages are censored by default.
+   - IIS always returns error messages that are long
+   - enough to make Internet Explorer happy. The
+   - workaround is pretty simple: pad the error
+   - message with a big comment like this to push it
+   - over the five hundred and twelve bytes minimum.
+   - Of course, that's exactly what you're reading
+   - right now.
+   -->

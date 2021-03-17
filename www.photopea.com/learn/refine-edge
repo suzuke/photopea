@@ -1,184 +1,33 @@
+<HTML>
+<HEAD>
+<TITLE>404 Not Found</TITLE>
+<BASE href="/error_docs/"><!--[if lte IE 6]></BASE><![endif]-->
+</HEAD>
+<BODY>
+<H1>Not Found</H1>
+The requested document was not found on this server.
+<P>
+<HR>
+<ADDRESS>
+Web Server at photopea.com
+</ADDRESS>
+</BODY>
+</HTML>
 
-<!DOCTYPE html> 
-<html>
-<head>
-		<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, initial-scale=1.0" />
-
-	<title>Photopea - Refine Edge</title>
-
-	<link rel="stylesheet" href="https://blog.photopea.com/wp-content/themes/simplex/style.css" type="text/css" media="screen" />
-	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700,700i" />
-</head>
-
-<body>
-<div id="page">
-	<div id="header"> 
-		<a href="//www.photopea.com/learn/" class="title">Learn Photopea</a> 
-		<!--<p>Web-based image editor.</p>-->
-		<a href="//blog.photopea.com">Blog</a> |
-		<a class="curr" href="//www.photopea.com/learn">Learn</a> |
-		<a href="//www.photopea.com/tuts">Tutorials</a> |
-		<a href="//www.photopea.com/templates">Templates</a> |
-		<a href="//www.photopea.com/api">API</a> |
-		<a href="//www.facebook.com/photopea"><img src="//photopea.com/img/facebook.svg" /></a> |
-		<a href="//www.twitter.com/photopeacom"><img src="//photopea.com/img/twitter.svg" /></a> 
-	</div>	
-	<div id="main" style="max-width:1000px;">
-		<div id="sidebar" style="width:22%;">
-			<h3>Topics</h3>
-			<ul>
-			<li class="lvl0"><a href="/learn/">Introduction</a></li>
-			<li class="lvl0"><a href="/learn/workspace">Workspace</a></li>
-			<li class="lvl1"><a href="/learn/opening-saving">Open and Save</a></li>
-			<li class="lvl1"><a href="/learn/navigation">Navigation</a></li>
-			<li class="lvl1"><a href="/learn/image-size">Image size</a></li>
-			<li class="lvl0"><a href="/learn/layers">Layers</a></li>
-			<li class="lvl1"><a href="/learn/masks">Masks</a></li>
-			<li class="lvl1"><a href="/learn/layer-styles">Layer Styles</a></li>
-			<li class="lvl1"><a href="/learn/smart-objects">Smart Objects</a></li>
-			<li class="lvl1"><a href="/learn/other-layers">Other Layers</a></li>
-			<li class="lvl0"><a href="/learn/layer-manipulation">Layer Editing</a></li>
-			<li class="lvl1"><a href="/learn/free-transform">Free Transform</a></li>
-			<li class="lvl1"><a href="/learn/adjustments-filters">Adjust. &amp; Filters</a></li>
-			<li class="lvl0"><a href="/learn/selections">Selections</a></li>
-			<li class="lvl1"><a href="/learn/creating-selections">Make Selections</a></li>
-			<li class="lvl1"><a href="/learn/advanced-selecting">Advanced Selecting</a></li>
-			<li class="lvl1 active"><a href="/learn/refine-edge">Refine Edge</a></li>
-			<li class="lvl1"><a href="/learn/moving-selected-data">Move Selected Data</a></li>
-			<li class="lvl0"><a href="/learn/brush-tools">Brush Tools</a></li>
-			<li class="lvl1"><a href="/learn/bt-basic">Basic Tools</a></li>
-			<li class="lvl1"><a href="/learn/bt-advanced">Advanced Tools</a></li>
-			<li class="lvl1"><a href="/learn/bt-smart">Smart Tools</a></li>
-			<li class="lvl0"><a href="/learn/text">Text</a></li>
-			<li class="lvl1"><a href="/learn/text-style">Text Style</a></li>
-			<li class="lvl0"><a href="/learn/vector-graphics">Vector Graphics</a></li>
-			<li class="lvl1"><a href="/learn/vg-structure">The Structure</a></li>
-			<li class="lvl1"><a href="/learn/vg-manipulation">Editing Shapes</a></li>
-			<li class="lvl1"><a href="/learn/vg-creating">Creating Shapes</a></li>
-			<li class="lvl1"><a href="/learn/vg-vectorize">Vectorize Bitmap</a></li>
-			<li class="lvl0"><a href="/learn/other">Other</a></li>
-			<li class="lvl1"><a href="/learn/color-spaces">Color Spaces</a></li>
-			<li class="lvl1"><a href="/learn/guides-grid-snapping">Guides &amp; Snapping</a></li>
-			<li class="lvl1"><a href="/learn/animations">Animations</a></li>
-			<li class="lvl1"><a href="/learn/slices">Slices</a></li>
-			<li class="lvl1"><a href="/learn/layer-comps">Layer Comps</a></li>
-			<li class="lvl1"><a href="/learn/actions">Actions</a></li>
-			<li class="lvl1"><a href="/learn/scripts">Scripts</a></li>
-			</ul>
-		</div>
-		<div id="content" style="width:78%;">
-			<div class="post">			
-<h1>Refine Edge</h1>
-
-<p>Natural images (photographs) may contain parts, that are very hard to select. 
-We can have partially transparent objects (a glass of water) or objects with a complex shape (trees, hair, fur).
-Their colors are mixed with other colors in the background.</p>
-
-<h2>Refine Edge Tool</h2>
-
-<p>Photopea offers the Refine Edge Tool, which can help you with selecting complex shapes. You can start it by choosing Select - Refine Edge,
-or by clicking the "Refine Edge" button in the top panel of any selection tool.</p>
-
-<p>Your goal is to make a <b>Trimap</b>: mark the whole image with trhee colors:<p>
-<ul>
-	<li>Your object (Foreground) with <b>White</b> (fully visible in the result)</li>
-	<li>Background with <b>Black</b> (deleted in the result)</li>
-	<li>Uncertain areas with <b>Grey</b></li>
-</ul>
-
-<p>After you do so, Photopea will deduce the transparency of the Grey area (part of it will be added to the Foreground, the rest to the Background).</p>
-
-<a href="//i.imgur.com/Hi0DGyr.jpg" target="_blank"><img src="//i.imgur.com/Hi0DGyr.jpg" class="fullw" /></a>
-
-<p>The workspace consists of two sides. You can paint the Trimap on the left, and you will see the result on the right.
-Choose the brush size and the color (White, Grey or Black) in the top left corner and paint over the image.
-The result is updated after you release the mouse.</p>
-
-<p>You can Zoom to a specific place with a Mouse Wheel, or by pressing Ctrl + Plus (or Minus) on your keyboard. You can move the image while holding a Spacebar.</p>
-
-<a href="//i.imgur.com/pG233Iz.jpg" target="_blank"><img src="//i.imgur.com/pG233Iz.png" class="fullw" /></a>
-
-<p>If you start Refine Edge with no selection, the whole Trimap is Black (so just add Grey and White).</p>
-
-<p>If you start Refine Edge with a selection, the tool will generate a Trimap for you (selected area as White, the rest as Black).
-Then, just paint with Grey over the areas, that are not selected perfectly (edges of the object).</p>
-
-<p>You can auto-generate the Grey area as a border of the initial selection (between black and white). Simply change the <b>Border</b> value in the top menu.</p>
-
-<p>There are three modes, how the result can be used:</p>
-<ul>
-<li><b>New Layer</b>: selected object will be inserted as a new layer</li>
-<li><b>Raster Mask</b>: the current layer will get a raster mask, that corresponds to the result</li>
-<li><b>Selection</b>: the new selection will be created, that corresponds to the result</li>
-</ul>
-
-<p>Once the selection looks well, choose the Mode and confirm it by hitting OK in the top right corner.</p>
-
-
-
-<h2 id="useless">When Masks (and Selections) are useless</h2>
-
-<p>There is a <b>red object</b> on a <b>blue background</b>, which is out of focus (so it is very blurry).
-The edge of such object looks like a red-to-blue gradient.
-We want to cut out this red object (which is not blue, not purple, but only red, with partial transparency).
-</p>
-
-<img src="//i.imgur.com/4ep0ck0.png" />
-
-<p>Let's try to solve it with a mask. Make a new mask and draw a white-to-black gradient into it.
-The left side is fully red, the right side is transparent, but the center is half-transparent <b>purple</b>.
-You can even see some blue color on the right half.
-</p>
-
-<img src="//i.imgur.com/FVoy6S2.png" class="fullw" />
-
-<p>If we try to make a selection and copy-paste it into a new layer, we would have the same problem.
-We need to copy only the red color out of purple pixels. How can we do it?</p>
-
-<p>In the Refine Edge tool, you mark the Background with Black, Foreground with White, and unknown areas with Grey.
-Then, Photopea deduces a new transparency for each Grey pixel. But <b>it also deduces a new color</b> for each Grey pixel.</p>
-
-<p>Let's apply Refine Edge to our image. Fill it all with Grey, draw a White line on the left, and a Black line on the right.</p>
-
-<img src="//i.imgur.com/TAVG4TU.png" class="fullw" />
-
-<p>The new image has a correct transparency (100% on the left, 0% on the right), but it is also <b>completely red</b>.
-There is no blue or purple color in it.</p>
-
-<p>If we save such result as a Mask or Selection, only the transparency is saved. New color information (deduced by Refine Edge) will be lost.
-<b>Always save the result as a New Layer for the best results.</b></p>
-
-<p>This is not just an extreme case. This happens everytime when there is a pixel containing both a Foreground and a Background.
-E.g. when there is yellow hair on a black background, many pixels are yellow-ish (contain some hair and some background).
-Even if you made the best mask in the world, yellow-ish pixels would become semi-transparent, but <b>would remain yellow-ish</b> instead of being fully yellow, 
-giving hair a yellow-ish outline.
-</p>
-
-			
-			</div>
-			
-			<h2 style="margin-top: 4em">Comments</h2>
-			<p>Do you need help? Ask us at <a href="//www.reddit.com/r/photopea/" target="_blank">our Reddit</a>!</p>
-			
-			<div id="disqus_thread"></div>
-			<script>   
-			(function() { // DON'T EDIT BELOW THIS LINE
-			var d = document, s = d.createElement('script');
-			s.src = 'https://learn-photopea.disqus.com/embed.js';
-			s.setAttribute('data-timestamp', +new Date());
-			(d.head || d.body).appendChild(s);
-			})();   
-			</script>	
-		</div>
-	</div>
-	<div id="footer">&copy; 2013-2021 support@photopea.com</div>
-	<script>
-	  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-	  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-	  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-	  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-
-	  ga('create', 'UA-4249565-43', 'auto');  ga('send', 'pageview');
-	</script>
-</div>
-</html>
+<!--
+   - Unfortunately, Microsoft has added a clever new
+   - "feature" to Internet Explorer. If the text of
+   - an error's message is "too small", specifically
+   - less than 512 bytes, Internet Explorer returns
+   - its own error message. You can turn that off,
+   - but it's pretty tricky to find switch called
+   - "smart error messages". That means, of course,
+   - that short error messages are censored by default.
+   - IIS always returns error messages that are long
+   - enough to make Internet Explorer happy. The
+   - workaround is pretty simple: pad the error
+   - message with a big comment like this to push it
+   - over the five hundred and twelve bytes minimum.
+   - Of course, that's exactly what you're reading
+   - right now.
+   -->

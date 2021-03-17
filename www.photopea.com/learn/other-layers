@@ -1,170 +1,33 @@
+<HTML>
+<HEAD>
+<TITLE>404 Not Found</TITLE>
+<BASE href="/error_docs/"><!--[if lte IE 6]></BASE><![endif]-->
+</HEAD>
+<BODY>
+<H1>Not Found</H1>
+The requested document was not found on this server.
+<P>
+<HR>
+<ADDRESS>
+Web Server at photopea.com
+</ADDRESS>
+</BODY>
+</HTML>
 
-<!DOCTYPE html> 
-<html>
-<head>
-		<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, initial-scale=1.0" />
-
-	<title>Photopea - Other Layers</title>
-
-	<link rel="stylesheet" href="https://blog.photopea.com/wp-content/themes/simplex/style.css" type="text/css" media="screen" />
-	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700,700i" />
-</head>
-
-<body>
-<div id="page">
-	<div id="header"> 
-		<a href="//www.photopea.com/learn/" class="title">Learn Photopea</a> 
-		<!--<p>Web-based image editor.</p>-->
-		<a href="//blog.photopea.com">Blog</a> |
-		<a class="curr" href="//www.photopea.com/learn">Learn</a> |
-		<a href="//www.photopea.com/tuts">Tutorials</a> |
-		<a href="//www.photopea.com/templates">Templates</a> |
-		<a href="//www.photopea.com/api">API</a> |
-		<a href="//www.facebook.com/photopea"><img src="//photopea.com/img/facebook.svg" /></a> |
-		<a href="//www.twitter.com/photopeacom"><img src="//photopea.com/img/twitter.svg" /></a> 
-	</div>	
-	<div id="main" style="max-width:1000px;">
-		<div id="sidebar" style="width:22%;">
-			<h3>Topics</h3>
-			<ul>
-			<li class="lvl0"><a href="/learn/">Introduction</a></li>
-			<li class="lvl0"><a href="/learn/workspace">Workspace</a></li>
-			<li class="lvl1"><a href="/learn/opening-saving">Open and Save</a></li>
-			<li class="lvl1"><a href="/learn/navigation">Navigation</a></li>
-			<li class="lvl1"><a href="/learn/image-size">Image size</a></li>
-			<li class="lvl0"><a href="/learn/layers">Layers</a></li>
-			<li class="lvl1"><a href="/learn/masks">Masks</a></li>
-			<li class="lvl1"><a href="/learn/layer-styles">Layer Styles</a></li>
-			<li class="lvl1"><a href="/learn/smart-objects">Smart Objects</a></li>
-			<li class="lvl1 active"><a href="/learn/other-layers">Other Layers</a></li>
-			<li class="lvl0"><a href="/learn/layer-manipulation">Layer Editing</a></li>
-			<li class="lvl1"><a href="/learn/free-transform">Free Transform</a></li>
-			<li class="lvl1"><a href="/learn/adjustments-filters">Adjust. &amp; Filters</a></li>
-			<li class="lvl0"><a href="/learn/selections">Selections</a></li>
-			<li class="lvl1"><a href="/learn/creating-selections">Make Selections</a></li>
-			<li class="lvl1"><a href="/learn/advanced-selecting">Advanced Selecting</a></li>
-			<li class="lvl1"><a href="/learn/refine-edge">Refine Edge</a></li>
-			<li class="lvl1"><a href="/learn/moving-selected-data">Move Selected Data</a></li>
-			<li class="lvl0"><a href="/learn/brush-tools">Brush Tools</a></li>
-			<li class="lvl1"><a href="/learn/bt-basic">Basic Tools</a></li>
-			<li class="lvl1"><a href="/learn/bt-advanced">Advanced Tools</a></li>
-			<li class="lvl1"><a href="/learn/bt-smart">Smart Tools</a></li>
-			<li class="lvl0"><a href="/learn/text">Text</a></li>
-			<li class="lvl1"><a href="/learn/text-style">Text Style</a></li>
-			<li class="lvl0"><a href="/learn/vector-graphics">Vector Graphics</a></li>
-			<li class="lvl1"><a href="/learn/vg-structure">The Structure</a></li>
-			<li class="lvl1"><a href="/learn/vg-manipulation">Editing Shapes</a></li>
-			<li class="lvl1"><a href="/learn/vg-creating">Creating Shapes</a></li>
-			<li class="lvl1"><a href="/learn/vg-vectorize">Vectorize Bitmap</a></li>
-			<li class="lvl0"><a href="/learn/other">Other</a></li>
-			<li class="lvl1"><a href="/learn/color-spaces">Color Spaces</a></li>
-			<li class="lvl1"><a href="/learn/guides-grid-snapping">Guides &amp; Snapping</a></li>
-			<li class="lvl1"><a href="/learn/animations">Animations</a></li>
-			<li class="lvl1"><a href="/learn/slices">Slices</a></li>
-			<li class="lvl1"><a href="/learn/layer-comps">Layer Comps</a></li>
-			<li class="lvl1"><a href="/learn/actions">Actions</a></li>
-			<li class="lvl1"><a href="/learn/scripts">Scripts</a></li>
-			</ul>
-		</div>
-		<div id="content" style="width:78%;">
-			<div class="post">			
-<h1>Other Layers</h1>
-
-<h2>Fill Layers</h2>
-
-<p>There are two types of fill layers: <b>solid color fill</b>, <b>gradient fill</b> and <b>pattern fill</b>. 
-A fill layer has a parameter (e.g. the gradient) and it will produce a full-width rectangle, 
-that is filled with the corresponding color, the gradient or the pattern.</p>
-
-<img src="//i.imgur.com/aK7HutT.png" />
-
-<p>Of course, there are many ways how to produce a layer filled with the color the gradient or the pattern. 
-E.g. you can create an empty layer and use the Brush tool to paint it with the color.
-Fill layers have several advantages. They have a special thumbnail, which helps you see the purpose of the layer.
-Fill parameters (the color, the gradient or the pattern) can be easily modified. When you change the size of the canvas,
-the content of fill layers is regenerated automatically to fill the new canvas.</p>
-
-<p>Press Layer - New Fill Layer in the top menu to add a new fill layer. Parameters of the fill can be changed in the Properties panel
-(the panel will show up after double-clicking the thumbnail of the fill layer).</p>
-
-<h2>Adjustment layers</h2>
-
-<p>Adjustment layers are the special kind of layers. They do not contain any image data, but they perform
-a color adjustment to the content below them.</p>
-
-<p>Imagine that you have a photo and you want to make it black and white (grayscale). 
-Photopea gives you many ways to change the actual pixels of the photo layer, to make them grayscale.
-But with adjustment layers, you can make the photo look back and white, without actually cahnging pixels of the photo layer.</p>
-
-<p>You could simply add a Hue / Saturation adjustment layer on top of the photo layer, and set the Saturation parameter to zero.</p>
-
-<img src="//i.imgur.com/pHcDiXI.png" />
-
-<p>Press Layer - New Adjustment Layer in the top menu to add a new adjustment layer. Parameters of the adjustment can be changed in the Properties panel
-(the panel will show up after double-clicking the thumbnail of the adjustment layer).</p>
-
-<p>Just like any other layers, fill layers and adjustment layers can have their own blend mode, opacity, masks etc. 
-The mask of an adjustment layer will cause, that the adjustment will be performed only to those areas of the content below, which are white inside the mask.</p>
-
-<h2>Rasterizing layers</h2>
-
-<p>Each layer must have some pixel data, that will be used for combining the layer with other layers, to create the final image.
-But these pixel data can be generated in many different ways.</p>
-
-<p>We can separate layers inside PSD files into two different groups: <b>direct</b> ("regular") raster layers and <b>undirect</b> raster layers.
-For direct raster layers, the pixel information is the only information we have. 
-For undirect raster layers, the pixel information is generated from some other information.</p>
-
-<p>Undirect layers are e.g. Smart Objects (their pixels are generated from the source image + position + transformation), 
-fill layers (pixels generated from the fill parameters), text layers (pixels generated from some text and its parameters).
-We can not do pixel-specific operations on these layers (e.g. draw into them with a Brush, or blur a part of the layer with a Blur tool).</p>
-
-<p>To convert an undirect layer into a regular raster layer, we have to rasterize it
-(right-click - Rasterize, or Layer - Rasterize). Smart objects will lose the link to the source image, text layers will lose the text information,
-only pixel data will remain.</p>
-
-<h2>Clipping Masks</h2>
-
-<p>In PSD files, any layer can have the <b>clipping mask</b> option enabled. 
-When it is on for some layer L, then the transparency of the layer below (let's call it K) will be used as the mask for the layer L.
-In other words, botk K and L will be drawn, but only the transparency of K will be used.</p>
-
-<p>Here we can see a text layer containing Photopea, and the photo of grass on top of it. Normally, the layer with grass would cover
-the whole text. But since the grass is a clipping mask, the transparency of the text layer is used for both layers.</p>
-
-<img src="//i.imgur.com/9d0rWVF.png" />
-
-<p>You can have many clipping masks, one on top of another, to create a <b>chain</b> of clipping masks.
-In such case, the transparency of the first layer below them will be used for all layers in the chain.</p>
-
-<p>Clipping Mask can be enabled or disabled for any layer by right-clicking and choosing Clipping mask,
-or in the top menu: Layer - Clipping Mask, or by pressing Alt + Ctrl + G.</p>
-
-			
-			</div>
-			
-			<h2 style="margin-top: 4em">Comments</h2>
-			<p>Do you need help? Ask us at <a href="//www.reddit.com/r/photopea/" target="_blank">our Reddit</a>!</p>
-			
-			<div id="disqus_thread"></div>
-			<script>   
-			(function() { // DON'T EDIT BELOW THIS LINE
-			var d = document, s = d.createElement('script');
-			s.src = 'https://learn-photopea.disqus.com/embed.js';
-			s.setAttribute('data-timestamp', +new Date());
-			(d.head || d.body).appendChild(s);
-			})();   
-			</script>	
-		</div>
-	</div>
-	<div id="footer">&copy; 2013-2021 support@photopea.com</div>
-	<script>
-	  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-	  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-	  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-	  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-
-	  ga('create', 'UA-4249565-43', 'auto');  ga('send', 'pageview');
-	</script>
-</div>
-</html>
+<!--
+   - Unfortunately, Microsoft has added a clever new
+   - "feature" to Internet Explorer. If the text of
+   - an error's message is "too small", specifically
+   - less than 512 bytes, Internet Explorer returns
+   - its own error message. You can turn that off,
+   - but it's pretty tricky to find switch called
+   - "smart error messages". That means, of course,
+   - that short error messages are censored by default.
+   - IIS always returns error messages that are long
+   - enough to make Internet Explorer happy. The
+   - workaround is pretty simple: pad the error
+   - message with a big comment like this to push it
+   - over the five hundred and twelve bytes minimum.
+   - Of course, that's exactly what you're reading
+   - right now.
+   -->

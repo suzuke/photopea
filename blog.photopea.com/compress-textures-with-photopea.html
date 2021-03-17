@@ -1,7 +1,7 @@
 <!DOCTYPE html> 
 <html lang="en">
 <head>
-	<title>  Compress textures with Photopea</title>
+	<title>  Page not found</title>
 	<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, initial-scale=1.0" />
 	<link rel="stylesheet" href="https://blog.photopea.com/wp-content/themes/simplex/style.css" type="text/css" media="screen" />
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700,700i" rel="stylesheet">
@@ -26,58 +26,19 @@
 		<a href="//www.photopea.com/api">API</a> |
 		<a href="//www.facebook.com/photopea"><img src="//photopea.com/img/facebook.svg" /></a> |
 		<a href="//www.twitter.com/photopeacom"><img src="//photopea.com/img/twitter.svg" /></a> 
-	</div>	<div id="main">
-	<div id="content">
-	
-		<div class="post" id="post-598">
-			<span class="date">November 19, 2017</span>
-			<h1>Compress textures with Photopea</h1>
-			<div class="entry">
+	</div><div id="main">
+	<div id="content" class="narrowcolumn">
 
-				<p>Today, we are adding a new feature into Photopea: the support for DDS textures.</p>
-				<span id="more-598"></span>
-				
-				<p>Modern video games are accelerated with technologies such as OpenGL, DirectX or Vulkan. The view of the game is rendered "in parallel" by hundreds of small processing units. Each unit may need to access a specific part (pixel) of some texture (e.g. the bottom left pixel).</p>
-				
-				<p>In modern image formats (such as PNG or JPG), it is not possible to view a specific part of the image. We must decompress the whole image first. Thus, JPG and PNG files can not be directly used with OpenGL. But with many large textures, some kind of texture compression would be really handy.</p>
-				
-				<img src="https://www.khronos.org/assets/images/api_logos/opengl.svg" style="width:400px" />
-				
-				<p>In past years, new techniques have been developed (such as <a href="https://en.wikipedia.org/wiki/S3_Texture_Compression">S3TC</a>), which can make textures even eight times smaller (than uncompressed), while still appropriate for OpenGL (easy to access by processing units). The image is divided into small parts: 4x4 pixels. Each such part is compressed independently.
-				 When a processing unit needs to read some pixel, we first check, in which 4x4 part the pixel is located. Then, we decompress that part (all 16 pixels), read the pixel in concern, and throw away the information about other 15 pixels.</p>
-				
-				<p>Textures, compressed this way, are usually stored in <a href="https://en.wikipedia.org/wiki/DirectDraw_Surface">DDS</a> or similar files. Starting today, Photopea can open these DDS files. It can also export textures in DDS format using File - Export - DDS. Try to download <a href="https://github.com/toji/webgl-texture-utils/blob/master/sample/img/test-dxt1.dds?raw=true">this DDS file</a> and open it in Photopea!</p>
-				
-				<p>This is a next step in our journey to make Photopea open any image format. We released our compression methods in an open-source library <a href="https://github.com/photopea/UTEX.js">UTEX.js</a>. We believe it can have many applications besides Phtopea editor.</p>
-				
-			</div>
-        	</div>
+		<h2 class="center">Error 404 - Not Found</h2>
+
+	</div>
+
+	<div id="sidebar">
 		
-	</div><!--content-->
-	
-	<div style="width:110px; margin: 0px auto;">
-		<a href="#" title="Share on Facebook"    onclick="smallWindow('http://www.facebook.com/share.php?u=');"><img src="//www.photopea.com/promo/fb.png" /></a>
-		<a href="#" title="Share on Google Plus" onclick="smallWindow('https://plus.google.com/share?url=');"><img src="//www.photopea.com/promo/gp.png" /></a>
-		<a href="#" title="Share on Twitter"     onclick="smallWindow('http://twitter.com/share?url=');"><img src="//www.photopea.com/promo/tw.png" /></a>
-		<script type="text/javascript">
-			function smallWindow(url)
-			{
-				var w = 640, h = 300;
-				window.open(url+"https://blog.photopea.com/compress-textures-with-photopea.html", "Share", "width="+w+",height="+h+",left="+Math.floor((window.innerWidth-w)/2)+",top="+Math.floor((window.innerHeight-h)/2));
-			}
-		</script>
-	</div>
-	</div>
-	<div id="disqus_thread"></div>
-  	<script type="text/javascript">
- 	     var disqus_shortname = 'photopeablog'; // required: replace example with your forum shortname
-  	     (function() { var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-   	         dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-   	         (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq); })();
-   	</script>
-	<!--main-->
-	<?//php get_sidebar(); ?>
+		<h3>Visitors</h3>
+		<a href="http://info.flagcounter.com/nBqI"><img src="http://s10.flagcounter.com/count/nBqI/bg_FFFFFF/txt_000000/border_CCCCCC/columns_1/maxflags_12/viewers_0/labels_0/pageviews_0/flags_0/" alt="Flag Counter" border="0"></a>
 
+	</div></div>
 	<div id="footer">&copy; 2013-2021 support@photopea.com</div>
 </div> <!--page-->
 </body>

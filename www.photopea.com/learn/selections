@@ -1,145 +1,33 @@
+<HTML>
+<HEAD>
+<TITLE>404 Not Found</TITLE>
+<BASE href="/error_docs/"><!--[if lte IE 6]></BASE><![endif]-->
+</HEAD>
+<BODY>
+<H1>Not Found</H1>
+The requested document was not found on this server.
+<P>
+<HR>
+<ADDRESS>
+Web Server at photopea.com
+</ADDRESS>
+</BODY>
+</HTML>
 
-<!DOCTYPE html> 
-<html>
-<head>
-		<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, initial-scale=1.0" />
-
-	<title>Photopea - Selections</title>
-
-	<link rel="stylesheet" href="https://blog.photopea.com/wp-content/themes/simplex/style.css" type="text/css" media="screen" />
-	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700,700i" />
-</head>
-
-<body>
-<div id="page">
-	<div id="header"> 
-		<a href="//www.photopea.com/learn/" class="title">Learn Photopea</a> 
-		<!--<p>Web-based image editor.</p>-->
-		<a href="//blog.photopea.com">Blog</a> |
-		<a class="curr" href="//www.photopea.com/learn">Learn</a> |
-		<a href="//www.photopea.com/tuts">Tutorials</a> |
-		<a href="//www.photopea.com/templates">Templates</a> |
-		<a href="//www.photopea.com/api">API</a> |
-		<a href="//www.facebook.com/photopea"><img src="//photopea.com/img/facebook.svg" /></a> |
-		<a href="//www.twitter.com/photopeacom"><img src="//photopea.com/img/twitter.svg" /></a> 
-	</div>	
-	<div id="main" style="max-width:1000px;">
-		<div id="sidebar" style="width:22%;">
-			<h3>Topics</h3>
-			<ul>
-			<li class="lvl0"><a href="/learn/">Introduction</a></li>
-			<li class="lvl0"><a href="/learn/workspace">Workspace</a></li>
-			<li class="lvl1"><a href="/learn/opening-saving">Open and Save</a></li>
-			<li class="lvl1"><a href="/learn/navigation">Navigation</a></li>
-			<li class="lvl1"><a href="/learn/image-size">Image size</a></li>
-			<li class="lvl0"><a href="/learn/layers">Layers</a></li>
-			<li class="lvl1"><a href="/learn/masks">Masks</a></li>
-			<li class="lvl1"><a href="/learn/layer-styles">Layer Styles</a></li>
-			<li class="lvl1"><a href="/learn/smart-objects">Smart Objects</a></li>
-			<li class="lvl1"><a href="/learn/other-layers">Other Layers</a></li>
-			<li class="lvl0"><a href="/learn/layer-manipulation">Layer Editing</a></li>
-			<li class="lvl1"><a href="/learn/free-transform">Free Transform</a></li>
-			<li class="lvl1"><a href="/learn/adjustments-filters">Adjust. &amp; Filters</a></li>
-			<li class="lvl0 active"><a href="/learn/selections">Selections</a></li>
-			<li class="lvl1"><a href="/learn/creating-selections">Make Selections</a></li>
-			<li class="lvl1"><a href="/learn/advanced-selecting">Advanced Selecting</a></li>
-			<li class="lvl1"><a href="/learn/refine-edge">Refine Edge</a></li>
-			<li class="lvl1"><a href="/learn/moving-selected-data">Move Selected Data</a></li>
-			<li class="lvl0"><a href="/learn/brush-tools">Brush Tools</a></li>
-			<li class="lvl1"><a href="/learn/bt-basic">Basic Tools</a></li>
-			<li class="lvl1"><a href="/learn/bt-advanced">Advanced Tools</a></li>
-			<li class="lvl1"><a href="/learn/bt-smart">Smart Tools</a></li>
-			<li class="lvl0"><a href="/learn/text">Text</a></li>
-			<li class="lvl1"><a href="/learn/text-style">Text Style</a></li>
-			<li class="lvl0"><a href="/learn/vector-graphics">Vector Graphics</a></li>
-			<li class="lvl1"><a href="/learn/vg-structure">The Structure</a></li>
-			<li class="lvl1"><a href="/learn/vg-manipulation">Editing Shapes</a></li>
-			<li class="lvl1"><a href="/learn/vg-creating">Creating Shapes</a></li>
-			<li class="lvl1"><a href="/learn/vg-vectorize">Vectorize Bitmap</a></li>
-			<li class="lvl0"><a href="/learn/other">Other</a></li>
-			<li class="lvl1"><a href="/learn/color-spaces">Color Spaces</a></li>
-			<li class="lvl1"><a href="/learn/guides-grid-snapping">Guides &amp; Snapping</a></li>
-			<li class="lvl1"><a href="/learn/animations">Animations</a></li>
-			<li class="lvl1"><a href="/learn/slices">Slices</a></li>
-			<li class="lvl1"><a href="/learn/layer-comps">Layer Comps</a></li>
-			<li class="lvl1"><a href="/learn/actions">Actions</a></li>
-			<li class="lvl1"><a href="/learn/scripts">Scripts</a></li>
-			</ul>
-		</div>
-		<div id="content" style="width:78%;">
-			<div class="post">			
-<h1>Selections</h1>
-
-<p>In this part, we will focus at regular layers with raster images (pixel data). 
-There are many tools to edit pixel data (Brush, Eraser, adjustments, filters). But we often don't want to edit the whole layer, but just some part of it.</p>
-
-<p>The selection defines a set of pixels, that are "selected" and can be edited by tools. Precisely, it is a "map" over the whole image,
-which gives each pixel the value between 0 % and 100 %. This value says, how much color of the pixel can be changed, and how much should be preserved.
-Selections are not bound to layers (as masks), but there is just one selection for the whole document, which is used for every layer that you work with.</p>
-
-<p>For example, Photopea has the Fill operation (Edit - Fill). By default, it will fill the whole layer with a foreground color.
-Once you have a selection, it will fill only the selected area with that color.</p>
-
-<p>While masks are visualized with the white and the black color (in their thumbnails), selections are visualized 
-right in the main area of the document with the <b>contour</b>, that is drawn between selected and unselected areas.
-We can say, that operations are applied <b>inside</b> the selection, and not outside of it. 
-Here you can see an example of the selection, and the result, when you draw on top of it with a Brush tool.</p>
-
-<img src="//i.imgur.com/VHtRoMU.png" />
-
-<h2>Working with Selections</h2>
-
-<p>Once you have a selection, there are several basic operations for changing it. 
-The basic operation is <b>inverting</b> the selection - it will select unselected pixels and unselect selected pixels (available in Select - Inverse).</p>
-
-<p>You can <b>expand</b> the selection by several pixels 
-(i.e. add pixels close to the selection into the selection), <b>contract</b> it by several pixels (the opposite operation to expanding),
-or <b>feather</b> - apply a blur to the selection, to make a smooth transition between 0 % areas and 100 % areas.
-All this is available at Select - Modify - Expand / Contract / Feather.</p>
-
-<p>You can move the selection by clicking inside it and dragging it (with any Selection tool, e.g. with a Lasso tool).
-You can transform the selection (e.g. rotate it, or make it larger, while having the same shape) using <b>Select - Transform Selection</b>.
-</p>
-
-<!--<p>Selected pixels can be Cut, Copied or Pasted (Edit - Cut / Copy / Paste, or Ctrl + X / C / V). This even works between different documents.</p>-->
-
-<p>Deselection (removing the selection) is possible through Select - Deselect (or Ctrl + D).</p>
-
-<h2>Quick Mask Mode</h2>
-
-<p>There is a special button at the end of a toolbar, which enables a <b>Quick Mask Mode</b> (you can also press Q). 
-When you press it, the current selection is converted into a quick mask (a special red image), which is on top of all other layers.
-All editing, that you do (e.g. painting or erasing), is applied to that quick mask (document layers are not editable).
-It allows you to edit the selection with regular pixel editing tools.</p>
-
-<img style="width:70%" src="//i.imgur.com/WctibVS.png" />
-
-<p>When you are done editing the quick mask, press the same button again, to turn it back into a selection.
-When you save your document as a PSD, which is in a Quick Mask mode, it remains in a Quick Mask mode after opening it again.</p>			
-			</div>
-			
-			<h2 style="margin-top: 4em">Comments</h2>
-			<p>Do you need help? Ask us at <a href="//www.reddit.com/r/photopea/" target="_blank">our Reddit</a>!</p>
-			
-			<div id="disqus_thread"></div>
-			<script>   
-			(function() { // DON'T EDIT BELOW THIS LINE
-			var d = document, s = d.createElement('script');
-			s.src = 'https://learn-photopea.disqus.com/embed.js';
-			s.setAttribute('data-timestamp', +new Date());
-			(d.head || d.body).appendChild(s);
-			})();   
-			</script>	
-		</div>
-	</div>
-	<div id="footer">&copy; 2013-2021 support@photopea.com</div>
-	<script>
-	  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-	  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-	  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-	  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-
-	  ga('create', 'UA-4249565-43', 'auto');  ga('send', 'pageview');
-	</script>
-</div>
-</html>
+<!--
+   - Unfortunately, Microsoft has added a clever new
+   - "feature" to Internet Explorer. If the text of
+   - an error's message is "too small", specifically
+   - less than 512 bytes, Internet Explorer returns
+   - its own error message. You can turn that off,
+   - but it's pretty tricky to find switch called
+   - "smart error messages". That means, of course,
+   - that short error messages are censored by default.
+   - IIS always returns error messages that are long
+   - enough to make Internet Explorer happy. The
+   - workaround is pretty simple: pad the error
+   - message with a big comment like this to push it
+   - over the five hundred and twelve bytes minimum.
+   - Of course, that's exactly what you're reading
+   - right now.
+   -->

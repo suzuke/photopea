@@ -1,175 +1,33 @@
+<HTML>
+<HEAD>
+<TITLE>404 Not Found</TITLE>
+<BASE href="/error_docs/"><!--[if lte IE 6]></BASE><![endif]-->
+</HEAD>
+<BODY>
+<H1>Not Found</H1>
+The requested document was not found on this server.
+<P>
+<HR>
+<ADDRESS>
+Web Server at photopea.com
+</ADDRESS>
+</BODY>
+</HTML>
 
-<!DOCTYPE html> 
-<html>
-<head>
-		<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, initial-scale=1.0" />
-
-	<title>Photopea - Scripts</title>
-
-	<link rel="stylesheet" href="https://blog.photopea.com/wp-content/themes/simplex/style.css" type="text/css" media="screen" />
-	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700,700i" />
-</head>
-
-<body>
-<div id="page">
-	<div id="header"> 
-		<a href="//www.photopea.com/learn/" class="title">Learn Photopea</a> 
-		<!--<p>Web-based image editor.</p>-->
-		<a href="//blog.photopea.com">Blog</a> |
-		<a class="curr" href="//www.photopea.com/learn">Learn</a> |
-		<a href="//www.photopea.com/tuts">Tutorials</a> |
-		<a href="//www.photopea.com/templates">Templates</a> |
-		<a href="//www.photopea.com/api">API</a> |
-		<a href="//www.facebook.com/photopea"><img src="//photopea.com/img/facebook.svg" /></a> |
-		<a href="//www.twitter.com/photopeacom"><img src="//photopea.com/img/twitter.svg" /></a> 
-	</div>	
-	<div id="main" style="max-width:1000px;">
-		<div id="sidebar" style="width:22%;">
-			<h3>Topics</h3>
-			<ul>
-			<li class="lvl0"><a href="/learn/">Introduction</a></li>
-			<li class="lvl0"><a href="/learn/workspace">Workspace</a></li>
-			<li class="lvl1"><a href="/learn/opening-saving">Open and Save</a></li>
-			<li class="lvl1"><a href="/learn/navigation">Navigation</a></li>
-			<li class="lvl1"><a href="/learn/image-size">Image size</a></li>
-			<li class="lvl0"><a href="/learn/layers">Layers</a></li>
-			<li class="lvl1"><a href="/learn/masks">Masks</a></li>
-			<li class="lvl1"><a href="/learn/layer-styles">Layer Styles</a></li>
-			<li class="lvl1"><a href="/learn/smart-objects">Smart Objects</a></li>
-			<li class="lvl1"><a href="/learn/other-layers">Other Layers</a></li>
-			<li class="lvl0"><a href="/learn/layer-manipulation">Layer Editing</a></li>
-			<li class="lvl1"><a href="/learn/free-transform">Free Transform</a></li>
-			<li class="lvl1"><a href="/learn/adjustments-filters">Adjust. &amp; Filters</a></li>
-			<li class="lvl0"><a href="/learn/selections">Selections</a></li>
-			<li class="lvl1"><a href="/learn/creating-selections">Make Selections</a></li>
-			<li class="lvl1"><a href="/learn/advanced-selecting">Advanced Selecting</a></li>
-			<li class="lvl1"><a href="/learn/refine-edge">Refine Edge</a></li>
-			<li class="lvl1"><a href="/learn/moving-selected-data">Move Selected Data</a></li>
-			<li class="lvl0"><a href="/learn/brush-tools">Brush Tools</a></li>
-			<li class="lvl1"><a href="/learn/bt-basic">Basic Tools</a></li>
-			<li class="lvl1"><a href="/learn/bt-advanced">Advanced Tools</a></li>
-			<li class="lvl1"><a href="/learn/bt-smart">Smart Tools</a></li>
-			<li class="lvl0"><a href="/learn/text">Text</a></li>
-			<li class="lvl1"><a href="/learn/text-style">Text Style</a></li>
-			<li class="lvl0"><a href="/learn/vector-graphics">Vector Graphics</a></li>
-			<li class="lvl1"><a href="/learn/vg-structure">The Structure</a></li>
-			<li class="lvl1"><a href="/learn/vg-manipulation">Editing Shapes</a></li>
-			<li class="lvl1"><a href="/learn/vg-creating">Creating Shapes</a></li>
-			<li class="lvl1"><a href="/learn/vg-vectorize">Vectorize Bitmap</a></li>
-			<li class="lvl0"><a href="/learn/other">Other</a></li>
-			<li class="lvl1"><a href="/learn/color-spaces">Color Spaces</a></li>
-			<li class="lvl1"><a href="/learn/guides-grid-snapping">Guides &amp; Snapping</a></li>
-			<li class="lvl1"><a href="/learn/animations">Animations</a></li>
-			<li class="lvl1"><a href="/learn/slices">Slices</a></li>
-			<li class="lvl1"><a href="/learn/layer-comps">Layer Comps</a></li>
-			<li class="lvl1"><a href="/learn/actions">Actions</a></li>
-			<li class="lvl1 active"><a href="/learn/scripts">Scripts</a></li>
-			</ul>
-		</div>
-		<div id="content" style="width:78%;">
-			<div class="post">			
-<h1>Scripts</h1>
-
-<p>In some cases, it is very useful to <b>automate</b> image editing. 
-For example, we may need to have 30 copies of the layer, and place them all into a regular grid, 5 times 6, and gradually decrease their opacity.
-Or if we need to rotate by 90 degrees each layer, that contains "rotate" in its name.</p>
-
-<p>Photopea can execute scripts written in Javascript. It is very useful to know programming and the syntax of Javascript, 
-however, even beginners can make simple scripts, which will do the job. You can learn how to write scripts from available demos.</p>
-
-<p>Use the <b>Script window</b> (File - Script) to work with scripts. Here you can type (or paste) a new script,
-and then click Run to execute it. Several demos are available in the top of the Script window.
-Scripts can be also executed through the <a href="//www.photopea.com/api/">Photopea API</a>.</p>
-
-<p>There is a <b>Save</b> button for saving scripts (they will stay even after closing Photopea). 
-The list of saved scripts is at the bottom of the Script window. 
-Photopea saves these files in a <b>Local Storage</b>, which can be managed through Edit - Local Storage.</p>
-
-<img src="//i.imgur.com/f74rMpw.png" style="width:80%" />
-
-<h2>Document Model</h2>
-
-<p>Scripts allow you to access the content of the document through Javascript code.
-Instead of describing a new Document model, Photopea provides an interface similar to
-<a href="//www.adobe.com/content/dam/acom/en/devnet/photoshop/pdfs/photoshop-cc-javascript-ref-2015.pdf">Adobe's scripting interface</a>.
-It means, that the same scripts, that you wrote previously for Adobe Photoshop, could be used in Photopea to do the same task.</p>
-
-<p>There is a global object <code>app</code>, which represents the application. <code>app.activeDocument</code> lets you access the active document.
-A document has properties (<code>width</code>, <code>height</code>, <code>layers</code>, <code>currentLayer</code>, ...) 
-and methods (<code>resizeImage()</code>, <code>resizeCanvas()</code>, ...). 
-A layer also has properties (<code>name</code>, <code>visible</code>, <code>opacity</code>, ...) 
-and methods (<code>rotate()</code>, <code>translate()</code>, ...). You can learn more in the official reference or in demos.
-Note, that many properties are <b>read-only</b>, you can not rewrite them directly (e.g. the width of the document - you must call resizeCanvas()).
-</p>
-
-<p>If your script creates files in a filesystem (e.g. <code>Document.exportDocument()</code>), 
-Photopea will offer you a ZIP archive with newly created files, after the script finishes.</p>
-
-<p>
-Photopea extends the model of Photoshop by adding several new functions:
-</p>
-
-<table>
-	<tr>
-		<td>App.open(url, as, asSmart)</td>
-		<td>Loads an image from URL. Set <code>asSmart</code> to true to paste an image into a current document as a smart object.
-		<code>as</code> is ignored.</td>
-	</tr>
-	<tr>
-		<td>App.echoToOE(string)</td>
-		<td>Sends a string to an outer environment (See <a href="//www.photopea.com/api/live">Live Messaging API</a>).</td>
-	</tr>
-	<tr>
-		<td>App.UI</td>
-		<td>Modify the "viewing state". Has methods: <code>zoomIn(), zoomOut(), fitTheArea(), pixelToPixel()</code>.</td>
-	</tr>
-	<tr>
-		<td>Document.source</td>
-		<td>read / write: a string, that identifies the document. 
-		Initially, it is the URL for files loaded from a server, or "local,X,NAME" for other files.</td>
-	</tr>
-	<tr>
-		<td>Document.name</td>
-		<td>read / write: a String to be displayed as a "label" of a document. Setting name does not add a step into History.</td>
-	</tr>
-	<tr>
-		<td>Document.saveToOE("png")</td>
-		<td>Converts the document into a binary file and sends the file to an outer environment 
-			(See <a href="//www.photopea.com/api/live">Live Messaging API</a>).<br/>
-			JPG and WEBP can have a quallity (0 to 1) after the colon (e.g. "jpg:0.8"). 
-			PSD can have a "true" after the colon: "psd:true", to produce minified PSDs (up to 4x smaller, but take 4x longer to generate).
-		</td>
-	</tr>
-	<tr>
-		<td>Layer.selected</td>
-		<td>Boolean: is layer selected ("highlighted") - read only</td>
-	</tr>
-
-</table>			
-			</div>
-			
-			<h2 style="margin-top: 4em">Comments</h2>
-			<p>Do you need help? Ask us at <a href="//www.reddit.com/r/photopea/" target="_blank">our Reddit</a>!</p>
-			
-			<div id="disqus_thread"></div>
-			<script>   
-			(function() { // DON'T EDIT BELOW THIS LINE
-			var d = document, s = d.createElement('script');
-			s.src = 'https://learn-photopea.disqus.com/embed.js';
-			s.setAttribute('data-timestamp', +new Date());
-			(d.head || d.body).appendChild(s);
-			})();   
-			</script>	
-		</div>
-	</div>
-	<div id="footer">&copy; 2013-2021 support@photopea.com</div>
-	<script>
-	  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-	  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-	  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-	  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-
-	  ga('create', 'UA-4249565-43', 'auto');  ga('send', 'pageview');
-	</script>
-</div>
-</html>
+<!--
+   - Unfortunately, Microsoft has added a clever new
+   - "feature" to Internet Explorer. If the text of
+   - an error's message is "too small", specifically
+   - less than 512 bytes, Internet Explorer returns
+   - its own error message. You can turn that off,
+   - but it's pretty tricky to find switch called
+   - "smart error messages". That means, of course,
+   - that short error messages are censored by default.
+   - IIS always returns error messages that are long
+   - enough to make Internet Explorer happy. The
+   - workaround is pretty simple: pad the error
+   - message with a big comment like this to push it
+   - over the five hundred and twelve bytes minimum.
+   - Of course, that's exactly what you're reading
+   - right now.
+   -->

@@ -1,154 +1,33 @@
+<HTML>
+<HEAD>
+<TITLE>404 Not Found</TITLE>
+<BASE href="/error_docs/"><!--[if lte IE 6]></BASE><![endif]-->
+</HEAD>
+<BODY>
+<H1>Not Found</H1>
+The requested document was not found on this server.
+<P>
+<HR>
+<ADDRESS>
+Web Server at photopea.com
+</ADDRESS>
+</BODY>
+</HTML>
 
-<!DOCTYPE html> 
-<html>
-<head>
-		<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, initial-scale=1.0" />
-
-	<title>Photopea - Make Selections</title>
-
-	<link rel="stylesheet" href="https://blog.photopea.com/wp-content/themes/simplex/style.css" type="text/css" media="screen" />
-	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700,700i" />
-</head>
-
-<body>
-<div id="page">
-	<div id="header"> 
-		<a href="//www.photopea.com/learn/" class="title">Learn Photopea</a> 
-		<!--<p>Web-based image editor.</p>-->
-		<a href="//blog.photopea.com">Blog</a> |
-		<a class="curr" href="//www.photopea.com/learn">Learn</a> |
-		<a href="//www.photopea.com/tuts">Tutorials</a> |
-		<a href="//www.photopea.com/templates">Templates</a> |
-		<a href="//www.photopea.com/api">API</a> |
-		<a href="//www.facebook.com/photopea"><img src="//photopea.com/img/facebook.svg" /></a> |
-		<a href="//www.twitter.com/photopeacom"><img src="//photopea.com/img/twitter.svg" /></a> 
-	</div>	
-	<div id="main" style="max-width:1000px;">
-		<div id="sidebar" style="width:22%;">
-			<h3>Topics</h3>
-			<ul>
-			<li class="lvl0"><a href="/learn/">Introduction</a></li>
-			<li class="lvl0"><a href="/learn/workspace">Workspace</a></li>
-			<li class="lvl1"><a href="/learn/opening-saving">Open and Save</a></li>
-			<li class="lvl1"><a href="/learn/navigation">Navigation</a></li>
-			<li class="lvl1"><a href="/learn/image-size">Image size</a></li>
-			<li class="lvl0"><a href="/learn/layers">Layers</a></li>
-			<li class="lvl1"><a href="/learn/masks">Masks</a></li>
-			<li class="lvl1"><a href="/learn/layer-styles">Layer Styles</a></li>
-			<li class="lvl1"><a href="/learn/smart-objects">Smart Objects</a></li>
-			<li class="lvl1"><a href="/learn/other-layers">Other Layers</a></li>
-			<li class="lvl0"><a href="/learn/layer-manipulation">Layer Editing</a></li>
-			<li class="lvl1"><a href="/learn/free-transform">Free Transform</a></li>
-			<li class="lvl1"><a href="/learn/adjustments-filters">Adjust. &amp; Filters</a></li>
-			<li class="lvl0"><a href="/learn/selections">Selections</a></li>
-			<li class="lvl1 active"><a href="/learn/creating-selections">Make Selections</a></li>
-			<li class="lvl1"><a href="/learn/advanced-selecting">Advanced Selecting</a></li>
-			<li class="lvl1"><a href="/learn/refine-edge">Refine Edge</a></li>
-			<li class="lvl1"><a href="/learn/moving-selected-data">Move Selected Data</a></li>
-			<li class="lvl0"><a href="/learn/brush-tools">Brush Tools</a></li>
-			<li class="lvl1"><a href="/learn/bt-basic">Basic Tools</a></li>
-			<li class="lvl1"><a href="/learn/bt-advanced">Advanced Tools</a></li>
-			<li class="lvl1"><a href="/learn/bt-smart">Smart Tools</a></li>
-			<li class="lvl0"><a href="/learn/text">Text</a></li>
-			<li class="lvl1"><a href="/learn/text-style">Text Style</a></li>
-			<li class="lvl0"><a href="/learn/vector-graphics">Vector Graphics</a></li>
-			<li class="lvl1"><a href="/learn/vg-structure">The Structure</a></li>
-			<li class="lvl1"><a href="/learn/vg-manipulation">Editing Shapes</a></li>
-			<li class="lvl1"><a href="/learn/vg-creating">Creating Shapes</a></li>
-			<li class="lvl1"><a href="/learn/vg-vectorize">Vectorize Bitmap</a></li>
-			<li class="lvl0"><a href="/learn/other">Other</a></li>
-			<li class="lvl1"><a href="/learn/color-spaces">Color Spaces</a></li>
-			<li class="lvl1"><a href="/learn/guides-grid-snapping">Guides &amp; Snapping</a></li>
-			<li class="lvl1"><a href="/learn/animations">Animations</a></li>
-			<li class="lvl1"><a href="/learn/slices">Slices</a></li>
-			<li class="lvl1"><a href="/learn/layer-comps">Layer Comps</a></li>
-			<li class="lvl1"><a href="/learn/actions">Actions</a></li>
-			<li class="lvl1"><a href="/learn/scripts">Scripts</a></li>
-			</ul>
-		</div>
-		<div id="content" style="width:78%;">
-			<div class="post">			
-<h1>Creating Selections</h1>
-
-<p>There are many ways to create selections. Designers often need to select thousands or even millions of pixels.
-Creating the necessary selection may take a lot of time. It is very useful to learn about all the tools, to be able to create selections effectively.</p>
-
-<p>The basic operation is selecting <b>all pixels</b> (Select - All or Ctrl + A). 
-Another useful operation is to create a selection according to the transparency of some layer. 
-Hold the Ctrl key and click on the thumbnail of a layer to create such selection.</p>
-
-<h2><img class="inline" src="//www.photopea.com/img/tools/rselect.png" />
-    <img class="inline" src="//www.photopea.com/img/tools/eselect.png" /> Rectangle Select, Ellipse Select</h2>
-
-<p>These tools allow you to create rectangular selections (or ellipse selections). Simply click and drag the mouse to create the selection.</p>
-
-<h2><img class="inline" src="//www.photopea.com/img/tools/lasso.png" />Lasso</h2>
-
-<p>Lasso tool allows you to draw selections by hand. Simply click and drag the mouse around the object, that you want to select. 
-It can be useful to zoom in, to be more precise.</p>
-
-<h2><img class="inline" src="//www.photopea.com/img/tools/plasso.png" />Polygonal Lasso</h2>
-
-<p>Polygonal lasso allows you to draw a polygonal selection. Simply click on the image to add the new corner of a polygon. 
-Press Delete to remove the last corner. Double-click (or hit Enter) to finish the selection.</p>
-
-<h2><img class="inline" src="//www.photopea.com/img/tools/mlasso.png" />Magnetic Lasso</h2>
-
-<p>Magnetic lasso is a smart tool for making selections. It is very similar to the standard lasso, but it "sticks" to edges of objects.</p>
-
-<p>Click anywhere to add the first point, then move the mouse along the edge to draw the selection. Control points will be added along the selection.
-Magnetic lasso tries to find the most appropriate path from the last control point to the current position of the mouse.
-Press Delete to remove the last control point, or click to add the control point manually (to force Magnetic lasso to go in a specific way).
-Double-click (or hit Enter) to finish the selection.</p>
-
-
-<h2>Combining selections</h2>
-
-<p>When you create a new selection, it can either replace the old one, or it can be <b>combined</b> with the old one.
-Each selection tool has several parameters in the top menu, which define the way, how two selections are combined.
-There is the default <b>replace</b> mode (to replace the old selection), <b>union</b> mode (to connect two selections together), 
-<b>subtract</b> mode (to remove the new selection from the old one), <b>intersect</b> mode (to select only pixels, that are in both selections)
-and <b>XOR</b> mode, which corresponds to the union, while subtracting the intersection.</p>
-
-<img src="//i.imgur.com/7ciDxwm.png" />
-
-<p>These modes allow you to create selections in multiple steps. E.g. selecting the main area with lasso tools, 
-then adding and subtracting small pieces to make it perfect.</p>
-
-<p>Selection tools also have a <b>feather</b> parameter, which will apply feather right after the selection is finished.
-Many designers create all selections with a small blur, to avoid sharp edges between selected and unselected areas.</p>
-
-<p>When any selection tool is active, you can press the mouse inside the current selection and drag it to move that selection.
-So e.g. if you made an elliptical selection of the correct size, but you missed its position by several pixels, 
-just click and drag it to the new place. This is possible with the <b>replace mode only</b> (e.g. if you had the subtract mode,
-clicking and dragging inside an existing selection would draw a new ellipse, that would be removed from the current selection).</p>
-
-
-			
-			</div>
-			
-			<h2 style="margin-top: 4em">Comments</h2>
-			<p>Do you need help? Ask us at <a href="//www.reddit.com/r/photopea/" target="_blank">our Reddit</a>!</p>
-			
-			<div id="disqus_thread"></div>
-			<script>   
-			(function() { // DON'T EDIT BELOW THIS LINE
-			var d = document, s = d.createElement('script');
-			s.src = 'https://learn-photopea.disqus.com/embed.js';
-			s.setAttribute('data-timestamp', +new Date());
-			(d.head || d.body).appendChild(s);
-			})();   
-			</script>	
-		</div>
-	</div>
-	<div id="footer">&copy; 2013-2021 support@photopea.com</div>
-	<script>
-	  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-	  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-	  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-	  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-
-	  ga('create', 'UA-4249565-43', 'auto');  ga('send', 'pageview');
-	</script>
-</div>
-</html>
+<!--
+   - Unfortunately, Microsoft has added a clever new
+   - "feature" to Internet Explorer. If the text of
+   - an error's message is "too small", specifically
+   - less than 512 bytes, Internet Explorer returns
+   - its own error message. You can turn that off,
+   - but it's pretty tricky to find switch called
+   - "smart error messages". That means, of course,
+   - that short error messages are censored by default.
+   - IIS always returns error messages that are long
+   - enough to make Internet Explorer happy. The
+   - workaround is pretty simple: pad the error
+   - message with a big comment like this to push it
+   - over the five hundred and twelve bytes minimum.
+   - Of course, that's exactly what you're reading
+   - right now.
+   -->

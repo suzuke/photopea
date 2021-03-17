@@ -1,150 +1,33 @@
+<HTML>
+<HEAD>
+<TITLE>404 Not Found</TITLE>
+<BASE href="/error_docs/"><!--[if lte IE 6]></BASE><![endif]-->
+</HEAD>
+<BODY>
+<H1>Not Found</H1>
+The requested document was not found on this server.
+<P>
+<HR>
+<ADDRESS>
+Web Server at photopea.com
+</ADDRESS>
+</BODY>
+</HTML>
 
-<!DOCTYPE html> 
-<html>
-<head>
-		<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, initial-scale=1.0" />
-
-	<title>Photopea - The Structure</title>
-
-	<link rel="stylesheet" href="https://blog.photopea.com/wp-content/themes/simplex/style.css" type="text/css" media="screen" />
-	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700,700i" />
-</head>
-
-<body>
-<div id="page">
-	<div id="header"> 
-		<a href="//www.photopea.com/learn/" class="title">Learn Photopea</a> 
-		<!--<p>Web-based image editor.</p>-->
-		<a href="//blog.photopea.com">Blog</a> |
-		<a class="curr" href="//www.photopea.com/learn">Learn</a> |
-		<a href="//www.photopea.com/tuts">Tutorials</a> |
-		<a href="//www.photopea.com/templates">Templates</a> |
-		<a href="//www.photopea.com/api">API</a> |
-		<a href="//www.facebook.com/photopea"><img src="//photopea.com/img/facebook.svg" /></a> |
-		<a href="//www.twitter.com/photopeacom"><img src="//photopea.com/img/twitter.svg" /></a> 
-	</div>	
-	<div id="main" style="max-width:1000px;">
-		<div id="sidebar" style="width:22%;">
-			<h3>Topics</h3>
-			<ul>
-			<li class="lvl0"><a href="/learn/">Introduction</a></li>
-			<li class="lvl0"><a href="/learn/workspace">Workspace</a></li>
-			<li class="lvl1"><a href="/learn/opening-saving">Open and Save</a></li>
-			<li class="lvl1"><a href="/learn/navigation">Navigation</a></li>
-			<li class="lvl1"><a href="/learn/image-size">Image size</a></li>
-			<li class="lvl0"><a href="/learn/layers">Layers</a></li>
-			<li class="lvl1"><a href="/learn/masks">Masks</a></li>
-			<li class="lvl1"><a href="/learn/layer-styles">Layer Styles</a></li>
-			<li class="lvl1"><a href="/learn/smart-objects">Smart Objects</a></li>
-			<li class="lvl1"><a href="/learn/other-layers">Other Layers</a></li>
-			<li class="lvl0"><a href="/learn/layer-manipulation">Layer Editing</a></li>
-			<li class="lvl1"><a href="/learn/free-transform">Free Transform</a></li>
-			<li class="lvl1"><a href="/learn/adjustments-filters">Adjust. &amp; Filters</a></li>
-			<li class="lvl0"><a href="/learn/selections">Selections</a></li>
-			<li class="lvl1"><a href="/learn/creating-selections">Make Selections</a></li>
-			<li class="lvl1"><a href="/learn/advanced-selecting">Advanced Selecting</a></li>
-			<li class="lvl1"><a href="/learn/refine-edge">Refine Edge</a></li>
-			<li class="lvl1"><a href="/learn/moving-selected-data">Move Selected Data</a></li>
-			<li class="lvl0"><a href="/learn/brush-tools">Brush Tools</a></li>
-			<li class="lvl1"><a href="/learn/bt-basic">Basic Tools</a></li>
-			<li class="lvl1"><a href="/learn/bt-advanced">Advanced Tools</a></li>
-			<li class="lvl1"><a href="/learn/bt-smart">Smart Tools</a></li>
-			<li class="lvl0"><a href="/learn/text">Text</a></li>
-			<li class="lvl1"><a href="/learn/text-style">Text Style</a></li>
-			<li class="lvl0"><a href="/learn/vector-graphics">Vector Graphics</a></li>
-			<li class="lvl1 active"><a href="/learn/vg-structure">The Structure</a></li>
-			<li class="lvl1"><a href="/learn/vg-manipulation">Editing Shapes</a></li>
-			<li class="lvl1"><a href="/learn/vg-creating">Creating Shapes</a></li>
-			<li class="lvl1"><a href="/learn/vg-vectorize">Vectorize Bitmap</a></li>
-			<li class="lvl0"><a href="/learn/other">Other</a></li>
-			<li class="lvl1"><a href="/learn/color-spaces">Color Spaces</a></li>
-			<li class="lvl1"><a href="/learn/guides-grid-snapping">Guides &amp; Snapping</a></li>
-			<li class="lvl1"><a href="/learn/animations">Animations</a></li>
-			<li class="lvl1"><a href="/learn/slices">Slices</a></li>
-			<li class="lvl1"><a href="/learn/layer-comps">Layer Comps</a></li>
-			<li class="lvl1"><a href="/learn/actions">Actions</a></li>
-			<li class="lvl1"><a href="/learn/scripts">Scripts</a></li>
-			</ul>
-		</div>
-		<div id="content" style="width:78%;">
-			<div class="post">			
-
-<h1>The structure</h1>
-
-<p>The content of a vector mask (or a shape layer) is called a <b>Shape</b>. The Shape consists of several <b>Paths</b>. 
-A Path consists of multiple <b>Knots</b>. Each knot consists of three points: the <b>anchor</b> and two <b>handles</b>.</p>
-
-<p>Here we see a shape consisting of four paths. The path on the right consists of five knots. The knot consists of an anchor (in the middle) and two handles.</p>
-<img class="fullw" src="//i.imgur.com/Ojp1HRL.png" />
-
-<h2>Path</h2>
-
-<p>There can be several paths within a shape. Paths have a fixed order (the first, the second, the third ...). 
-Each path has some <b>boolean operation</b>, which defines, how the path (e.g. the fourth path) is combined with the content under it (i.e. paths 1, 2 and 3).
-Boolean operations are <b>Union</b>, <b>Subtract</b>, <b>Intersect</b> and <b>Exclude</b>.</p>
-
-<p>Here we see four shapes with two paths in each shape. The second path (the ellipse) has different boolean operations.</p>
-<img class="fullw" src="//i.imgur.com/aNkQlWi.png" />
-
-<p>When all paths have the Union operation, their order is not important. But e.g. when some path has a Subtract operation, reordering paths may produce a different result.</p>
-
-<p>Paths can be open or closed. Open path means, that the first and the last knot are connected with a straight line (ignoring the adjacent handles).</p>
-
-<h2>Knots</h2>
-
-<p>A path consists of a sequence of knots. Each two consecutive knots are connected with a curve segment, that is shaped by adjacent handles. 
-A knot can be <b>linked / smooth</b> (both handles are located in a line with the anchor) or <b>unlinked / corner</b> (handles have arbitrary locations). 
-A linked knot guarantees the smooth curve, while an unlinked knot usually creates a corner.</p>
-
-<p>A linked knot is visualised with a circle anchor, while an unlinked one has a square anchor.</p>
-
-<img src="//i.imgur.com/Ohv874p.png" />
-
-<p>The handle of the knot is <b>collapsed</b>, when it is located at the location of the anchor point. 
-When all knots in a path have collapsed handles, then the path consists only of straight line segments (i.e. it is a polygon).</p>
-
-<h2>The Look</h2>
-
-<p>While vector masks simply hide the portion of a layer, Shape Layers have more interesting properties. 
-Each Shape Layer has <b>a Fill and a Stroke</b> value. Fill and Stroke can have one of four values: <b>None, Color, Gradient and Pattern</b>.
-Combine different values of Fill and Stroke to create various styles. Have a look at possible combinations.</p>
-
-<img class="fullw" src="//i.imgur.com/G0pYcNo.png" />
-
-<p>Stroke can have many parameters: Line thickness, position: Inside, Center, Outside, corner shape, gaps (dashed line) etc.
-When your shape contains just a single open path, the first and the last knot will not be connected inside a stroke.</p>
-
-<h3>Change the look</h3>
-<p>When any vector tool is enabled (e.g. a Pen tool or a Rectangle tool), the top menu shows the Fill and the Stroke parameters of a current shape layer.
-You can change these parameters there.
-</p>
-<img class="fullw" src="//i.imgur.com/K3IQ6Lp.png" />
-
-			
-			</div>
-			
-			<h2 style="margin-top: 4em">Comments</h2>
-			<p>Do you need help? Ask us at <a href="//www.reddit.com/r/photopea/" target="_blank">our Reddit</a>!</p>
-			
-			<div id="disqus_thread"></div>
-			<script>   
-			(function() { // DON'T EDIT BELOW THIS LINE
-			var d = document, s = d.createElement('script');
-			s.src = 'https://learn-photopea.disqus.com/embed.js';
-			s.setAttribute('data-timestamp', +new Date());
-			(d.head || d.body).appendChild(s);
-			})();   
-			</script>	
-		</div>
-	</div>
-	<div id="footer">&copy; 2013-2021 support@photopea.com</div>
-	<script>
-	  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-	  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-	  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-	  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-
-	  ga('create', 'UA-4249565-43', 'auto');  ga('send', 'pageview');
-	</script>
-</div>
-</html>
+<!--
+   - Unfortunately, Microsoft has added a clever new
+   - "feature" to Internet Explorer. If the text of
+   - an error's message is "too small", specifically
+   - less than 512 bytes, Internet Explorer returns
+   - its own error message. You can turn that off,
+   - but it's pretty tricky to find switch called
+   - "smart error messages". That means, of course,
+   - that short error messages are censored by default.
+   - IIS always returns error messages that are long
+   - enough to make Internet Explorer happy. The
+   - workaround is pretty simple: pad the error
+   - message with a big comment like this to push it
+   - over the five hundred and twelve bytes minimum.
+   - Of course, that's exactly what you're reading
+   - right now.
+   -->
