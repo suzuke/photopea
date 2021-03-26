@@ -1,7 +1,7 @@
 <!DOCTYPE html> 
 <html lang="en">
 <head>
-	<title>  Page not found</title>
+	<title>  Photopea 1.4</title>
 	<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, initial-scale=1.0" />
 	<link rel="stylesheet" href="https://blog.photopea.com/wp-content/themes/simplex/style.css" type="text/css" media="screen" />
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700,700i" rel="stylesheet">
@@ -26,19 +26,63 @@
 		<a href="//www.photopea.com/api">API</a> |
 		<a href="//www.facebook.com/photopea"><img src="//photopea.com/img/facebook.svg" /></a> |
 		<a href="//www.twitter.com/photopeacom"><img src="//photopea.com/img/twitter.svg" /></a> 
-	</div><div id="main">
-	<div id="content" class="narrowcolumn">
+	</div>	<div id="main">
+	<div id="content">
+	
+		<div class="post" id="post-185">
+			<span class="date">November 19, 2015</span>
+			<h1>Photopea 1.4</h1>
+			<div class="entry">
 
-		<h2 class="center">Error 404 - Not Found</h2>
-
-	</div>
-
-	<div id="sidebar">
+				<p>New release of Photopea is out! It has <strong>29 970</strong> lines of code. Play with it at the <a href="//www.photopea.com">main site</a>.</p>
+				<span id="more-185"></span>
+				<h2>New features</h2>
+				
+				<ul>
+				<li><b>Adjustment layers</b></li>
+				<li>Blend modes and layer styles <b>on folders</b></li>
+				<li>Clear and Fill operation on layers and masks</li>
+				<li>Several bugs removed</li>
+				</ul>
+				
+				<h2>Adjustment layers</h2>
+				
+				<p>Adjustment layers can be present in PSD files since Adobe Photoshop 4.0. Photopea can load these layers from PSD, display them in Layers panel and save them back into PSD file. Brightness/Contrast, Levels, Curves, Exposure, Vibrance, Hue/Saturation layers have <b>full support</b> (new adjustment layers can be created, edited, and rendered by Photopea). And of course, they are processed by the GPU in WebGL mode. New types of adjustments will be implemented in the future.</p>
+				
+				<p>Parameters of adjustment layer can be edited in a new panel Properties, which is the similar way they are edited in Adobe Photoshop.</p>
+				
+				<h2>Blending folders</h2>
+				
+				<p>Folder of layers can have its own blend mode and layer style. Instead of a single layer, layer style is applied to a whole content of a folder. For example, if you want to stroke the layer 10 times, you can put it into 10 nested folders and give layer effect to each one of them.</p>
+				
+			</div>
+        	</div>
 		
-		<h3>Visitors</h3>
-		<a href="http://info.flagcounter.com/nBqI"><img src="http://s10.flagcounter.com/count/nBqI/bg_FFFFFF/txt_000000/border_CCCCCC/columns_1/maxflags_12/viewers_0/labels_0/pageviews_0/flags_0/" alt="Flag Counter" border="0"></a>
+	</div><!--content-->
+	
+	<div style="width:110px; margin: 0px auto;">
+		<a href="#" title="Share on Facebook"    onclick="smallWindow('http://www.facebook.com/share.php?u=');"><img src="//www.photopea.com/promo/fb.png" /></a>
+		<a href="#" title="Share on Google Plus" onclick="smallWindow('https://plus.google.com/share?url=');"><img src="//www.photopea.com/promo/gp.png" /></a>
+		<a href="#" title="Share on Twitter"     onclick="smallWindow('http://twitter.com/share?url=');"><img src="//www.photopea.com/promo/tw.png" /></a>
+		<script type="text/javascript">
+			function smallWindow(url)
+			{
+				var w = 640, h = 300;
+				window.open(url+"https://blog.photopea.com/photopea-1-4.html", "Share", "width="+w+",height="+h+",left="+Math.floor((window.innerWidth-w)/2)+",top="+Math.floor((window.innerHeight-h)/2));
+			}
+		</script>
+	</div>
+	</div>
+	<div id="disqus_thread"></div>
+  	<script type="text/javascript">
+ 	     var disqus_shortname = 'photopeablog'; // required: replace example with your forum shortname
+  	     (function() { var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+   	         dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+   	         (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq); })();
+   	</script>
+	<!--main-->
+	<?//php get_sidebar(); ?>
 
-	</div></div>
 	<div id="footer">&copy; 2013-2021 support@photopea.com</div>
 </div> <!--page-->
 </body>

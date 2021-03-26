@@ -1,7 +1,7 @@
 <!DOCTYPE html> 
 <html lang="en">
 <head>
-	<title>  Page not found</title>
+	<title>  Photopea 4.5 &#8211; Smarter Selections!</title>
 	<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, initial-scale=1.0" />
 	<link rel="stylesheet" href="https://blog.photopea.com/wp-content/themes/simplex/style.css" type="text/css" media="screen" />
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700,700i" rel="stylesheet">
@@ -26,19 +26,71 @@
 		<a href="//www.photopea.com/api">API</a> |
 		<a href="//www.facebook.com/photopea"><img src="//photopea.com/img/facebook.svg" /></a> |
 		<a href="//www.twitter.com/photopeacom"><img src="//photopea.com/img/twitter.svg" /></a> 
-	</div><div id="main">
-	<div id="content" class="narrowcolumn">
+	</div>	<div id="main">
+	<div id="content">
+	
+		<div class="post" id="post-934">
+			<span class="date">November 6, 2019</span>
+			<h1>Photopea 4.5 &#8211; Smarter Selections!</h1>
+			<div class="entry">
 
-		<h2 class="center">Error 404 - Not Found</h2>
-
-	</div>
-
-	<div id="sidebar">
+				<p>New release of Photopea is here! It has <strong>82 676</strong> lines of code. Play with it at the <a href="//www.photopea.com">main site</a>.</p>
+				
+				<span id="more-934"></span>
+				
+				<h2>New features</h2>
+				<ul>
+				 	<li>Updated Quick Selection tool</li>
+				 	<li>New Object Selection tool</li>
+				 	<li>Background Eraser tool</a></li>
+				        <li>Support for TGA files (open and save)</li>
+				</ul>
+				
+				<h2>Smart Selections</h2>
+				
+				<p>We <a href="//blog.photopea.com/photopea-3-2-advanced-selecting.html">introduced a Quick Selectin</a> tool almost two years ago. However, it was quite slow, and selections were not perfect. We were looking for a new method to perform smart selections.</p>
+				
+				<p>We built a new method, which has amazing results. It requires some pixels to be marked as a foreground and some as a background. First, it analyzes the image (it can analyze 4,000,000 pixels per second). Then, it deduces the foreground / background according to the marked pixels.</p>
+				
+				<p>Now, <b>Quick Selection</b> tool uses the new method. Your painting defines the forground, a top left and a top right pixels are marked as a background. It often gives the right result with <b>one click</b>.</p>
+				
+				<img src="//i.imgur.com/BDNe0Pc.gif" style="width:80%" />
+				
+				<h2>Object Selection Tool</h2>
+				
+				<p>Recently, <a href="//twitter.com/Photoshop/status/1189164719787036672">Adobe announced</a> a new <b>Object Selection</b> tool in Adobe Photoshop. Our method lets us provide a tool with the same user interface (drawing a rectangle over the image). We just mark the area outside the rectangle as a Background, and a small cross in the middle as a Foreground.</p>
+				
+				<p>Adobe did not release the feature yet. But it would be very interesting to compare them side-by-side. Photopea is probably the only program offering these two tools for free.</p>
+				
+				<img src="//i.imgur.com/tgEAO5X.gif" style="width:80%" />
+			</div>
+        	</div>
 		
-		<h3>Visitors</h3>
-		<a href="http://info.flagcounter.com/nBqI"><img src="http://s10.flagcounter.com/count/nBqI/bg_FFFFFF/txt_000000/border_CCCCCC/columns_1/maxflags_12/viewers_0/labels_0/pageviews_0/flags_0/" alt="Flag Counter" border="0"></a>
+	</div><!--content-->
+	
+	<div style="width:110px; margin: 0px auto;">
+		<a href="#" title="Share on Facebook"    onclick="smallWindow('http://www.facebook.com/share.php?u=');"><img src="//www.photopea.com/promo/fb.png" /></a>
+		<a href="#" title="Share on Google Plus" onclick="smallWindow('https://plus.google.com/share?url=');"><img src="//www.photopea.com/promo/gp.png" /></a>
+		<a href="#" title="Share on Twitter"     onclick="smallWindow('http://twitter.com/share?url=');"><img src="//www.photopea.com/promo/tw.png" /></a>
+		<script type="text/javascript">
+			function smallWindow(url)
+			{
+				var w = 640, h = 300;
+				window.open(url+"https://blog.photopea.com/photopea-4-5-smarter-selections.html", "Share", "width="+w+",height="+h+",left="+Math.floor((window.innerWidth-w)/2)+",top="+Math.floor((window.innerHeight-h)/2));
+			}
+		</script>
+	</div>
+	</div>
+	<div id="disqus_thread"></div>
+  	<script type="text/javascript">
+ 	     var disqus_shortname = 'photopeablog'; // required: replace example with your forum shortname
+  	     (function() { var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+   	         dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+   	         (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq); })();
+   	</script>
+	<!--main-->
+	<?//php get_sidebar(); ?>
 
-	</div></div>
 	<div id="footer">&copy; 2013-2021 support@photopea.com</div>
 </div> <!--page-->
 </body>

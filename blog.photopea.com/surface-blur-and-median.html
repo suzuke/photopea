@@ -1,7 +1,7 @@
 <!DOCTYPE html> 
 <html lang="en">
 <head>
-	<title>  Page not found</title>
+	<title>  Surface Blur and Median</title>
 	<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, initial-scale=1.0" />
 	<link rel="stylesheet" href="https://blog.photopea.com/wp-content/themes/simplex/style.css" type="text/css" media="screen" />
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700,700i" rel="stylesheet">
@@ -26,19 +26,81 @@
 		<a href="//www.photopea.com/api">API</a> |
 		<a href="//www.facebook.com/photopea"><img src="//photopea.com/img/facebook.svg" /></a> |
 		<a href="//www.twitter.com/photopeacom"><img src="//photopea.com/img/twitter.svg" /></a> 
-	</div><div id="main">
-	<div id="content" class="narrowcolumn">
+	</div>	<div id="main">
+	<div id="content">
+	
+		<div class="post" id="post-308">
+			<span class="date">September 20, 2016</span>
+			<h1>Surface Blur and Median</h1>
+			<div class="entry">
 
-		<h2 class="center">Error 404 - Not Found</h2>
-
-	</div>
-
-	<div id="sidebar">
+				<p>Today, Photopea gets two new professional filters: Surface Blur filter and Median filter! Moreover, Photopea performs them much faster, than Photoshop and GIMP do, as you can see in the last section. See it in action at the <a href="//www.photopea.com">main site</a>. Our images come from <a href="//shellandslate.com/fastmedian.html">Shell And Slate</a>.</p>
+				<span id="more-308"></span>
+				
+				<h2>Surface Blur</h2>
+				
+				<p>Surface Blur filter, which is known as Surface Blur in Adobe Photoshop and as Selective Gaussian Blur in Gimp, is an advanced image filter. It can denoise images, while preserving edges. You can use it to fix noisy photos or smooth out areas with a similar color.</p>
+				
+				<p><a href="//www.photopea.com?p=%7B%22files%22:%5B%22https://www.photopea.com/api/img2/woman.jpg%22%5D%7D" target="_blank">Try it now!</a> (Filter - Blur - Surface Blur).</p>
+				
+				<img src="//blog.photopea.com/wp-content/uploads/2016/09/woman-sb.jpg" class="fullw" />
+				
+				<h2>Median Filter</h2>
+				
+				<p>Median filter is another very common filter, which reduces noise and preserves edges. It can fix pixels or even small areas with damaged or missing color.</p>
+				
+				<p><a href="//www.photopea.com?p=%7B%22files%22:%5B%22https://www.photopea.com/api/img2/head.bmp%22%5D%7D" target="_blank">Try it now!</a> (Filter - Noise - Median).</p>
+				
+				<img src="//blog.photopea.com/wp-content/uploads/2016/09/head.jpg"  />
+				
+				<h2>Performance and speed</h2>
+				
+				<p><b>TL;DR</b>: Photopea uses a more advanced algorithm, which allows it to run faster, even though it is written in Javascript.</p>
+				
+				<p>As a performance test, we tried to measure the time of computing Surface Blur with the Radius = 100 and the Threshold = 100 on a woman.jpg image (the previous example). Here are the results:</p>
+				
+				<table style="width:200px;">
+				<tr><th>Image Editor</th><th>Time</th></tr>
+				<tr><td>GIMP</td><td>55 s</td></tr>
+				<tr><td>Photoshop</td><td>2 s</td></tr>
+				<tr><td>Photopea</td><td>0.6 s</td></tr>
+				</table>
+				
+				<p>Let's analyze it with science! The reason of such performance is the computational complexity of a method, that is used by each program. Each program has to work with an image having N pixels and compute the filter for a radius of R pixels. GIMP perfroms <math>N × R × R</math> steps to compute the filter, while Photoshop performs <math>N × R</math> steps only. When you increase the radius twice, Photoshop computation takes twice more time, but GIMP takes four times more time.</p>
+				
+				<p>Photopea has two methods of computing the Surface Blur (or Median). First method performs <math>N × R</math> steps and another one performs <math>N × 10</math> steps (the time remains the same for any radius). When radius is at most 10, it performs the first method, otherwise it performs the second method. The computation time can be expressed by a following chart.</p>
+				
+				<img src="//blog.photopea.com/wp-content/uploads/2016/09/image.png" />
+				
+				<p>You can see, that for a radus of 10 pixels, Photopea is a lot slower than Photoshop, while both of them use the same method, that takes <math>N × R</math> steps. The reason of such speed is, that Photoshop has a parallel, multi-threaded implementation, while Photopea runs in a single thread now.</p>
+			</div>
+        	</div>
 		
-		<h3>Visitors</h3>
-		<a href="http://info.flagcounter.com/nBqI"><img src="http://s10.flagcounter.com/count/nBqI/bg_FFFFFF/txt_000000/border_CCCCCC/columns_1/maxflags_12/viewers_0/labels_0/pageviews_0/flags_0/" alt="Flag Counter" border="0"></a>
+	</div><!--content-->
+	
+	<div style="width:110px; margin: 0px auto;">
+		<a href="#" title="Share on Facebook"    onclick="smallWindow('http://www.facebook.com/share.php?u=');"><img src="//www.photopea.com/promo/fb.png" /></a>
+		<a href="#" title="Share on Google Plus" onclick="smallWindow('https://plus.google.com/share?url=');"><img src="//www.photopea.com/promo/gp.png" /></a>
+		<a href="#" title="Share on Twitter"     onclick="smallWindow('http://twitter.com/share?url=');"><img src="//www.photopea.com/promo/tw.png" /></a>
+		<script type="text/javascript">
+			function smallWindow(url)
+			{
+				var w = 640, h = 300;
+				window.open(url+"https://blog.photopea.com/surface-blur-and-median.html", "Share", "width="+w+",height="+h+",left="+Math.floor((window.innerWidth-w)/2)+",top="+Math.floor((window.innerHeight-h)/2));
+			}
+		</script>
+	</div>
+	</div>
+	<div id="disqus_thread"></div>
+  	<script type="text/javascript">
+ 	     var disqus_shortname = 'photopeablog'; // required: replace example with your forum shortname
+  	     (function() { var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+   	         dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+   	         (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq); })();
+   	</script>
+	<!--main-->
+	<?//php get_sidebar(); ?>
 
-	</div></div>
 	<div id="footer">&copy; 2013-2021 support@photopea.com</div>
 </div> <!--page-->
 </body>

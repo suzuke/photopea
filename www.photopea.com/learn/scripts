@@ -135,9 +135,14 @@ Photopea extends the model of Photoshop by adding several new functions:
 	<tr>
 		<td>Document.saveToOE("png")</td>
 		<td>Converts the document into a binary file and sends the file to an outer environment 
-			(See <a href="//www.photopea.com/api/live">Live Messaging API</a>).<br/>
+			(See <a href="//www.photopea.com/api/live">Live Messaging API</a>), optional parameters after the colon:<br/>
+			<ul>
+				<li><code>"jpg:0.8", "webp:0.6"</code> - JPG and WEBP can have a quality parameter</li>
+				<li><code>"psd:true"</code> - "true" produces a minified PSD file</li>
+				<li><code>"svg:true,false,..."</code> - SVG parameters correspond to those in the SVG export in Photopea</li>
+			</ul>
 			JPG and WEBP can have a quallity (0 to 1) after the colon (e.g. "jpg:0.8"). 
-			PSD can have a "true" after the colon: "psd:true", to produce minified PSDs (up to 4x smaller, but take 4x longer to generate).
+			PSD can have a "true" after the colon: "psd:true", to produce minified PSDs. SVG can have a list of 
 		</td>
 	</tr>
 	<tr>

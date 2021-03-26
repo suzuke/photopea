@@ -95,7 +95,7 @@ So when you edit an animation (delete frames, reorder frames, resize ...), there
 
 <h2>Delay</h2>
 
-<p>A layer which starts with <code>_a_</code> makes a new frame, which will be shown for 50 ms by default.
+<p>A layer which starts with <code>_a_</code> makes a new frame, which will be shown for 100 ms by default.
 To set your own delay, put <code>,</code> and a number to the end of the layer name. E.g. <code>_a_dog,500</code> will be displayed for half a second.</p>
 
 <h2>Merge frames</h2>

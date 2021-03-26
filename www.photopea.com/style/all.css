@@ -50,7 +50,7 @@
 	body, button{
 		margin:0;
 		padding: 0;
-		background-color: var(--bg-color);
+		background-color: var(--base);
 		
 		user-select: none;
 		-moz-user-select: none;
@@ -65,7 +65,7 @@
 	}
 	
 	.app {
-		background-color: var(--bg-color);
+		background-color: var(--base);
 		color: var(--text-color);
 		position:relative;
 	}
@@ -209,7 +209,7 @@
 		border-width: 1px;
 		border-radius: 4px;
 		font-size: 12px;
-		background-color:var(--bg-color);
+		background-color:var(--base);
 		overflow:hidden;
 	}
 	
@@ -236,7 +236,7 @@
 		right: 105%;
 		/*border-width: 1px;*/
 		box-shadow: 0px 8px 40px rgba(0,0,0,0.35);
-		background-color: var(--bg-color);
+		background-color: var(--base);
 	}
 	
 	.mainblock
@@ -273,6 +273,11 @@
 		transition: all 0.2s cubic-bezier(0.240, 0.575, 0.665, 1.565);
 		transform: scale(0.6);
 		opacity:0;
+	}
+	
+	.selected
+	{
+		background-color: rgba(0,0,0, var(--alphaDark) );	
 	}
 	
 	
@@ -316,7 +321,7 @@
 	
 	.block .panelhead .active
 	{
-		background-color: var(--bg-color);
+		background-color: var(--base);
 	}
 	
 	.block .panelhead div .cross
@@ -357,11 +362,6 @@
 	.scrollable::-webkit-scrollbar-thumb {
 		background: var(--brdrDrk); 
 		margin:2px;
-	}
-	
-	.selected
-	{
-		background-color: rgba(0,0,0, var(--alphaDark) );	
 	}
 	
 	
@@ -424,15 +424,16 @@
 	
 	.layeritem  .artb 
 	{
+		background-color:rgba(0,0,0,var(--alphaDark));
 		/*border-right-width: 3px;*/
-		border-bottom-width: 2px;
-		border-top-width: 2px;
+		/*border-bottom-width: 2px;
+		border-top-width: 2px;*/
 		/*box-shadow:         inset 0 0 4px var(--bg-panel);*/
 		/*background-color: var(--bg-panel);*/
 	}
-	.layeritem  .artb.selected 
-	{
-		/*background-color: var(--brdr);*/
+	
+	.layeritem .selected {
+		background-color:var(--bg-bbtn);
 	}
 	
 
@@ -477,10 +478,6 @@
 		line-height: 27px;
 		/*max-width: 140px;*/
 	}
-	.head textarea
-	{
-		
-	}
 	
 	.head .eye
 	{
@@ -519,7 +516,7 @@
 		width:8px;
 		background-image: var(--icon_chain);
 		filter: invert(  var(--icon_chain_invrt)  );
-		background-size: 18px 18px;
+		background-size: var(--img18) var(--img18);
 	}
 	
 	.head .clipp
@@ -532,10 +529,17 @@
 	
 	.head .link
 	{
-		width:1.5em;
+		width:var(--img20);
 		background-image: var(--icon_link);
 		filter: invert(  var(--icon_link_invrt)  );
-		background-size: 15px 15px;
+		background-size: var(--img18) var(--img18);
+	}
+	.head .linkX
+	{
+		width:var(--img20);
+		background-image: var(--icon_linkX);
+		filter: invert(  var(--icon_linkX_invrt)  );
+		background-size: var(--img18) var(--img18);
 	}
 	
 	.head .lock
@@ -648,11 +652,6 @@
 		padding: 0.5em 1em 0.5em 0.7em;
 	}
 	
-	.contextpanel .enab
-	{
-		/*cursor:pointer;*/
-	}
-	
 	.contextpanel .enab:hover, .contextpanel .active {
 		/*color:#fff;*/
 		background-color: rgba(190,230,255,1);
@@ -699,7 +698,7 @@
 	{
 		/*background-color: var(--bg-input);*/
 		/*background-color:rgba(0,0,0,0.1);*/
-		background-color: var(--bg-color);
+		background-color: var(--base);
 		padding-top: 0.2em;
 		padding-bottom: 0.3em;
 	}
@@ -843,11 +842,6 @@
 		float:left;
 	}
 	
-	.imageset .active
-	{
-		background-color: rgba(0,0,0,0.15);
-	}
-	
 	input[type='checkbox']
 	{
 		margin-right: 0.3em;
@@ -949,7 +943,7 @@ input[type="checkbox"]:checked + label:before {  content: "\2713";  }
 	{
 		position:absolute;
 		z-index: 10;
-		background-color: var(--bg-color);
+		background-color: var(--base);
 		/*border: 1px solid;*/
 		min-width : 3em;
 		min-height: 2em;
@@ -1147,7 +1141,7 @@ input[type="checkbox"]:checked + label:before {  content: "\2713";  }
 	.floatcont
 	{
 		padding:0.5em;
-		background-color:var(--bg-color);
+		background-color:var(--base);
 		border-width: 1px;
 		/*box-shadow: 0px 8px 40px rgba(0,0,0,0.35);*/
 	}
