@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<serializedJobs xmlns="http://www.narrowteq/darcy/Schema">
+    <version>1.0</version>
+    <id>1617847170074</id>
+    <serializedDownloadJob id="0">
+        <name>Photopea-git</name>
+        <state>71</state>
+        <priority>500</priority>
+        <ignoreFilter>true</ignoreFilter>
+        <url>https://www.photopea.com/</url>
+        <parentJobId xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+        <depth>0</depth>
+        <maxRetryCount>3</maxRetryCount>
+        <saveToDisk>true</saveToDisk>
+        <savePath>C:\Users\School\Downloads\Git Repos\Photopea-Offline</savePath>
+        <tryResume>true</tryResume>
+    </serializedDownloadJob>
+    <serializedDownloadJobFilter>
+        <maxRecursionDepth>-1</maxRecursionDepth>
+        <urlPrefix>https://www.photopea.com/</urlPrefix>
+        <allowedHostName>.*photopea.com</allowedHostName>
+        <saveToDisk>.*</saveToDisk>
+        <alreadyAddedUri>https://www.photopea.com/code/FNTS.js</alreadyAddedUri>
+        <alreadyAddedUri>https://github.com/photopea/photopea/issues</alreadyAddedUri>
+        <alreadyAddedUri>https://fonts.googleapis.com/css?family=Open+Sans:400%2C400i%2C700%2C700i</alreadyAddedUri>
+        <alreadyAddedUri>https://www.photopea.com/promo/icon512.png</alreadyAddedUri>
+        <alreadyAddedUri>https://www.reddit.com/r/photopea/</alreadyAddedUri>
+        <alreadyAddedUri>https://www.photopea.com/manifest.json</alreadyAddedUri>
+        <alreadyAddedUri>https://www.photopea.com/ads.js</alreadyAddedUri>
+        <alreadyAddedUri>https://www.photopea.com/code/external/ext.js</alreadyAddedUri>
+        <alreadyAddedUri>https://blog.photopea.com/introduction.html</alreadyAddedUri>
+        <alreadyAddedUri>https://chrome.google.com/webstore/detail/fmophgdjdipcbfjiopifpngdjmemonko</alreadyAddedUri>
+        <alreadyAddedUri>https://www.photopea.com/code/DBS.js</alreadyAddedUri>
+        <alreadyAddedUri>https://www.photopea.com/promo/thumb256.png</alreadyAddedUri>
+        <alreadyAddedUri>https://www.photopea.com/code/PIMG.js</alreadyAddedUri>
+        <alreadyAddedUri>https://www.photopea.com/g;m.parentNode.insertBefore(a%2Cm)</alreadyAddedUri>
+        <alreadyAddedUri>https://www.photopea.com/img/lrs/eye.png</alreadyAddedUri>
+        <alreadyAddedUri>https://www.photopea.com/code/pp.js</alreadyAddedUri>
+        <alreadyAddedUri>https://www.facebook.com/photopea/</alreadyAddedUri>
+        <alreadyAddedUri>https://www.photopea.com/</alreadyAddedUri>
+        <alreadyAddedUri>https://www.photopea.com/code/LNG2.js</alreadyAddedUri>
+        <alreadyAddedUri>https://www.photopea.com/style/all.css</alreadyAddedUri>
+        <alreadyAddedUri>https://apis.google.com/js/client.js</alreadyAddedUri>
+        <alreadyAddedUri>https://www.photopea.com/rsrc/fonts/fonts.png</alreadyAddedUri>
+        <dontLeaveDomain>false</dontLeaveDomain>
+        <dontStdAnything>false</dontStdAnything>
+    </serializedDownloadJobFilter>
+    <serializedMaxLinksToFollowFilter>
+        <maxLinksToFollow>-1</maxLinksToFollow>
+    </serializedMaxLinksToFollowFilter>
+    <serializedContextParameter>
+        <name>HttpRetrieverConfiguration</name>
+        <serializedHttpRetrieverConfiguration>
+            <maxConnectionsPerServer>2</maxConnectionsPerServer>
+            <sendReferer>true</sendReferer>
+            <bandwidthLimit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+            <proxyEnabled>false</proxyEnabled>
+            <proxyServer xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+            <proxyPort xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+            <proxyAuthenticationEnabled>false</proxyAuthenticationEnabled>
+            <proxyUser xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+            <proxyPassword xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+            <proxyRealm xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+            <userAgent>Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/36.0.1944.0 Safari/537.36</userAgent>
+        </serializedHttpRetrieverConfiguration>
+    </serializedContextParameter>
+    <serializedContextParameter>
+        <name>JobManagerConfiguration</name>
+        <serializedJobManagerConfiguration>
+            <dropIgnoredJobs>true</dropIgnoredJobs>
+            <dropFinishedJobs>false</dropFinishedJobs>
+        </serializedJobManagerConfiguration>
+    </serializedContextParameter>
+    <serializedDispatcherConfiguration>
+        <workerThreads>10</workerThreads>
+        <dispatchDelay xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+    </serializedDispatcherConfiguration>
+</serializedJobs>
