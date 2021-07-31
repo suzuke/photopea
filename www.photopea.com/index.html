@@ -19,8 +19,7 @@
 		<meta name="description" content="Photopea Online Photo Editor lets you edit photos, apply effects, filters, add text, crop or resize pictures. Do Online Photo Editing in your browser for free!" />
 		
 		<link rel="stylesheet" href="style/all.css" />
-		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700,700i" />
-
+	
 		<style>
 			#cap { 
 				font-size: 1.3em;
@@ -47,7 +46,7 @@
 		<!---->
 		<div id="cap">
 			<span style="position:absolute;right:0;top:0;font-size:7em;margin:0 0.2em;cursor:pointer;" onclick="hideCap()">✕</span>
-			<img style="width:8em; margin-top:1em;" src="promo/thumb256.png" alt="Photopea logo" />
+			<img style="width:8em; height:8em; margin-top:1em;" src="promo/thumb256.png" alt="Photopea logo" />
 			<h1>Photopea: advanced photo editor</h1>
 			<p style="font-size:1.3em">Free online photo editor supporting <b>PSD</b>, <b>XCF</b>, <b>Sketch</b>, <b>XD</b> and <b>CDR</b> formats. 
 			(<b>Adobe Photoshop</b>, <b>GIMP</b>, <b>Sketch App</b>,  <b>Adobe XD</b> and  <b>CorelDRAW</b>).</p>
@@ -61,15 +60,9 @@
 		
 		<script>if(localStorage.getItem("capShown")=="false" || window.self != window.top) hideCap();</script>
 		
-		<script src="//apis.google.com/js/client.js"></script>
-		<script src="ads.js"></script>
-		
-		<script src="code/external/ext.js"></script>	
-		<!--<script src="code/PIMG.js"></script>		
-		<script src="code/FNTS.js"></script>
-		<script src="code/LNG2.js"></script>-->
-		<script src="code/DBS.js"></script>
-		<script src="code/pp.js"></script>	
+		<script src="code/ext/ext.js"></script>	
+		<script src="code/dbs/DBS.js"></script>
+		<script src="code/pp/pp.js"></script>	
 		
 		<script>
 		  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
