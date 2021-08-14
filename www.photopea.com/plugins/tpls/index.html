@@ -1,0 +1,128 @@
+﻿
+<!DOCTYPE html> 
+
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, initial-scale=1.0" />
+		
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700,700i" />
+		<link rel="stylesheet" href="templates.css" />
+		
+		<script src="templates.js"></script>
+		<script>
+		
+			var tpls;
+			var ccat = -1, citm = -1, ordr = 0, cscr = 0;  // current scroll
+			var cont, cats, search, back, itms, kwds;
+			function clearNode(node) {  while(node.firstChild) node.removeChild(node.firstChild);  }
+			function isDisplayed(nd) {  while(true) {  if(nd==document) return true;  if(nd==null) return false;  nd=nd.parentNode;  }  }
+			
+			function go() {
+				cont = document.getElementById("cont");
+				cats = document.getElementById("cats");
+				kwds = document.getElementById("kwds");
+				search = document.getElementById("search");
+				back = document.getElementById("back");  cont.removeChild(back);
+				itms = document.getElementById("itms");
+				window.addEventListener("resize",onResize,false);  onResize();
+			
+				var request = new XMLHttpRequest();
+				request.open("GET", "../../papi/tpls.json?t="+Date.now(), true);
+				request.onload = imgsLoaded.bind(this);
+				request.onerror = function(e) {  console.log(e.target.response);  }
+				request.send();
+				
+				if(Math.random()<0.01) {
+					var request = new XMLHttpRequest();
+					request.open("GET", "https://www.photopea.com/papi/updateTemplates.php", true);
+					request.send();
+				}
+			}
+			function onResize() {
+				if(tpls) updateView();
+			}
+			
+			function imgsLoaded(e) {
+				tpls = JSON.parse(e.target.response);
+				//for(var i=0; i<tpls.list.length; i++) {console.log(tpls.list[i]);  console.log(cost(tpls.list[i]));}
+				updateView();
+				//makeStatic();
+			}
+			
+			function updateView() {
+				var w = window.innerWidth, h=window.innerHeight;
+				itms.style.height=(h-90)+"px";
+			
+				var comp;
+				if(ordr==0) comp=function(a,b) {return cost0(b)-cost0(a);}
+				if(ordr==1) comp=function(a,b) {return cost1(b)-cost1(a);}
+				if(ordr==2) comp=function(a,b) {return cost2(b)-cost2(a);}
+				tpls.list.sort(comp);
+				
+				
+				if(citm==-1 && !isDisplayed(search)) {  clearNode(cont);  cont.appendChild(search);  cont.appendChild(itms);  }
+				if(citm!=-1) {  clearNode(cont);  cont.appendChild(back);  cont.appendChild(itms);  }
+				clearNode(itms);
+				
+				var twds = kwds.value.trim().toLowerCase(), wds=twds.split(/[ ,]+/);
+				var out = [];
+				makeView(tpls,out,twds,wds,ccat,citm);
+				
+				itms.innerHTML=out.join("\n");
+				
+				var out = [];
+				getCats(tpls,ccat,out);
+				cats.innerHTML = out.join("\n");
+			}			
+			
+			function backClicked(e) {
+				citm = -1;
+				updateView();
+				itms.scrollTo(0,cscr);
+			}
+			function itemClicked(nitm) {
+				if(citm!=-1) {
+					window.parent.postMessage("--ot "+tpls.list[citm][2]);
+					if(window.location.href.indexOf("openSep")!=-1) window.open("//www.Photopea.com#t"+tempID(tpls.list[citm]));
+					return;
+				}
+				cscr = itms.scrollTop;
+				citm = nitm;
+				updateView();
+				itms.scrollTo(0,0);
+			}
+			function catClicked(nc) {
+				if(nc==ccat) ccat=-1;
+				else ccat=nc;
+				updateView();
+			}
+			function setOrder(ord) {
+				ordr=ord;
+				var ords = document.getElementsByClassName("order");
+				for(var i=0; i<3; i++) ords[i].setAttribute("class", "order"+(i==ordr ? " blue":""));
+				updateView();
+				itms.scrollTo(0,0);
+			}
+		</script>
+	</head>
+	
+	<body onload="go()" class="flexrow">	
+		
+		<div id="cats">
+		</div>
+	
+		<div id="cont">
+			<div id="search">
+				<label>Search:</label> <input type="text" id="kwds" oninput="updateView()"></input>
+				<span onclick="setOrder(0)" class="order blue">Hot</span>
+				<span onclick="setOrder(1)" class="order">New</span>
+				<span onclick="setOrder(2)" class="order">Top</span>
+			</div>
+			<div id="back">
+				<span class="back" onclick="backClicked()">&lt; Back</span>
+			</div>
+			<div id="itms" class="scrollable"></div>
+		</div>
+	</body>
+</html>
