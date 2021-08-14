@@ -4,7 +4,7 @@
 The creator of [Photopea](https://www.photopea.com/), a great free alternative to Photoshop, is not interested on making an offline version, so I took it upon myself to make it.
 
 ## Issues
-If there are any issues, please let me know. I tried to get fonts working the best I could, but there is very little documentation, so I had to work with an outdated list. If there are any fonts missing, let me know, and I will add them in individually. 
+If there are any issues, please let me know.
 
 ## How to use
 1. Download the repository
