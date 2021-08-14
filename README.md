@@ -10,5 +10,5 @@ If there are any issues, please let me know. I tried to get fonts working the be
 1. Download the repository
 1. Open a terminal
 1. `cd` into the folder where you downloaded it
-1. In the folder, type *exactly* this: `python -m http.server 8887`
-1. Open [http://localhost:8887/www.photopea.com/](http://localhost:8887/www.photopea.com/). It should load and you can use it like normal.
+1. In the folder, type *exactly* this: `python -m http.server --directory www.photopea.com 8887`
+1. Open [http://localhost:8887](http://localhost:8887). It should load and you can use it like normal.
