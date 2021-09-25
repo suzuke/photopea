@@ -43,7 +43,7 @@
 		var cc = Math.floor(rst/num);  //console.log(cc);
 		var isz = cc-26;  //console.log(isz);
 		
-		var tit = tpl[7];
+		var tit = escapeHtml(tpl[7]);
 		var lim = ~~(isz/9);  //console.log(tpl);
 		
 		if(big)  lst.push("<div class=\"item flexrow\" >");
@@ -57,11 +57,11 @@
 		var hi = ((isz*0.67)+"px");
 		
 		lst.push("<div style=\"width:"+wi+"; min-width:"+wi+"; height:"+hi+"\">");  // ict
-		lst.push("<img src=\""+iurl+"\" "+(big ? "onclick=\"itemClicked("+ind+")\"" : "")+" style=\""+(big?"cursor:pointer":"")+"\" loading=\"lazy\" />");
+		lst.push("<img src=\""+iurl+"\" "+(big ? "onclick=\"itemClicked("+ind+")\" title=\"Open &quot;"+tit+"&quot;\"" : "")+" style=\""+(big?"cursor:pointer":"")+"\" loading=\"lazy\" />");
 		lst.push("</div>"); // ict
 		lst.push("<div class=\""+"post"+(big?"_big":"")+"\">"); // cmt
 		
-		lst.push("<span class=\"title "+(big?"t1":"t2")+"\">" + escapeHtml(big?tit:shorten(tit,lim)) + "</span>");
+		lst.push("<span class=\"title "+(big?"t1":"t2")+"\">" + (big?tit:shorten(tit,lim)) + "</span>");
 		
 		var au = tps.authors[tpl[0]];
 		lst.push("<span>"+"By "+(big?au:shorten(au,~~(lim*0.7))) + " in " + cts["c"+tpl[4]]+"</span>");

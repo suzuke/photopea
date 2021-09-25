@@ -43,6 +43,7 @@
 		margin-left:15px;
 	}
 	
+	body {overscroll-behavior-x: contain;}
 	body, input, select, button {
 		font-size: 13px;
 	}
@@ -1095,6 +1096,34 @@ input[type="checkbox"]:checked + label:before {  content: "\2713";  }
 	}
 	
 	table {
+		border-width:0px;
+		border-spacing: 20px 0px;
+		width: calc(100% + 40px);
+		margin-left: -20px;
+		font-size:1.2em;
+		text-shadow:none;
+		padding-bottom:1em;
+	}
+	
+	table th, table td {  box-shadow: 0px 6px 12px rgba(0,0,0,0.25);  }
+	table th {
+		padding:10px 20px;
+		font-weight:normal;
+		font-size:1.25em;
+		color:white;
+		background-color: #2f6f9f;
+	}
+	table td {
+		color:#000;
+		background-color:white;
+		padding: 4px 14px;
+	}
+	table td ul {
+		list-style-type: none; padding:0;  margin:0; 
+	}
+	
+	/*
+	table {
 		border-width:2px;
 		font-size: 1.2em;
 		text-align: center;
@@ -1121,6 +1150,8 @@ input[type="checkbox"]:checked + label:before {  content: "\2713";  }
 	table .yes, table .no  { font-weight: bold; font-size:1.6em; }
 	
 	table .yes { background-color: rgba(0,255,0,0.2); }
+	
+	*/
 	
 	
 	

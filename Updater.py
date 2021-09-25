@@ -4,6 +4,8 @@ import re
 import json
 from tqdm import tqdm
 from dataclasses import dataclass
+import glob
+import pprint
 
 root = "www.photopea.com/"
 website = "https://photopea.com/"
@@ -24,7 +26,7 @@ urls = [
     "papi/tpls.json",
 ]
 
-
+#Update files
 def dl_file(path):
     with tqdm(desc=path, unit="B", unit_scale=True) as progress_bar:
         r = requests.get(website + path, stream=True)
@@ -55,7 +57,7 @@ for varname, vardata in db_vars:
     except Exception as e:
         print("Unable to load DBS variable %s: %s" % (varname, e))
 
-
+#Update fonts
 @dataclass
 class Font:
     ff: str
@@ -93,8 +95,24 @@ def decompress_font_list(flist):
 
         prev_ff, prev_fsf, prev_flg, prev_cat = ff, fsf, flg, cat
 
-
 for font in decompress_font_list(db["FNTS"]["list"]):
     path = "rsrc/fonts/" + font.url
     if not os.path.isfile(root + path):
         dl_file(path)
+
+
+fonts_db=[root+'rsrc/fonts/'+font.url for font in decompress_font_list(db["FNTS"]["list"])]
+
+fonts_local=glob.glob(root + 'rsrc/fonts/'+'/**/*.otf', recursive=True)
+
+for font_file in list(set(fonts_local)-set(fonts_db)):
+    os.remove(font_file)
+
+#Allow any port to be used
+with open(root+'/code/pp/pp.js','r') as pp:
+    file= pp.read()
+
+file= file.replace('8887','')
+
+with open(root+'/code/pp/pp.js','w') as pp:
+    pp.write(file)

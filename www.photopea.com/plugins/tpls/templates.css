@@ -10,15 +10,16 @@
 	.item {  position:relative;   display:inline-block;  margin:0 20px 20px 0;  }
 	.item img {  height: 100%; width: 100%; object-fit: contain;  }
 	.cat {  margin-left:30px;  margin:16px;  padding:2px 0px;  cursor:pointer;  }
-	.top {  margin-left: 7px;  }
+	.top {  margin-left: 4px;  }
 	.clickable: {  cursor:pointer;  }
-	.blue, .clickable:hover {  border-bottom: 3px solid #00eeff;  margin-bottom:-3px;  }
+	.blue {  border-bottom: 3px solid #00eeff;  margin-bottom:-3px;  }
+	.clickable:hover {color:#00eeff;}
 	.back {  display:inline-block; background-color:rgba(0,0,0,0.5);  cursor:pointer;  padding:6px 1em;  margin: 0.2em 0 0.6em 0;  font-size:1.5em;  }
 	.count {  float:right;  }
 	.cat_title {font-size:1.6em;  display:inline-block;  margin:1.2em 0 1.2em 0;}
 	.t1 {font-size:2em;  margin-bottom:0.4em;  }
 	.t2 {font-size:1.2em;}
-	#cats {  padding:10px 24px;  min-width:180px;  color:white;  }
+	#cats {  padding:10px 20px;  min-width:180px;  color:white;  }
 	#search {  font-size:1.3em;  margin-bottom: 30px;  }
 	#kwds {  font-size:1.0em;  background-color: black;  border:none;  color:white;  padding:3px; margin-left:1em;  }
 	
