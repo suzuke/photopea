@@ -50,6 +50,7 @@ for url in urls:
 db_data = open(root + "code/dbs/DBS.js").read()
 db_vars = re.findall(r"var (\w+)\s*=\s*(\{[\w\W]+?\n\s*\})\s*(?=;|/\*|var)", db_data)
 db = {}
+
 for varname, vardata in db_vars:
     print(varname)
     try:
@@ -108,11 +109,18 @@ fonts_local=glob.glob(root + 'rsrc/fonts/'+'/**/*.{otf,ttf,ttc}', recursive=True
 for font_file in list(set(fonts_local)-set(fonts_db)):
     os.remove(font_file)
 
+def find_and_replace(file,find,replace):
+    with open(file,'r') as pp:
+        file1=pp.read()
+    file1=file1.replace(find,replace)
+    with open(file,'w') as pp:
+        pp.write(file1)
+
 #Allow any port to be used
-with open(root+'/code/pp/pp.js','r') as pp:
-    file= pp.read()
+find_and_replace(root+'/code/pp/pp.js','8887','')
 
-file= file.replace('8887','')
+#Don't load Google Analytics
+find_and_replace(root+'/index.html','//www.google-analytics.com/analytics.js','')
 
-with open(root+'/code/pp/pp.js','w') as pp:
-    pp.write(file)
+#Allow the import of pictures of URLs (bypassing mirror.php)
+find_and_replace(root+'/code/pp/pp.js','"mirror.php?url="+encodeURIComponent','')

@@ -43,7 +43,7 @@
 		margin-left:15px;
 	}
 	
-	body {overscroll-behavior-x: contain;}
+	body {overscroll-behavior-x: contain; /* two-finger swipe left can navigate to a previous website */}
 	body, input, select, button {
 		font-size: 13px;
 	}
@@ -686,8 +686,10 @@
 		display:inline-block;
 	}
 	
+	label {  margin-right:2px;  }
+	
 	input, textarea, .labelitem {
-		margin: 2px;
+		margin: 2px 0;
 		padding: 3px;
 		box-sizing: border-box;
 	}
@@ -794,7 +796,6 @@
 	}
 	
 	select {
-		margin-left:2px;
 		padding-right: 17px;
 		
 		 background-image:
