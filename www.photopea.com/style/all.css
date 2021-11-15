@@ -37,7 +37,7 @@
 		cursor: pointer;
 	}
 	
-	.colorpicker .fitem .flabel, .numlist .flabel {
+	.colorpicker .form .flabel, .numlist .flabel {
 		display: inline-block;
 		min-width : 17px;
 		margin-left:15px;
@@ -937,6 +937,8 @@ input[type="checkbox"]:checked + label:before {  content: "\2713";  }
 	{
 		padding:3px 6px;
 		border-radius:0.3em;
+		height:21px;
+		white-space: nowrap;
 	}
 	.fontitem:hover {
 		/*background-color: rgba(255,255,255, 0.6);*/
@@ -962,6 +964,7 @@ input[type="checkbox"]:checked + label:before {  content: "\2713";  }
 		width: 20px;  height: 20px;
 		vertical-align: top;
 		margin-right:4px;
+		opacity:0.1;
 	}
 	
 	
@@ -1117,7 +1120,7 @@ input[type="checkbox"]:checked + label:before {  content: "\2713";  }
 	table td {
 		color:#000;
 		background-color:white;
-		padding: 4px 14px;
+		padding: 4px 11px;
 	}
 	table td ul {
 		list-style-type: none; padding:0;  margin:0; 

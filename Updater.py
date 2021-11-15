@@ -24,6 +24,7 @@ urls = [
     "plugins/tpls/templates.css",
     "plugins/tpls/templates.js",
     "papi/tpls.json",
+    "rsrc/fonts/fonts.png"
 ]
 
 #Update files
