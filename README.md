@@ -11,4 +11,4 @@ If there are any issues, please let me know.
 1. Open a terminal
 1. `cd` into the folder where you downloaded it
 1. In the folder, type this: `./.photopea`
-1. Open [http://localhost:8080](http://localhost:8002). It should load and you can use it like normal.
+1. Open [http://localhost:8002](http://localhost:8002). It should load and you can use it like normal.
