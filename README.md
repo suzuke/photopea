@@ -12,3 +12,8 @@ If there are any issues, please let me know.
 1. `cd` into the folder where you downloaded it
 1. In the folder, type this: `./.photopea`
 1. Open [http://localhost:8002](http://localhost:8002). It should load and you can use it like normal.
+
+## Related Projects
+Note: These projects are not officially associated with this one
+* [https://github.com/tim0-12432/photopea](https://github.com/tim0-12432/photopea) -- Electron wrapper for the project
+* [https://github.com/NFXT/Photopea-Offline](https://github.com/NFXT/Photopea-Offline) -- Another Electron wrapper for the project
