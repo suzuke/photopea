@@ -16,4 +16,4 @@ If there are any issues, please let me know.
 ## Related Projects
 Note: These projects are not officially associated with this one
 * [https://github.com/tim0-12432/photopea](https://github.com/tim0-12432/photopea) -- Electron wrapper for the project
-* [https://github.com/NFXT/Photopea-Offline](https://github.com/NFXT/Photopea-Offline) -- Another Electron wrapper for the project
+* [https://github.com/NFXT/Photopea-Desktop-App](https://github.com/NFXT/Photopea-Desktop-App) -- Another Electron wrapper for the project
