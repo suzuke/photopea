@@ -53,11 +53,11 @@ db_vars = re.findall(r"var (\w+)\s*=\s*(\{[\w\W]+?\n\s*\})\s*(?=;|/\*|var)", db_
 db = {}
 
 for varname, vardata in db_vars:
-    print(varname)
     try:
         db[varname] = json.loads(vardata)
     except Exception as e:
-        print("Unable to load DBS variable %s: %s" % (varname, e))
+        if varname=='FNTS':
+            print("Unable to load DBS variable %s: %s" % (varname, e))
 
 #Update fonts
 @dataclass
@@ -108,6 +108,7 @@ fonts_db=[root+'rsrc/fonts/'+font.url for font in decompress_font_list(db["FNTS"
 fonts_local=glob.glob(root + 'rsrc/fonts/'+'/**/*.{otf,ttf,ttc}', recursive=True)
 
 for font_file in list(set(fonts_local)-set(fonts_db)):
+    print('Removing '+font_file)
     os.remove(font_file)
 
 def find_and_replace(file,find,replace):
