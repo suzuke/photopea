@@ -1,2 +1,0 @@
-#!/bin/bash
-python -m http.server --directory www.photopea.com 8002 --bind 127.0.0.1 2006
