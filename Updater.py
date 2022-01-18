@@ -134,3 +134,8 @@ find_and_replace('code/pp/pp.js','"mirror.php?url="+encodeURIComponent','')
 
 #Allow Dropbox to load from dropboxStorage.html
 find_and_replace('code/storages/dropboxStorage.html', 'var redirectUri = window.location.href;', 'var redirectUri = "https://www.photopea.com/code/storages/dropboxStorage.html";')
+
+#Remove Facebook Pixel Domains
+find_and_replace('index.html','https://connect.facebook.net','')
+
+find_and_replace('index.html','https://www.facebook.com','')
