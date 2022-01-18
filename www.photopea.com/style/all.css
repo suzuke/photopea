@@ -15,6 +15,11 @@
 		width : var(--img20);
 		height: var(--img20);
 	}
+	.miniscale
+	{
+		width : var(--img15);
+		height: var(--img15);
+	}
 	
 	.listitem {
 		border-bottom-width: 1px;
@@ -70,6 +75,7 @@
 		color: var(--text-color);
 		position:relative;
 	}
+	
 	
 	.intro {
 		box-shadow: 0px 40px 70px rgba(0,0,0,0.35);
@@ -401,11 +407,6 @@
 		text-align:right;
 		height:22px;
 	}
-	.lpfoot  img
-	{
-		width:15px;
-		height:15px;
-	}
 	.lpfoot button { padding-bottom:0; }
 	
 	.layeritem
@@ -482,16 +483,23 @@
 	.head .eye
 	{
 		width: 28px;
-		background-image: var(--icon_eye);/*url("../img/lrs/eye.png");*/
+		background-image: var(--icon_eye);
 		filter: invert(  var(--icon_eye_invrt)  );
-		/*background-size: 15px 15px;*/
+		background-size: var(--img15);
 	}
+	.head .sqr
+	{
+		width: 28px;
+		background-image: var(--icon_square);
+		filter: invert(  var(--icon_square_invrt)  );
+		background-size: var(--img15);
+	}
+	
 	.head .cmark
 	{
 		width: 22px;
-		background-image: var(--icon_checkmark);/*url("../img/lrs/eye.png");*/
+		background-image: var(--icon_checkmark);
 		filter: invert(  var(--icon_checkmark_invrt)  );
-		/*background-size: 15px 15px;*/
 	}
 	
 	
@@ -499,7 +507,7 @@
 	{
 		background-image: var(--icon_arrow_down);
 		filter: invert(  var(--icon_arrow_down_invrt)  );
-		background-size: 15px 15px;
+		background-size: var(--img15);
 		width:15px;
 	}
 	
@@ -507,7 +515,7 @@
 	{
 		background-image: var(--icon_arrow_right);
 		filter: invert(  var(--icon_arrow_right_invrt)  );
-		background-size: 15px 15px;
+		background-size: var(--img15);
 		width:15px;
 	}
 	
@@ -516,7 +524,7 @@
 		width:8px;
 		background-image: var(--icon_chain);
 		filter: invert(  var(--icon_chain_invrt)  );
-		background-size: var(--img18) var(--img18);
+		background-size: var(--img18);
 	}
 	
 	.head .clipp
@@ -524,7 +532,7 @@
 		width:1em;
 		background-image: var(--icon_clipping);
 		filter: invert(  var(--icon_clipping_invrt)  );
-		background-size: 11px 11px;
+		background-size: var(--img15);
 	}
 	
 	.head .link
@@ -532,14 +540,14 @@
 		width:var(--img20);
 		background-image: var(--icon_link);
 		filter: invert(  var(--icon_link_invrt)  );
-		background-size: var(--img18) var(--img18);
+		background-size: var(--img18);
 	}
 	.head .linkX
 	{
 		width:var(--img20);
 		background-image: var(--icon_linkX);
 		filter: invert(  var(--icon_linkX_invrt)  );
-		background-size: var(--img18) var(--img18);
+		background-size: var(--img18);
 	}
 	
 	.head .lock
@@ -547,7 +555,7 @@
 		width:1.5em;
 		background-image: var(--icon_lock);
 		filter: invert(  var(--icon_lock_invrt)  );
-		background-size: 14px 14px;
+		background-size: var(--img15);
 	}
 	
 	.head .lrfx
@@ -555,7 +563,7 @@
 		width:1.5em;
 		background-image: var(--icon_fx);
 		filter: invert(  var(--icon_fx_invrt)  );
-		background-size: 15px 15px;
+		background-size: var(--img15);
 	}
 	
 	.head .arfx
@@ -569,7 +577,7 @@
 		width:1.7em;
 		background-image: var(--icon_folder);
 		filter: invert(  var(--icon_folder_invrt)  );
-		background-size: 15px 15px;
+		background-size: var(--img15);
 	}
 	.head  canvas
 	{
@@ -611,8 +619,8 @@
 	}
 	
 	.topbar  button {
-		padding-left:6px;
-		padding-right:6px;
+		padding-left:5px;
+		padding-right:5px;
 		margin:4px;
 	}
 	
@@ -1097,7 +1105,7 @@ input[type="checkbox"]:checked + label:before {  content: "\2713";  }
 		margin-bottom: 0.2em;
 	}
 	
-	table {
+	.account table {
 		border-width:0px;
 		border-spacing: 20px 0px;
 		width: calc(100% + 40px);
@@ -1107,20 +1115,20 @@ input[type="checkbox"]:checked + label:before {  content: "\2713";  }
 		padding-bottom:1em;
 	}
 	
-	table th, table td {  box-shadow: 0px 6px 12px rgba(0,0,0,0.25);  }
-	table th {
+	.accounttable th, .account table td {  box-shadow: 0px 6px 12px rgba(0,0,0,0.25);  }
+	.account table th {
 		padding:10px 20px;
 		font-weight:normal;
 		font-size:1.25em;
 		color:white;
 		background-color: #2f6f9f;
 	}
-	table td {
+	.account table td {
 		color:#000;
 		background-color:white;
 		padding: 4px 11px;
 	}
-	table td ul {
+	.account table td ul {
 		list-style-type: none; padding:0;  margin:0; 
 	}
 	
@@ -1456,14 +1464,22 @@ input[type="checkbox"]:checked + label:before {  content: "\2713";  }
   src: url(https://fonts.gstatic.com/s/opensans/v20/mem5YaGs126MiZpBA-UN7rgOUuhp.woff2) format('woff2');
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
-	.storage * {position:relative;}
+	
 
-	.storage img  {  object-fit: contain;  padding:4px;  }
+	.storageset * { text-shadow:none; }
+	.storage * {position:relative; }
+	
+	.storage {  background-color:white;  color:#222222;  }
+	
+	.storwindow input {  background-color:white;  color:#333333;  }
+
+	.storage .cont {  padding:4px;  }
+	.storage img  {  object-fit: contain;  }
 	.storage .name {  word-break:break-all;  line-height:1.35em;  overflow:hidden;  display:inline-block;  vertical-align:middle;  }
 	
 	.storage .ext {
 		position:absolute;  top:2px;  left:2px;
-		color:white;  padding:1px 2px 1px 2px;  line-height:1em;  font-weight:bold;  border-radius:2px;
+		color:white;  padding:2px 3px 2px 3px;  line-height:1em;  font-weight:bold;  border-radius:2px;
 	}
 
 	.storage .tile {
@@ -1477,7 +1493,7 @@ input[type="checkbox"]:checked + label:before {  content: "\2713";  }
 		margin-right:8px;
 	}
 	.storage .tile .name {
-		width:180px;  height:36px;
+		height:36px;
 	}
 	
 	

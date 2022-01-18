@@ -101,6 +101,7 @@ def decompress_font_list(flist):
 for font in decompress_font_list(db["FNTS"]["list"]):
     path = "rsrc/fonts/" + font.url
     if not os.path.isfile(root + path):
+        print("Downloading " + font.url)
         dl_file(path)
 
 #Delete any unused fonts
@@ -109,7 +110,7 @@ fonts_db=[root+'rsrc/fonts/'+font.url for font in decompress_font_list(db["FNTS"
 fonts_local=glob.glob(root + 'rsrc/fonts/'+'/**/*.{otf,ttf,ttc}', recursive=True)
 
 for font_file in list(set(fonts_local)-set(fonts_db)):
-    print('Removing '+font_file)
+    print('Removing ' + font_file)
     os.remove(font_file)
 
 def find_and_replace(file,find,replace):
