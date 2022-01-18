@@ -25,7 +25,10 @@ urls = [
     "plugins/tpls/templates.css",
     "plugins/tpls/templates.js",
     "papi/tpls.json",
-    "rsrc/fonts/fonts.png"
+    "rsrc/fonts/fonts.png",
+    "code/storages/deviceStorage.html",
+    "code/storages/googledriveStorage.html",
+    "code/storages/dropboxStorage.html"
 ]
 
 #Update files
@@ -107,24 +110,27 @@ for font in decompress_font_list(db["FNTS"]["list"]):
 #Delete any unused fonts
 fonts_db=[root+'rsrc/fonts/'+font.url for font in decompress_font_list(db["FNTS"]["list"])]
 
-fonts_local=glob.glob(root + 'rsrc/fonts/'+'/**/*.{otf,ttf,ttc}', recursive=True)
+fonts_local=glob.glob(root + 'rsrc/fonts/' + '/**/*.{otf,ttf,ttc}', recursive=True)
 
 for font_file in list(set(fonts_local)-set(fonts_db)):
     print('Removing ' + font_file)
     os.remove(font_file)
 
 def find_and_replace(file,find,replace):
-    with open(file,'r') as pp:
+    with open(os.path.join(root,file),'r') as pp:
         file1=pp.read()
     file1=file1.replace(find,replace)
-    with open(file,'w') as pp:
+    with open(os.path.join(root,file),'w') as pp:
         pp.write(file1)
 
 #Allow any port to be used
-find_and_replace(root+'/code/pp/pp.js','8887','')
+find_and_replace('code/pp/pp.js','8887','')
 
 #Don't load Google Analytics
-find_and_replace(root+'/index.html','//www.google-analytics.com/analytics.js','')
+find_and_replace('index.html','//www.google-analytics.com/analytics.js','')
 
 #Allow the import of pictures of URLs (bypassing mirror.php)
-find_and_replace(root+'/code/pp/pp.js','"mirror.php?url="+encodeURIComponent','')
+find_and_replace('code/pp/pp.js','"mirror.php?url="+encodeURIComponent','')
+
+#Allow Dropbox to load from dropboxStorage.html
+find_and_replace('code/storages/dropboxStorage.html', 'var redirectUri = window.location.href;', 'var redirectUri = "https://www.photopea.com/code/storages/dropboxStorage.html";')

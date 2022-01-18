@@ -1,0 +1,328 @@
+<!DOCTYPE html> 
+
+<html>
+	<head>
+		<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/dropbox@10.9.0/dist/Dropbox-sdk.min.js"></script>
+	</head>
+	<body onload="go()">
+
+		<script type="text/javascript" >
+
+			var sentFalse = false;
+			var authDone = false;
+			var lastMsg, authUrl;
+
+			var DROPBOX_APP_KEY = "ylv5pcromn2df1o";  //'7rlydkifdtp5gnb';
+    		var redirectUri = "https://www.photopea.com/code/storages/dropboxStorage.html";
+		    var dbx = new Dropbox.Dropbox({ clientId: DROPBOX_APP_KEY });
+			
+			function go() {
+				if (window.name == "authwin")
+		        {
+		        	authDone = false;
+		        	window.setTimeout(function()
+		            {
+		                var searchParams = new URLSearchParams(window.location.search.substr(1));
+		                var dropboxCode = searchParams.get('code');
+		                window.opener.saveCode(dropboxCode);
+		                send("ready",true);
+		                window.setTimeout(function()
+		                {
+		                    window.close();
+		                }, 400);
+		            }, 100);
+		        }		        
+		        else
+		        {
+		        	dbx.auth.accessToken = localStorage.getItem('dropboxAccessToken');
+		        	window.addEventListener("message", onMessage,false);
+		        	doAction(checkUser);		        						
+		        }				
+			}
+
+			function handleError(e)
+			{
+				console.log(e);
+				if(e.error && e.error == "multiple_colons") { send(1,"Rename path contains more than one colon."); }
+				else
+				{
+					send("ready",false);
+					sentFalse = true;	
+				}				
+			}
+
+		    function saveCode(code)
+		    {
+		        dbx.auth.getAccessTokenFromCode(redirectUri, code)
+		        .then(function({ result })
+		        {
+		        	dbx.auth.accessToken = result.access_token;
+		        	localStorage.setItem('dropboxAccessToken', result.access_token);
+		        	authDone = true;
+		            if(retryAction) { doAction(retryAction.action, retryAction.prms, 1); retryAction = null; }
+		            else send("ready",true);            
+		        })
+		        .catch(function(error) { handleError(error); });
+		    }
+
+		    function signOut()
+		    {
+		    	var w = window.open("https://www.dropbox.com/logout", 'logoutwin', 'width=700,height=800');
+				if(!w) { handleError("Popup window blocked.") }
+				else
+				{
+					dbx.authTokenRevoke()
+					.then(function({ result })
+					{
+						send(0,"");
+					})
+					.catch(function(error) { handleError(error); });
+					window.setTimeout(function()
+					{
+		                w.close();
+					}, 5000);
+				}				
+		    }
+
+		    //check valid accessToken and proceed, or try to reauthenticate
+		    function doAction(action, prms)
+		    {
+		    	if(action == signOut) { signOut(); }
+		    	else if(sentFalse) { authenticate(action,prms); }
+		    	else if(dbx.auth.accessToken)
+		    	{
+		    		dbx.checkUser({"query": ""})
+			    	.then(function(e) {			    		
+				        action(prms);
+				    })
+				    .catch(function(e)
+				    {
+						handleError(e);
+				    });
+		    	}
+		    	else { handleError("No Access Token present."); }
+		    }
+
+		    function handleListResult(response, prms, out)
+		    {
+		    	var entries = response.result.entries;
+      			if (!out) { out = []; };
+      			for (var i = 0; i<entries.length; ++i)
+				{
+					if (entries[i][".tag"] == "file")
+					{
+						out.push([entries[i].name,entries[i].size, Date.parse(entries[i].server_modified)/1000]);
+					}
+					else out.push([entries[i].name,-1, 0]);
+				}
+				if(response.result.has_more)
+				{
+					prms.cursor = response.result.cursor;
+					listDir(prms, out);
+				}
+				else
+				{
+					getThumbnailPage(prms, 0, out);					
+				}					
+		    }
+
+		    function listDir(prms, out)
+		    //recursively listdir until no more .has_more, passing out array with every call
+		    {
+		    	if(prms.path == "/") { prms.path = ""; }
+		    	if(prms.cursor)
+		    	{
+		    		dbx.filesListFolderContinue({cursor: prms.cursor})
+        			.then(function(response) { handleListResult(response,prms,out); })
+        			.catch(function(error) { handleError(error); });
+		    	}
+		    	else
+		    	{
+					dbx.filesListFolder({path: prms.path})
+        			.then(function(response) { handleListResult(response,prms,out); })
+        			.catch(function(error) { handleError(error); });	
+		    	}
+		    }
+
+		    function getThumbnailPage(prms, i, out)
+		    {
+		    	var ii = i;
+		    	var thumbnailExtenstions = ["jpg", "jpeg", "png", "tiff", "tif", "gif", "webp", "ppm", "bmp",
+		    		"JPG", "JPEG", "PNG", "TIFF", "TIF", "GIF", "WEBP", "PPM", "BMP"];
+		    	var query = [];
+		    	while(query.length < 25 && ii < out.length)
+		    	{
+		    		if(thumbnailExtenstions.includes(out[ii][0].split('.').pop()))
+					{
+						query.push({"path" : prms.path + "/" + out[ii][0], "format" : "png"});
+					}
+					++ii;
+		    	}
+		    	dbx.filesGetThumbnailBatch({entries:query})
+		    	.then(function(response) {
+		    		ii = i;
+		    		var j = 0;
+		    		while(j < 25 && ii < out.length)
+		    		{
+		    			//could just check names from metadata, probably faster than .includes
+		    			if(thumbnailExtenstions.includes(out[ii][0].split('.').pop()))
+						{
+							out[ii].push(response.result.entries[j].thumbnail)
+		    				++j
+		    			}
+		    			++ii;
+		    		}
+		    		if(ii < out.length) { getThumbnailPage(prms, ii, out); }
+		    		else { convertThumbnail(prms, 0, out) }
+		    	})
+		    	.catch(function(e) { console.log(e); })
+		    }
+
+		    function convertThumbnail(prms, i, out)
+		    {
+		    	if(i == out.length) { send(0,out); }
+		    	else if(out[i].length == 4)
+		    	{
+		    		fetch("data:image/png;base64,"+out[i][3])
+		    		.then(function(result) {
+		    			result.blob()
+		    			.then(function(blob) {
+		    				out[i][3] = URL.createObjectURL(blob);
+		    				convertThumbnail(prms, i+1, out);
+		    			})
+		    			.catch(function(e) { handleError(e); });
+		    		})
+		    		.catch(function(e) { handleError(e); });
+		    	}
+		    	else { convertThumbnail(prms, i+1, out); }
+		    }
+
+		    function downloadFile(prms)
+		    {
+		        dbx.filesDownload({"path" : prms.path})
+		        .then(function(response) {
+		            response.result.fileBlob.arrayBuffer()
+		            .then(function(buffer) { window.parent.postMessage(buffer,"*"); })
+		            .catch(function(e) { handleError(e); });
+		        })
+		        .catch(function(response) {
+		            handleError(response);
+		        });
+		    }
+
+		    function downloadThumbnail(prms)
+		    {
+		    	dbx.filesGetThumbnail({"path" : prms.path, "format" : "png"})
+		    	.then(function(response) {
+		    		var blobURL = URL.createObjectURL(response.result.fileBlob);
+		    		console.log(blobURL);
+		    		var xhr = new XMLHttpRequest();
+		    		xhr.open('GET', blobURL, true);
+		    		xhr.responseType = "arraybuffer";
+		    		xhr.onload = function(e) {window.parent.postMessage(e.target.response,"*"); };
+        			xhr.onerror = function(e) { console.error(e); };
+        			xhr.send();
+		        })
+				.catch(function(response) {
+		            handleError(response);
+		        });
+		    }
+
+		    function uploadFile(prms)
+		    {
+		    	var file = new Blob([prms.buffer]);
+		    	dbx.filesUpload({"path": prms.path, "contents": file, "mode" : "overwrite"})
+        		.then(function(response) { send(0,""); })
+             	.catch(function(error) { send(1,error); });
+		    }
+
+		    function deleteFile(prms)
+		    {
+		    	dbx.filesDelete({ "path" : prms.path })
+		    	.then(function(response) { send(0,""); })
+             	.catch(function(error) { send(1,error); });
+		    }
+
+		    function makeFolder(prms)
+		    {
+		    	dbx.filesCreateFolderV2({ "path" : prms.path.slice(0, -1) })
+		    	.then(function(response) { send(0,""); })
+             	.catch(function(error) { send(1,error); });
+		    }
+
+		    function renameFile(prms)
+		    {
+		    	dbx.filesMoveV2({ "from_path": prms.from_path, "to_path": prms.to_path })
+		    	.then(function(response) {send(0,""); })
+		    	.catch(function(error) { send(1,error); });
+		    }
+
+		    function authenticate(action, prms)
+		    {
+		    	sentFalse = false;
+		    	if(action) { retryAction = { "action": action, "prms": prms }; }		        
+		    	dbx.auth.getAuthenticationUrl(
+		            redirectUri,
+		            '',
+		            'code',
+		            '',
+		            [
+		                'account_info.read',
+		                'files.content.write',
+		                'files.content.read',
+		            ],
+		            'user',
+		            true,)
+		        .then(function(url)
+		        {		        	
+		        	var w = window.open(url, 'authwin', 'width=700,height=800');
+					if(!w) { handleError("Popup window blocked.") }	
+					else
+					{
+						var popupTick = setInterval(function()
+						{
+	      					if (w.closed)
+	      					{
+	        					clearInterval(popupTick);
+	        					if (!authDone) { handleError("Authorization failed (window closed without authorization completing.") }
+	      					}
+    					}, 500);
+					}				
+		        });
+		    }
+
+		    function checkUser(prms)
+		    {
+		    	send("ready",true);
+		    }
+
+			function onMessage(e) {
+				if((typeof e.data) == "string") {
+					var msg = JSON.parse(e.data);
+					console.log(msg);
+					if(msg.code=="show") { doAction(listDir, { "path" : msg.prm }); }					
+					else if(msg.code=="load") { doAction(downloadFile, { "path" : msg.prm }); }
+					//else if(msg.code=="load") { doAction(downloadThumbnail, { "path" : msg.prm }); }
+					else if(msg.code=="delete") { doAction(deleteFile, { "path" : msg.prm }); }
+					else if(msg.code=="save" && msg.prm.endsWith("/")) { doAction(makeFolder, { "path" : msg.prm }); }
+					else if(msg.code=="forget") { doAction(signOut); }
+					else if(msg.code=="rename") 
+					{
+						var prmSplit = msg.prm.split(":");
+						if (prmSplit.length > 2) { handleError({"error" : "multiple_colons"}); return; }
+						else { doAction(renameFile, { "from_path" : prmSplit[0], "to_path" : prmSplit[0].substring(0,prmSplit[0].lastIndexOf("/")+1)+prmSplit[1] }); }
+					}
+					lastMsg=msg;
+				}
+				else {
+					if(lastMsg.code=="save") doAction(uploadFile, { "path": lastMsg.prm, "buffer" : e.data });
+				}				
+			}
+
+			function send(code,prm) {
+				window.parent.postMessage(JSON.stringify({"code":code, "prm":prm}),"*");
+			}
+		</script>
+		
+	</body>
+</html>

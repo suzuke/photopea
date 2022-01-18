@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+		<script>
+			var lastMsg, allowed=false, dir=null;
+			
+			var locStor = {};
+			
+			function go() {
+				console.log("deviceStorage");
+				var free = false;
+			
+				window.addEventListener("message", onMessage,false);
+				
+				
+				var idb = { req: window["indexedDB"].open("deviceStorage") };
+				idb.req["onupgradeneeded"] = function(e) {
+					//console.log("onupgradeneeded");
+					var db = e.target.result;
+					var os = db["createObjectStore"]("rsrc", { "keyPath": "k" });
+				}
+				idb.req["onsuccess"] = function(e) {
+					var db = locStor.db = e.target.result;  //console.log(db);
+					var os = db["transaction"](["rsrc"], "readwrite")["objectStore"]("rsrc");
+					
+					var req = os["get"]("fs0");
+					req["onsuccess"] = function(e) {
+						if(e.target.result) {
+							if(localStorage.getItem("forget")=="1") {
+								localStorage.removeItem("forget");
+							}
+							else {
+								locStor.fset = e.target.result["fset"];
+								//console.log(locStor.fset);
+								dir = locStor.fset;
+							}
+							//allowed=true;   send("ready",true);  
+						}
+					};
+				}
+				
+				allowed=false;  send("ready",false);  
+				//allowed = free;
+			}
+			
+			async function makeFolder(path) {
+				path = __getPath(path);  //console.log(path);
+				var fld = dir;  for(var i=0; i<path.length-1; i++) fld = await fld.getDirectoryHandle(path[i]);
+				
+				var dirHandle = await fld.getDirectoryHandle(path[path.length-1], { create: true });
+				send("0","");
+			}
+			
+			async function deleteFile(path) {
+				path = __getPath(path);  //console.log(path);
+				var fld = dir;  for(var i=0; i<path.length-1; i++) fld = await fld.getDirectoryHandle(path[i]);
+				
+				await fld.removeEntry(path[path.length-1], { recursive: true });
+				send("0","");
+			}
+			
+			async function saveFile (path, buff) {
+				path = __getPath(path);  //console.log(path);
+				var fld = dir;  for(var i=0; i<path.length-1; i++) fld = await fld.getDirectoryHandle(path[i]);
+				
+				var han = await fld.getFileHandle(path[path.length-1],{create:true});
+				
+				var wrt = await han.createWritable();//;.then(function(e) {e.write(buff); return e;}).then(function(e) {e.close()});
+				await wrt.write(buff);
+				await wrt.close();
+				send("0","");
+			}
+			async function printFile(path) {
+				path = __getPath(path);  //console.log(path);
+				var fld = dir;  for(var i=0; i<path.length-1; i++) fld = await fld.getDirectoryHandle(path[i]);
+				
+				var han = await fld.getFileHandle(path[path.length-1]);
+				var fil = await han.getFile();
+				var buf = await fil.arrayBuffer();
+				window.parent.postMessage(buf,"*");
+			}
+			
+			var fmap,left,fls, gtime, timg;
+			async function printFolder(path) {
+				path = __getPath(path);  //console.log(path);
+				var fld = dir;  for(var i=0; i<path.length; i++) fld = await fld.getDirectoryHandle(path[i]);
+				
+				fls = [];  fmap={};  left=0;  timg=0;  gtime=Date.now();
+				var time = Date.now(), cnt=0, gotFile=false;
+				for await (var entry of fld.values()) {
+					var file = [entry.name,-1];  fls.push(file);
+					
+					//if(entry.kind=="file--") {  file[1]=100;  file.push(0);  }
+					if(entry.kind=="file") {
+						gotFile=true;
+						fmap[entry.name]=fls.length-1;  left++;
+						entry.getFile().then(fileLoaded);
+						//var fil = await entry.getFile();  makeFile(fil, file);
+					}
+				}
+				if(!gotFile) send("0",fls);
+			}
+			async function fileLoaded(fil) {
+				file = fls[fmap[fil.name]];
+				await makeFile(fil,file);  left--;
+				if(left==0) {
+					console.log(Date.now()-gtime, timg);
+					send("0",fls);
+				}
+			}
+			
+			async function makeFile(fil, file) {
+				var np = fil.name.split("."), ext = (np.length==1 ? "" : np.pop()).toLowerCase();
+				file[1]=fil.size;
+				file.push(~~(fil.lastModified/1000));  //return;
+				if(ext=="jpeg") ext="jpg";
+				if(ext=="tiff") ext="tif";
+				if(["dng","cr2","nef","arw","3fr","fff","gpr"].indexOf(ext)!=-1) ext="tif";
+				var thmb=null;
+				if(thmb==null && (ext=="jpg" || ext=="tif")) {  // || ext=="--psd"
+					var lim = 130000;
+					var buf = await fil.slice(0,(lim*1.5>fil.size) ? fil.size : lim).arrayBuffer();
+					if(ext=="jpg" && buf.byteLength==fil.size) thmb = bufToUrl(buf, "jpg");
+					else  thmb=findJPG(fil.name,buf);
+				}
+				//*
+				if(thmb==null && (ext=="psd" || ext=="psb")) {
+					var buf = await fil.slice(0,4096).arrayBuffer();
+					buf = new Uint8Array(buf);  //console.log(buf);
+					var off = 26;
+					var clen = readUint(buf,off);  off+=4;  //console.log(clen);
+					off+=clen;
+					var rlen = readUint(buf,off);  off+=4;  //console.log(rlen);
+					
+					if(off+rlen<=4096) buf=buf.slice(off,off+rlen);
+					else buf = new Uint8Array(await fil.slice(off,off+rlen).arrayBuffer());
+						
+					off = 0;
+					while(off<buf.length) {
+						var sign = readASCII(buf,off,4);  off+=4;  
+						var resID = readUshort(buf,off);  off+=2;
+						var sz = buf[off];  
+						off+=sz+(1-(sz&1))+1;
+						
+						var asiz = readUint(buf,off);  off+=4;
+						if(resID==1036) {
+							//console.log(off, rlen);
+							var tsz = readUint(buf,off+20);
+							var io = off+28;  //console.log(buf.slice(io,io+tsz));
+							thmb = bufToUrl(buf.slice(io,io+tsz).buffer,"jpg");
+							break;
+						}
+						off+=asiz+(asiz&1);								
+					}							
+				}//*/
+				if(thmb==null && fil.size<100000 && ["png","svg","bmp","gif","webp"].indexOf(ext)!=-1) {
+					var buf = await fil.arrayBuffer();
+					if(ext=="png") {
+						var data=new Uint8Array(buf), off=16;
+						var bf = new Uint8Array(4), dim=[];
+						for(var i=0; i<2; i++) {
+							for(var j=0; j<4; j++) bf[j] = data[off+3-j];
+							dim.push((new Uint32Array(bf.buffer))[0]);
+						}
+						if(dim[0]*dim[1]<1e6) thmb=bufToUrl(buf,ext);
+					}
+					else thmb=bufToUrl(buf,ext);
+				}
+				if(thmb) {  file.push(thmb);  timg++;  }
+			}
+			
+			function findJPG(name, buf) {
+				buf = new Uint8Array(buf);  //console.log(buf);
+				var d8=-1, d9=-1, end=buf.length-1;
+				var ints = [];
+				for(var i=2; i<end; i++) {
+					if(buf[i]==255) {
+						var b1=buf[i+1], b2=buf[i+2], b3 = buf[i+3];
+						//if(b1==0xd8 && b2==0xff) console.log(name);
+						if     (d8==-1 && b1==0xd8 && b2==0xff) d8=i;
+						else if(d8!=-1 && b1==0xd9) {  d9=i;  ints.push(d8,d9);  d8=d9=-1;  }
+					}
+				}
+				if(ints.length!=0) {
+					d8=ints[0];  d9=ints[1];
+					return bufToUrl(buf.slice(d8, d9+2).buffer, "jpg");
+				}
+			}
+			
+			var u8 = new Uint8Array(4);
+			var u16 = new Uint16Array(u8.buffer);
+			var u32 = new Uint32Array(u8.buffer);
+			function readASCII (b, o, l) {  var out="";  for(var i=0; i<l; i++) out+=String.fromCharCode(b[o+i]);  return out;  }
+			function readUshort(b, o) {  u8[0]=b[o+1];  u8[1]=b[o];  return u16[0];  }
+			function readUint  (b, o) {  u8[0]=b[o+3];  u8[1]=b[o+2];  u8[2]=b[o+1];  u8[3]=b[o];  return u32[0];  }
+			function bufToUrl(buf, ext) {
+				var str=[];  buf=new Uint8Array(buf);
+				for(var i=0; i<buf.length; i++) str.push(String.fromCharCode(buf[i]));
+				return "data:image/"+ext+(ext=="svg"?"+xml":"")+";base64,"+btoa(str.join(""))
+			}
+			
+			async function askPermissions() {
+				if(dir)	{ 
+					if(await dir.requestPermission({mode:"readwrite"})!="granted") return;
+				}
+				else {
+					dir = await window.showDirectoryPicker();
+					locStor.fset = dir;
+				
+					var os = locStor.db["transaction"](["rsrc"], "readwrite")["objectStore"]("rsrc");
+					var ooo=os["put"]({  "k":"fs0", "fset":locStor.fset  });
+					ooo.onerror = function(e) {  console.log(e);  alert("Storing failed. Browser says: "+e["target"]["error"]["message"],7000);  }
+				}
+				allowed = true;  printFolder("/");
+			}
+			
+			function onMessage(e) {
+				if((typeof e.data) == "string") {
+					//console.log(e.data);
+					
+					if(window.showDirectoryPicker==null) {  send("1","Your browser can not perform this feature.");  return;  }
+				
+					var msg = null;
+					try {  msg = JSON.parse(e.data);  }  catch(e) {  return;  }
+					if(msg.code==null) return;
+					
+					if(!allowed) {  askPermissions();  return;  }
+					
+					
+					if(msg.code=="show") {
+						printFolder(msg.prm);
+					}
+					else if(msg.code=="load") {
+						printFile(msg.prm);
+					}
+					else if(msg.code=="delete") {
+						deleteFile(msg.prm);
+					}
+					else if(msg.code=="save" && msg.prm.endsWith("/")) makeFolder(msg.prm.slice(0,-1));  // making a folder
+					else if(msg.code=="forget") {  console.log("forget message");  localStorage.setItem("forget", "1");  send("0","");  }
+					else if(msg.code=="rename") {
+						send("1","We can not rename files in your coputer yet.");
+					}
+					
+					lastMsg=msg;
+				}
+				else {
+					if(lastMsg.code=="save") saveFile(lastMsg.prm, e.data);
+				}
+			}
+			
+			function __getPath(path) {
+				var pth = [];  if(path.length>1) pth=path.slice(1).split("/");
+				return pth;
+			}
+			
+			function send(code,prm) {
+				var time = Date.now();
+				var str = JSON.stringify({"code":code, "prm":prm});
+				//console.log("json", Date.now()-time, str.length);
+				window.parent.postMessage(str,"*");
+			}
+		</script>
+	</head>
+	<body onload="go()"></body>
+</html>

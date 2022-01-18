@@ -1,0 +1,384 @@
+<!DOCTYPE html> 
+
+<html>
+	<head>
+		<script type="text/javascript" src="https://apis.google.com/js/api.js"></script>		
+	</head>
+	<body onload="go()">
+	
+		<script type="text/javascript">
+
+			var sentFalse = false;
+		    var clientId = "463342976776-04ub3ijsr7i5qobn8ha32ap6vsaae75a.apps.googleusercontent.com";
+		    var scope = 'https://www.googleapis.com/auth/drive';
+			var discoveryDocs = ['https://www.googleapis.com/discovery/v1/apis/drive/v3/rest'];
+			var oauthToken;
+			var GoogleAuth;
+
+			function go()
+			{
+				gapi.load('client:auth2', {'callback': onAuthApiLoad}); 
+      		}
+
+      		function handleError(e)
+			{
+				console.log(e);
+				if(e.result && e.result.error && e.result.error.code)
+				{
+					if(e.result.error.code == 403) {send("ready",false); sentFalse = true;}
+					if(e.result.error.code == 401) {send("ready",false); sentFalse = true;}
+				}				
+				else if (e.error)
+				{
+					if(e.error == "access_denied") {send("ready",false); sentFalse = true;}          			
+					if(e.error == "popup_closed_by_user") {send("ready",false); sentFalse = true;}
+					if(e.error == "popup_blocked_by_browser") {send("ready",false); sentFalse = true;}
+					if(e.error == "multiple_colons") {send(1,"Rename path contains more than one colon.");}
+				}
+			}
+
+			function authorize(action,prms)
+			{
+				sentFalse = false;
+				GoogleAuth.signIn()				
+          		.then(function () {
+          			send("ready",true);
+	          		if(action) { findFile(action, prms.path.slice(1).split("/"), null, null, prms.buffer); }
+          		})
+          		.catch(function(e) {
+          			handleError(e);
+          		});
+			}
+
+      		function onAuthApiLoad()
+      		{     
+      			window.addEventListener("message", onMessage, false);		   				
+      			gapi.client.init({
+          			clientId: clientId,
+          			scope: scope,
+          			discoveryDocs :discoveryDocs
+        		})
+        		.then(function () {   
+          			GoogleAuth = gapi.auth2.getAuthInstance();
+          			if(!GoogleAuth.isSignedIn.get()) { sentFalse = true; send("ready",false); }
+          			else { send("ready",true); }          			
+      			})
+      			.catch(handleError);      			
+      		}
+
+      		function findFile(action, path, id, pageToken, buffer)
+      		{
+      			if(!id) id = "root";
+      			if(path.length == 0 || path[0] == '')
+      			{
+      				if(action == listDir)
+      				{
+      					var query = "'" + id + "' in parents";
+      					action(null, query, []);      					
+      				}
+      				else { action(id); }
+      				return;
+      			}
+      			if(path.length == 1 && action == createDir)
+      			{
+      				action(id,path[0]);
+      				return;
+      			}
+      			if(path.length == 1 && action == checkFile)
+      			{
+      				action(id, path[0], null, buffer);
+      				return;
+      			}
+
+      			var newFile = null;
+      			if(path.length == 1 && action == renameFile)
+      			{
+      				var prmSplit = path[0].split(":");
+					if (prmSplit.length > 2) { handleError({"error" : "multiple_colons"}); return; }
+					else { path[0] = prmSplit[0]; newFile = prmSplit[1]; }
+      			}
+
+      			var query = "'" + id + "' in parents";
+  				
+  				gapi.client.drive.files.list({
+	                'q': query,
+	                'pageToken' : pageToken,
+	                'pageSize': 1000,
+	                'fields': "nextPageToken, files(id, name, size, modifiedTime, kind, mimeType)",})
+	      		.then(function(response) {
+	      			var files = response.result.files;
+	      			pageToken = response.result.nextPageToken;  
+	      			var found = false; 			
+	      			for (var i = 0; i < files.length; ++i)
+	      			{
+	      				if(files[i].name == path[0])
+	      				{
+	      					found = true;
+	      					if(newFile && action == renameFile) { renameFile(files[i].id, newFile); return; }
+	      					else { findFile(action, path.slice(1), files[i].id, null, buffer); return; }
+	      				}
+	      			}
+	      			if(!found && pageToken) findFile(action, path, id, pageToken, buffer);
+	      			else if(action == checkFile) newFile(id,path[0],buffer);
+	      			else if(action == renameFile) { handleError("Could not find file to rename '"+path[0]+"'"); send(1, "Could not find file to rename '"+path[0]+"'"); }
+	      		})
+	      		.catch(handleError);
+      		}
+
+      		function listDir(pageToken, query, out)
+      		{
+      			gapi.client.drive.files.list({
+		                'q': query,
+		                'pageToken' : pageToken,
+		                'pageSize': 1000,
+		                'fields': "nextPageToken, files(id, name, size, modifiedTime, kind, mimeType, thumbnailLink)",})
+		      		.then(function(response) {		      			
+		      			var files = response.result.files;
+		      			pageToken = response.result.nextPageToken;   	
+		      			for(var i = 0; i<files.length; ++i)
+		      			{
+		      				if(files[i].mimeType == "application/vnd.google-apps.folder") { out.push([files[i].name, -1, Math.round(Date.parse(files[i].modifiedTime)/1000)]); }
+		      				else
+		      				{
+		      					if(files[i].thumbnailLink) { out.push([files[i].name,files[i].size ? parseInt(files[i].size) : 0, Math.round(Date.parse(files[i].modifiedTime)/1000), files[i].thumbnailLink]); }
+		      					//but maybe we should only show thumbnail to files which Photopea can open - Gdrive also makes thumbnails for spreadsheets etc.
+		      					else { out.push([files[i].name,parseInt(files[i].size), Math.round(Date.parse(files[i].modifiedTime)/1000)]); }
+		      				}
+		      			}
+						if(pageToken) listDir(pageToken,query,out);
+						else { send(0,out); }
+		      		})
+		      		.catch(handleError);
+      		}
+
+      		function downloadFile(fileId)
+      		{
+      			var xhr = new XMLHttpRequest();
+        		xhr.open('GET', "https://www.googleapis.com/drive/v3/files/" + fileId + "?alt=media");
+        		xhr.responseType = "arraybuffer";
+        		xhr.setRequestHeader('Authorization', 'Bearer ' + GoogleAuth.currentUser.get().getAuthResponse().access_token);
+        		xhr.onload = function(e) {window.parent.postMessage(e.target.response,"*"); };
+        		xhr.onerror = function(e) { console.error(e); };
+        		xhr.send();
+      		}
+
+      		function downloadThumbnail(fileId)
+      		{
+      			var xhr = new XMLHttpRequest();
+        		xhr.open('GET', "https://www.googleapis.com/drive/v3/files/" + fileId + "?fields=thumbnailLink");
+        		xhr.setRequestHeader('Authorization', 'Bearer ' + GoogleAuth.currentUser.get().getAuthResponse().access_token);
+        		xhr.onload = function(e)
+        		{
+        			var link = JSON.parse(e.target.response).thumbnailLink;
+        			console.log(JSON.parse(e.target.response));
+        			if (link)
+        			{
+        				var xhr2 = new XMLHttpRequest();
+        				xhr2.open('GET', link);
+        				xhr2.responseType = "arraybuffer";
+        				xhr2.onload = function(e) {window.parent.postMessage(e.target.response,"*"); };
+        				xhr2.onerror = function(e) { console.error(e); };
+        				xhr2.send();
+        			}
+        			else { console.error("Could not get thumbnailLink."); }
+        		};
+        		xhr.onerror = function(e) { console.error(e); };
+        		xhr.send();	
+      		}
+
+      		function deleteFile(fileId)
+      		{
+      			gapi.client.drive.files.delete({
+      				'fileId' : fileId,
+      			})
+      			.then(function(response) {
+      				send(0,"");	            			            	
+		        })
+		        .catch(function(response) {
+		            send(1,response);
+		            handleError(response);
+		        });
+      		}
+
+      		function createDir(parentId, name)
+      		{
+      			gapi.client.drive.files.create(
+      			{
+      				'resource' :
+      				{	
+      					'name' : name,
+      					'parents' : [parentId],
+      					'mimeType': 'application/vnd.google-apps.folder',
+      				}
+      			})
+      			.then(function(response) {
+      				send(0,"");	            			            	
+		        })
+		        .catch(function(response) {
+		            send(1,response);
+		            handleError(response);
+		        });
+      		}
+
+      		function renameFile(fileId, newName)
+      		{
+      			gapi.client.drive.files.update({
+      				'fileId' : fileId,
+      				'resource' :
+      				{	
+      					'name' : newName,
+      				}
+      			})
+      			.then(function(response) {
+      				send(0,"");	            			            	
+		        })
+		        .catch(function(response) {
+		            send(1,response);
+		            handleError(response);
+		        });
+      		}
+
+      		//check if file exists, then overwrite, otherwise create new file.
+      		function checkFile(parentId, name, pageToken, buffer)
+      		{
+      			var query = "'" + parentId + "' in parents";
+  				gapi.client.drive.files.list({
+	                'q': query,
+	                'pageToken' : pageToken,
+	                'pageSize': 1000,
+	                'fields': "nextPageToken, files(id, name)",})
+	      		.then(function(response) {
+	      			var files = response.result.files;
+	      			pageToken = response.result.nextPageToken;  
+	      			var found = false; 			
+	      			for (var i = 0; i < files.length; ++i)
+	      			{
+	      				if(files[i].name == name)
+	      				{
+	      					found = true;
+	      					uploadFile(files[i].id,parentId,name,buffer);
+	      					return;
+	      				}
+	      			}
+	      			if(!found && pageToken) checkFile(parentId, name, pageToken, buffer);
+	      			else uploadFile(null,parentId,name,buffer);
+	      		})
+	      		.catch(handleError);
+      		}
+
+      		function uploadFile(fileId, parentId, name, buffer)
+      		{
+      			var file = new Blob([buffer]);
+				var metadata = { 'name': name, };
+      			if(!fileId) metadata['parents'] = [parentId];
+      			var xhr = new XMLHttpRequest();
+      			if(buffer.byteLength > 5000000)
+      			{
+      				var contentType = file.type || 'application/octet-stream';
+      				metadata['mimeType'] = contentType;
+					metadata['Content-Type'] = contentType;
+					metadata['Content-Length'] = file.size;
+
+      				if(!fileId)	xhr.open("POST", "https://www.googleapis.com/upload/drive/v3/files?uploadType=resumable");
+      				else xhr.open("PATCH", "https://www.googleapis.com/upload/drive/v3/files/" + fileId + "?uploadType=resumable");
+      				xhr.setRequestHeader('Authorization', 'Bearer ' + GoogleAuth.currentUser.get().getAuthResponse().access_token);
+      				xhr.setRequestHeader('Content-Type', 'application/json');
+					xhr.setRequestHeader('X-Upload-Content-Length', file.size);
+					xhr.setRequestHeader('X-Upload-Content-Type', contentType);
+					xhr.onreadystatechange = function() {
+						if(xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+							var locationUrl = xhr.getResponseHeader('Location');
+							var reader = new FileReader();
+							reader.onload = function(e) {
+								
+								var xhr2 = new XMLHttpRequest();
+
+								xhr2.open('PUT', locationUrl, true);								
+								xhr2.setRequestHeader('Content-Type', contentType);
+								xhr2.setRequestHeader('X-Upload-Content-Type', contentType);
+								xhr2.onreadystatechange = function() {
+									if(xhr2.readyState === XMLHttpRequest.DONE && xhr2.status === 200) {
+										send(0,"");
+									}
+								};
+								xhr2.onerror = function(e) { send(1,e); handleError(e)};
+								xhr2.send(reader.result);
+							};
+							reader.readAsArrayBuffer(file);
+						}
+					};
+					xhr.onerror = function(e) { send(1,e); handleError(e)};					
+					xhr.send(JSON.stringify(metadata));					
+      			}
+      			else
+      			{
+      				var form = new FormData();
+      				form.append('metadata', new Blob([JSON.stringify(metadata)], { type: 'application/json' }));
+      				form.append('file', file);
+      				if(!fileId) xhr.open('POST', 'https://www.googleapis.com/upload/drive/v3/files?uploadType=multipart&fields=id');
+      				else xhr.open('PATCH', 'https://www.googleapis.com/upload/drive/v3/files/' + fileId + '?uploadType=multipart&fields=id');	
+      				xhr.setRequestHeader('Authorization', 'Bearer ' + GoogleAuth.currentUser.get().getAuthResponse().access_token);
+      				xhr.onload = function(response) { send(0,""); };
+      				xhr.onerror = function(e) { send(1,e); handleError(e)};
+     				xhr.send(form);
+      			}      			
+      		}
+
+      		function signOutUser()
+      		{
+      			GoogleAuth.signOut().then(function () {
+      				//console.log('User signed out.');
+      				send(0,"");
+    			})
+    			.catch(handleError);
+      		}
+
+      		function disconnectUser()
+      		{
+      			GoogleAuth.disconnect().then(function () {
+      				//console.log('User account disconnected.');
+      				send(0,"");
+    			})
+    			.catch(handleError);
+      		}
+
+      		function doAction(action, prms)
+      		{
+      			if(action == signOutUser) { signOutUser(); }
+      			//if(action == signOutUser) { disconnectUser(); }
+      			else if(sentFalse) {	authorize(action, prms); }
+      			else if(!GoogleAuth.isSignedIn.get()) { send("ready", false); sentFalse = true; }
+      			else if(!GoogleAuth.currentUser.get().hasGrantedScopes(scope)) { send("ready", false); sentFalse = true; }
+      			else { findFile(action, prms.path.slice(1).split("/"), null, null, prms.buffer); }	
+      		}
+
+      		function onMessage(e) {
+      			if(e.origin && (e.origin == "https://accounts.google.com" || e.origin == "https://content.googleapis.com")) { return; }
+      			if((typeof e.data) == "string") {
+					var msg = JSON.parse(e.data);					
+					console.log(msg);
+					//TODO: cannot list directory if name contains forwardslash
+					if(msg.code=="show") { doAction(listDir, { "path" : msg.prm }) }					
+					else if(msg.code=="load") { doAction(downloadFile, { "path" : msg.prm }); }
+					//else if(msg.code=="load") { doAction(downloadThumbnail, { "path" : msg.prm }); }
+					else if(msg.code=="delete") { doAction(deleteFile, { "path" : msg.prm }); }
+					else if(msg.code=="save" && msg.prm.endsWith("/")) { doAction(createDir, { "path" : msg.prm.slice(0, -1) }); }
+					//TODO: will not work if filename contains colon(s)
+					else if(msg.code=="rename") { doAction(renameFile, {"path" : msg.prm }); }
+					else if(msg.code=="forget") { doAction(signOutUser); }
+					lastMsg=msg;
+				}
+				else {
+					if(lastMsg.code=="save") doAction(checkFile, { "path": lastMsg.prm, "buffer" : e.data });
+				}				
+			}
+
+			function send(code,prm) {
+				window.parent.postMessage(JSON.stringify({"code":code, "prm":prm}),"*");
+			}
+
+      	</script>
+
+
+	</body>
+</html>
