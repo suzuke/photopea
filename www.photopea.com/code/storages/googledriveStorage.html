@@ -138,6 +138,7 @@
 		      			for(var i = 0; i<files.length; ++i)
 		      			{
 		      				if(files[i].mimeType == "application/vnd.google-apps.folder") { out.push([files[i].name, -1, Math.round(Date.parse(files[i].modifiedTime)/1000)]); }
+		      				else if(files[i].mimeType.includes("application/vnd.google-apps.")) { }
 		      				else
 		      				{
 		      					if(files[i].thumbnailLink) { out.push([files[i].name,files[i].size ? parseInt(files[i].size) : 0, Math.round(Date.parse(files[i].modifiedTime)/1000), files[i].thumbnailLink]); }

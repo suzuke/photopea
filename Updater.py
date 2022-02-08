@@ -28,8 +28,11 @@ urls = [
     "rsrc/fonts/fonts.png",
     "code/storages/deviceStorage.html",
     "code/storages/googledriveStorage.html",
-    "code/storages/dropboxStorage.html"
+    "code/storages/dropboxStorage.html",
+    "rsrc/basic/fa_basic.csh"
 ]
+
+
 
 #Update files
 def dl_file(path):
@@ -106,11 +109,12 @@ for font in decompress_font_list(db["FNTS"]["list"]):
     if not os.path.isfile(root + path):
         print("Downloading " + font.url)
         dl_file(path)
+        print("\n")
 
 #Delete any unused fonts
 fonts_db=[root+'rsrc/fonts/'+font.url for font in decompress_font_list(db["FNTS"]["list"])]
 
-fonts_local=glob.glob(root + 'rsrc/fonts/' + '/**/*.{otf,ttf,ttc}', recursive=True)
+fonts_local=[_ for _ in glob.glob(root + 'rsrc/fonts/**/*', recursive=True) if re.match(r'www.photopea.com/rsrc/fonts/(.*)/*.(otf|ttc|ttf)',_)]
 
 for font_file in list(set(fonts_local)-set(fonts_db)):
     print('Removing ' + font_file)
