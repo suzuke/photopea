@@ -15,5 +15,7 @@ If there are any issues, please let me know.
 
 ## Related Projects
 Note: These projects are not officially associated with this one
-* [https://github.com/tim0-12432/photopea](https://github.com/tim0-12432/photopea) -- Electron wrapper for the project
-* [https://github.com/NFXT/Photopea-Desktop-App](https://github.com/NFXT/Photopea-Desktop-App) -- Another Electron wrapper for the project
+
+~~* [https://github.com/tim0-12432/photopea](https://github.com/tim0-12432/photopea) -- Electron wrapper for the project~~ : DMCA Takedown, check [claims](https://github.com/github/dmca/blob/master/2022/03/2022-03-22-photopea.md) by the photopea dev
+
+~~* [https://github.com/NFXT/Photopea-Desktop-App](https://github.com/NFXT/Photopea-Desktop-App) -- Another Electron wrapper for the project~~ : Repo Missing
